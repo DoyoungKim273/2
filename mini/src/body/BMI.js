@@ -22,8 +22,7 @@ export default function BMI() {
   return (
     <div>
       <div id="bmi-calculator">
-        <h2 className="text-xl font-bold">BMI 계산기</h2>
-        <div></div>
+        <h2 className="justify-start text-xl text-center font-bold p-2 m-3 bg-purple-400 text-white rounded-2xl">BMI 계산기</h2>
         <input
           type="number"
           id="height"
@@ -38,8 +37,8 @@ export default function BMI() {
           value={weight}
           onChange={(e) => setWeight(e.target.value)}
         />
-        <button onClick={calculateBMI}>BMI 계산</button>
-        <div id="result">
+        <button className="bg-purple-700 text-white p-3 rounded-2xl"onClick={calculateBMI}>BMI 계산</button>
+        <div id="result" className="text-center font-bold p-2 m-3 bg-purple-300 text-white rounded-2xl">
           {bmi !== null
             ? `당신의 BMI는 ${bmi} 입니다.`
             : "유효한 값을 입력하세요."}
