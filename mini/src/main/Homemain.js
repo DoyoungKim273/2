@@ -5,7 +5,7 @@ import Slidemain from "./Slidemain";
 export default function Homemain() {
   return (
     <>
-      <div className="h-72 bg-slate-400">
+      <div className="h-64 bg-slate-400">
         <Slidemain />
       </div>
       <main className="h-52 bg-slate-500 float-left flex-grow flex ">
