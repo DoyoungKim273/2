@@ -5,17 +5,17 @@ import Slidemain from "./Slidemain";
 export default function Homemain() {
   return (
     <>
-      <div className="h-64 bg-slate-400">
+      <div className="h-64 my-3">
         <Slidemain />
       </div>
-      <main className="h-52 bg-slate-500 float-left flex-grow flex ">
-        <section className="flex-1 float-left h-full bg-purple-100">
+      <main className="h-52 float-left flex-grow flex ">
+        <section className="flex-1 float-left h-full">
           <Noticemain />
         </section>
-        <section className="flex-1 float-left h-full bg-purple-100">
+        <section className="flex-1 float-left h-full">
           <Intromain />
         </section>
-        <section className="flex-1 float-left h-full bg-purple-100">
+        <section className="flex-1 float-left h-full">
           <Linkmain />
         </section>
       </main>

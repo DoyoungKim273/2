@@ -65,7 +65,7 @@ nav>ul>li a{
 }
 
 nav>ul>li a:hover{
-  background-color: rgb(250, 121, 164);
+  background-color: rgb(244, 114, 182);
 }
 
 nav ul ul{
@@ -121,4 +121,9 @@ nav ul ul li {
 
 .opacity-0{
   opacity: 0;
+}
+
+.custom-hr {
+  border-top: 1px solid slategray;
+  margin: 5px 0; /* 위아래 마진 조정 */
 }

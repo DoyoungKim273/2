@@ -5,25 +5,21 @@ export default function Noticemain() {
     <div>
       <section>
         <div className="bg-purple-400 h-14">
-            <div className="px-7 py-3 text-white font-bold text-lg">바로가기</div>
+            <div className="px-7 py-3 text-white font-bold text-lg"> 🤍 사용 가이드</div>
         </div>
         <ul>
-          <li className="m-5 p-5 bg-purple-200 rounded-2xl">
-            <a href="#" className="font-bold text-lg">식사지도 - 에너지 영양소</a>
+          <li className="m-5 p-5 bg-purple-100 rounded-2xl">
+            <div className="font-bold text-lg"> 💜 영양평가와 식사지도</div>
             <div>
-              칼슘(calcium)은 원자번호 20, 원소기호 Ca, 알칼리 토류 금속의
-              하나이다. 인체의 칼슘 보유량은 체중의 약 1-2% 정도로써 체내 칼슘의
-              대부분(99%)은 치아와 뼈에 존재하고, 그 외에는 혈액을 포함한
-              세포외액 및 근육 등 여러 조직에 존재한다.
+              - 사용자가 섭취한 일일 식단을 입력하면 식품의약품안전처 DB를 기준으로 영양소 섭취량을 산출, 종합적인 영양 수준을 평가합니다.<br/>
+              - 평가 결과를 바탕으로 사용자는 자신에게 필요한 식사지도 정보를 열람, 식생활 개선을 위한 정보를 얻습니다.
             </div>
           </li>
-          <li className="m-5 p-5 bg-purple-200 rounded-2xl">
-            <a href="#"  className="font-bold text-lg">식사지도 - 비타민과 무기질</a>
+          <li className="m-5 p-5 bg-purple-100 rounded-2xl">
+            <div className="font-bold text-lg"> 💜 바람직한 체중 계산</div>
             <div>
-              칼슘(calcium)은 원자번호 20, 원소기호 Ca, 알칼리 토류 금속의
-              하나이다. 인체의 칼슘 보유량은 체중의 약 1-2% 정도로써 체내 칼슘의
-              대부분(99%)은 치아와 뼈에 존재하고, 그 외에는 혈액을 포함한
-              세포외액 및 근육 등 여러 조직에 존재한다.
+              - 사용자의 신장, 체중 입력에 따라 BMI(체질량지수)를 계산합니다.<br/>
+              - 계산된 BMI(체질량지수)를 바탕으로 사용자의 임신기 / 수유기의 분기별 적정 체중 증가량을 산출합니다.
             </div>
           </li>
         </ul>
