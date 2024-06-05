@@ -13,6 +13,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Login from "./member/Login";
 import GuideList from "./guide/GuideList";
 import BeMember from "./member/BeMember";
+import MyPage from "./member/MyPage";
 
 function App() {
   return (
@@ -80,13 +81,13 @@ function App() {
                 로그인
               </Link>
               <Link
-                to="#"
+                to="/MyPage"
                 className="py-2 px-4 h-10 bg-purple-300 text-purple-950 rounded-3xl font-bold"
               >
                 마이페이지
               </Link>
               <Link
-                to="#"
+                to="/BeMember"
                 className="py-2 px-4 h-10 bg-purple-300 text-purple-950 rounded-3xl font-bold"
               >
                 회원가입
@@ -104,6 +105,7 @@ function App() {
           <Route path="/GuideList" element={<GuideList />} />
           <Route path="/Login" element={<Login/>}/>
           <Route path="/BeMember" element={<BeMember/>}/>
+          <Route path="/MyPage" element={<MyPage/>}/>
         </Routes>
 
         <footer className="h-16 w-full flex justify-between items-center bg-purple-500">
