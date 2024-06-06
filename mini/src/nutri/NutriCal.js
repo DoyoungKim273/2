@@ -3,7 +3,7 @@ import NutriHead from "./NutriHead";
 import NutriDetail from "./NutriDetail";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-
+ 
 export default function NutriCal() {
   const [group1, setGroup1] = useState([]);
   const[selectGroup, setSelectedGroup] = useState([]);
