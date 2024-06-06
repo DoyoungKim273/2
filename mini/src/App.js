@@ -96,6 +96,7 @@ function App() {
           </nav>
         </header>
 
+        <div className="min-h-screen">
         <Routes>
           <Route path="/" element={<Homemain />} />
           <Route path="/BMI" element={<BMI />} />
@@ -107,18 +108,19 @@ function App() {
           <Route path="/BeMember" element={<BeMember/>}/>
           <Route path="/MyPage" element={<MyPage/>}/>
         </Routes>
+        </div>
+        
 
-        <footer className="h-16 w-full flex justify-between items-center bg-purple-500">
-          <div className="h-full w-48"></div>
-          <div className="h-full w-8/12 flex justify-center items-center text-base text-white">
+        <footer className="h-16 w-full flex flex-col justify-between items-center fixed bottom-0 bg-purple-500">
+          <div className="w-full h-2/3 flex justify-center items-center text-base text-white">
             ⓒ 2024 MOJAMOJA - Doyoung Kim & Nayoung Lee. All right reserved.
           </div>
-          <ul className="h-full w-48"></ul>
-        </footer>
-        <div className="text-sm text-center">
+          <div className="text-sm text-center w-full bg-white">
           * 공지 : 본 페이지에서 제공되는 정보는 의학적 소견과 상이할 수 있으니
           어디까지나 참고로 이용하시기 바랍니다. *
         </div>
+        </footer>
+        
       </div>
     </BrowserRouter>
   );
