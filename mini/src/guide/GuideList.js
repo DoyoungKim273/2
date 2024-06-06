@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function GuideList() {
   return (
-    <div>
+    <div className="min-h-screen">
       <div className="justify-start text-xl text-center font-bold p-2 m-5 text-slate-900 bg-purple-100">
         식사지도 가이드 목록
       </div>

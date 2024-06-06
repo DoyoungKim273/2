@@ -41,7 +41,7 @@ export default function BMI() {
   };
 
   return (
-    <div>
+    <div className="min-h-screen">
       <div id="bmi-calculator">
         <h2 className="justify-start text-xl text-center font-bold p-2 m-3 text-slate-900">
           ⏲ BMI (체질량지수) 계산기 ⏲

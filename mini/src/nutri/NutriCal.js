@@ -43,7 +43,7 @@ export default function NutriCal() {
   };
 
   return (
-    <div>
+    <div className="min-h-screen">
       <div>
         <h2 className="justify-start text-xl text-center font-bold p-2 m-5 text-slate-900">
           🍱 식단을 통한 영양 평가 🍱
