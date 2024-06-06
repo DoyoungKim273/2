@@ -58,20 +58,6 @@ function App() {
                   </li>
                 </ul>
               </li>
-              <li>
-                <Link to="#"> ▸ 영유아</Link>
-                <ul>
-                  <li>
-                    <Link to="/NutriCal">식단을 통한 영양 평가</Link>
-                  </li>
-                  <li>
-                    <Link to="/GuideList">올바른 식사 지도</Link>
-                  </li>
-                  <li>
-                    <Link to="/BMI">바람직한 체중 계산</Link>
-                  </li>
-                </ul>
-              </li>
             </ul>
             <div className="flex space-x-4 px-20">
               <Link
