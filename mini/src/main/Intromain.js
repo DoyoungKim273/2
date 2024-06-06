@@ -12,7 +12,8 @@ export default function Intromain() {
         <div className="m-5 p-5 bg-purple-200  rounded-2xl">
         <div className="font-bold text-lg"> " 어머니와 아이, 모두가 건강한 세상 "</div>
         <div>- 임신 수유기의 건강은 어머니와 아이 모두에게 큰 영향을 미칩니다. 그럼에도 불구하고 국내에는 모자 건강을 위한 종합 영양 서비스가 없는 것이 현실입니다.<br/>
-        - 이에 영양사와 간호사가 마음을 모아 임신기, 수유기 여성을 위한 영양평가, 식사지도, 신체계측치 분석 사이트를 만들었습니다.</div>
+        - 이에 영양사와 간호사가 마음을 모아 임신기, 수유기 여성을 위한 연속성 있는 건강 관리를 위해 영양평가, 식사지도, 신체계측치 분석 사이트를 만들었습니다.
+        </div>
         </div>
         <div className="m-5 p-5 bg-purple-200  rounded-2xl">
         <div className="font-bold text-lg"> " 신뢰할 수 있는 데이터 "</div>
