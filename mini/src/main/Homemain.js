@@ -8,14 +8,14 @@ export default function Homemain() {
       <div className="h-64 my-3">
         <Slidemain />
       </div>
-      <main className="h-52 float-left flex-grow flex ">
-        <section className="flex-1 float-left h-full">
+      <main className="h-4/6 flex-grow flex ">
+        <section className="flex-1 h-full">
           <Noticemain />
         </section>
-        <section className="flex-1 float-left h-full">
+        <section className="flex-1 h-full">
           <Intromain />
         </section>
-        <section className="flex-1 float-left h-full">
+        <section className="flex-1 h-full">
           <Linkmain />
         </section>
       </main>
