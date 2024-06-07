@@ -17,7 +17,7 @@ export default function Intromain() {
         </div>
         <div className="m-5 p-5 bg-purple-200  rounded-2xl">
         <div className="font-bold text-lg"> " 신뢰할 수 있는 데이터 "</div>
-        <div>- 팀 모자모자는 식품의약품안전처의 식품영양성분 DB정보와, 대한산부인과학회의 임신 수유기 여성을 위한 안내 정보를 바탕으로 합니다.<br/>
+        <div>- 팀 모자모자는 식품의약품안전처의 식품영양성분 DB정보와 대한산부인과학회의 임신 수유기 여성을 위한 안내 정보를 바탕으로 합니다.<br/>
         - 믿을 수 있는 출처와 정확한 근거로 모자 모두를 만족시키는 모자 건강 종합 영양 서비스, '엄마랑 아이랑'이 되겠습니다.</div>
         </div>
       </section>
