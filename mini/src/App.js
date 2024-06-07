@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import weblogo from "./img/weblogo.png";
 import "./App.css";
 import BMI from "./body/BMI";
+import BMI2 from "./body/BMI2";
 import NutriCal from "./nutri/NutriCal";
 import Noticemain from "./main/Noticemain";
 import Intromain from "./main/Intromain";
@@ -15,6 +16,7 @@ import Login from "./member/Login";
 import GuideList from "./guide/GuideList";
 import BeMember from "./member/BeMember";
 import MyPage from "./member/MyPage";
+import Carb from "./guide/Carb";
 
 function App() {
   return (
@@ -23,7 +25,7 @@ function App() {
         <header className="h-24 bg-purple-500 flex my-5">
           <Link to="/">
             <div className="w-80 bg-white h-24 flex items-center">
-              <img src={weblogo} alt="weblogo" className="mx-3 h-20 w-20"></img>
+              <img src={weblogo} alt="weblogo" className="mx-4 h-20 w-20"></img>
               <div className="text-purple-950 text-3xl font-bold text-right">
                 엄마랑 아이랑
               </div>
@@ -55,7 +57,7 @@ function App() {
                     <Link to="/GuideList">올바른 식사 지도</Link>
                   </li>
                   <li>
-                    <Link to="/BMI">바람직한 체중 계산</Link>
+                    <Link to="/BMI2">바람직한 체중 계산</Link>
                   </li>
                 </ul>
               </li>
@@ -88,6 +90,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Homemain />} />
           <Route path="/BMI" element={<BMI />} />
+          <Route path="/BMI2" element={<BMI2 />} />
           <Route path="/NutriCal" element={<NutriCal />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/NutriDetail" element={<NutriDetail />} />
@@ -95,6 +98,7 @@ function App() {
           <Route path="/Login" element={<Login/>}/>
           <Route path="/BeMember" element={<BeMember/>}/>
           <Route path="/MyPage" element={<MyPage/>}/>
+          <Route path="/Carb" element={<Carb/>}/>
         </Routes>
         </div>
         

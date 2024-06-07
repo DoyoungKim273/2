@@ -1,28 +1,91 @@
 import React from "react";
 import { Link } from "react-router-dom";
- 
+
 export default function GuideList() {
   return (
     <div className="min-h-screen">
-      <div className="justify-start text-xl text-center font-bold p-2 m-5 text-slate-900 bg-purple-100">
+      <div className="justify-start text-2xl text-center font-bold p-5 my-7 text-purple-950 bg-purple-100">
         식사지도 가이드 목록
-      </div>
-      <div className="justify-start text-xl text-center font-bold p-2 m-3 text-slate-900">
-        💪🏻 에너지 영양소 💪🏻
-      </div>
-      <div className="text-center font-bold">
-        <Link to="#">탄수화물</Link>
-        <Link to="#">지방</Link>
-        <Link to="#">단백질</Link>
       </div>
       <hr></hr>
       <div className="justify-start text-xl text-center font-bold p-2 m-3 text-slate-900">
+        💪🏻 에너지 영양소 💪🏻
+      </div>
+      <div className="text-center font-bold p-5 m-5">
+        <Link to="/Carb" className="p-3 m-3 bg-pink-100 rounded-2xl">
+          탄수화물
+        </Link>
+        <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+          지방
+        </Link>
+        <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+          단백질
+        </Link>
+      </div>
+      <hr></hr>
+      <div className="justify-start text-xl text-center font-bold pt-2 mt-2 text-slate-900">
         🍎 비타민 🍎
       </div>
+      <div className="flex flex-row items-center justify-center p-3 mt-2 mb-3">
+        <div className="text-center font-bold pt-1 pb-1 mt-1 mb-2 px-5">
+        <div className="pb-3 mb-3 ">- 지용성 비타민 -</div>
+          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            비타민 A
+          </Link>
+          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            비타민 D
+          </Link>
+          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            비타민 E
+          </Link>
+          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            비타민 K
+          </Link>
+        </div>
+        <div className="text-center font-bold px-5">
+          <div className="pb-3 mb-3">- 수용성 비타민 -</div>
+          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            비타민 C
+          </Link>
+          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            비타민 B군①(B1, 2, 6, 12)
+          </Link>
+          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            비타민 B군②(비오틴, 엽산 등)
+          </Link>
+        </div>
+      </div>
+
       <hr></hr>
       <div className="justify-start text-xl text-center font-bold p-2 m-3 text-slate-900">
         🧀 무기질 🧀
       </div>
+      <div className="flex flex-row items-center justify-center">
+        <div className="text-center font-bold p-3 m-5">
+          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            칼슘
+          </Link>
+          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            나트륨
+          </Link>
+          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            칼륨
+          </Link>
+          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            마그네슘
+          </Link>
+          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            철
+          </Link>
+          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            아연
+          </Link>
+          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            요오드
+          </Link>
+        </div>
+      </div>
+      <hr></hr>
     </div>
   );
 }
