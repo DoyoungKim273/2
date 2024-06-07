@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function MyPage() {
+export default function MyPage() { 
   return (
     <div className="min-h-screen">
       <div className="justify-start text-xl text-center font-bold p-2 m-5 text-slate-900 bg-purple-100">

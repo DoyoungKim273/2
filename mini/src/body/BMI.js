@@ -7,7 +7,7 @@ export default function BMI() {
   const [bmiCate, setBmiCate] = useState("");
   const [plusWeight, setPlusWeight] = useState("");
 
-  // BMI 계산 함수
+  // BMI 계산 함수 
   const calculateBMI = () => {
     const heightInMeters = parseFloat(height) / 100; // cm를 m로 변환
     const weightInKg = parseFloat(weight);
