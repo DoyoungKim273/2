@@ -1,3 +1,4 @@
+// 수정 확인 1008
 import React from "react";
 import NutriHead from "./NutriHead";
 import NutriDetail from "./NutriDetail";
