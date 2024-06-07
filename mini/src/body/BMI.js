@@ -1,3 +1,4 @@
+// 수정 확인 1014
 import React, { useEffect, useState } from "react";
 import BMItable from "../img/BMItable.png";
 export default function BMI() {
