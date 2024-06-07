@@ -1,5 +1,5 @@
 import logo from "./logo.svg";
-import weblogo from "./img/weblogo.webp";
+import weblogo from "./img/weblogo.png";
 import "./App.css";
 import BMI from "./body/BMI";
 import NutriCal from "./nutri/NutriCal";
@@ -22,8 +22,8 @@ function App() {
         <header className="h-24 bg-purple-500 flex my-5">
           <Link to="/">
             <div className="w-80 bg-white h-24 flex items-center">
-              <img src={weblogo} alt="weblogo" className=" mx-3 h-24 w-24"></img>
-              <div className="text-purple-950 text-2xl font-bold text-right">
+              <img src={weblogo} alt="weblogo" className="mx-3 h-20 w-20"></img>
+              <div className="text-purple-950 text-3xl font-bold text-right">
                 엄마랑 아이랑
               </div>
             </div>
