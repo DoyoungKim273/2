@@ -117,7 +117,7 @@ export default function BMI() {
           >
             {bmiCate !== ""
               ? `➡ 당신은 " ${bmiCate} " 입니다. ⬅`
-              : "신장과 몸무게를 입력하면 체질량지수(BMI)의 단계를 산출합니다."}
+              : "신장과 몸무게를 입력하면 체질량지수(BMI)의 단계를 판정합니다."}
           </div>
         </div>
         <div

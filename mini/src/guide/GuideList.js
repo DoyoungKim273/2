@@ -15,10 +15,10 @@ export default function GuideList() {
         <Link to="/Carb" className="p-3 m-3 bg-pink-100 rounded-2xl">
           탄수화물
         </Link>
-        <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
-          지방
+        <Link to="/Fat" className="p-3 m-3 bg-pink-100 rounded-2xl">
+          지방(지질)
         </Link>
-        <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+        <Link to="/Prot" className="p-3 m-3 bg-pink-100 rounded-2xl">
           단백질
         </Link>
       </div>
@@ -29,28 +29,28 @@ export default function GuideList() {
       <div className="flex flex-row items-center justify-center p-3 mt-2 mb-3">
         <div className="text-center font-bold pt-1 pb-1 mt-1 mb-2 px-5">
         <div className="pb-3 mb-3 ">- 지용성 비타민 -</div>
-          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+          <Link to="/VitA" className="p-3 m-3 bg-pink-100 rounded-2xl">
             비타민 A
           </Link>
-          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+          <Link to="/VitD" className="p-3 m-3 bg-pink-100 rounded-2xl">
             비타민 D
           </Link>
-          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+          <Link to="/VitE" className="p-3 m-3 bg-pink-100 rounded-2xl">
             비타민 E
           </Link>
-          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+          <Link to="/VitK" className="p-3 m-3 bg-pink-100 rounded-2xl">
             비타민 K
           </Link>
         </div>
         <div className="text-center font-bold px-5">
           <div className="pb-3 mb-3">- 수용성 비타민 -</div>
-          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+          <Link to="/VitC" className="p-3 m-3 bg-pink-100 rounded-2xl">
             비타민 C
           </Link>
-          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+          <Link to="/VitBcomp1" className="p-3 m-3 bg-pink-100 rounded-2xl">
             비타민 B군①(B1, 2, 6, 12)
           </Link>
-          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
+          <Link to="/VitBcomp2" className="p-3 m-3 bg-pink-100 rounded-2xl">
             비타민 B군②(비오틴, 엽산 등)
           </Link>
         </div>

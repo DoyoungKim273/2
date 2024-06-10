@@ -5,27 +5,20 @@ import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 
 export default function NutriCal() {
-  const [group1, setGroup1] = useState([]);
-  const [selectGroup, setSelectedGroup] = useState([]);
+  const [selectedGroup, setSelectedGroup] = useState([]);
+  const [selectedValue, setSelectedValue] = useState([]);
   const selRef = useRef();
-  const [foodname1, setFoodName1] = useState([]);
-  const [foodname2, setFoodName2] = useState([]);
+  const [code1name, setcode1name] = useState([]);
+  const [code2name, setcode2name] = useState([]);
+  const [code3name, setcode3name] = useState([]);
 
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        const responses = await Promise.all([
-          fetch(`http://${process.env.REACT_APP_APIKEY}/group1`),
-          fetch(`http://${process.env.REACT_APP_APIKEY}/foodname1`),
-          fetch(`http://${process.env.REACT_APP_APIKEY}/foodname2`)
-        ]);
-        const datas = await Promise.all(responses.map(res => {
-          if (!res.ok) throw new Error("전체 데이터 응답 실패");
-          return res.json();
-        }));
-        setGroup1(datas[0]);
-        setFoodName1(datas[1]);
-        setFoodName2(datas[2]);
+        const response = await fetch(`http://${process.env.REACT_APP_APIKEY}/code1name`);
+          if (!response.ok) throw new Error("전체 데이터 응답 실패");
+          const data = await response.json();   
+        setcode1name(data);
       } catch (error) {
         console.error("전체 데이터 로드 중 에러 발생", error.message);
       }
@@ -34,59 +27,59 @@ export default function NutriCal() {
     fetchInitialData();
   }, []);
 
-  const handleSelG1 = async (event) => {
+  const handleSelC1 = async (event) => {
     const selectedValue = event.target.value;
     setSelectedGroup(selectedValue);
     try {
       const response = await fetch(
-        `http://${process.env.REACT_APP_APIKEY}/group1`
+        `http://${process.env.REACT_APP_APIKEY}/code2name/${selectedValue}`
       );
       if (!response.ok) {
-        throw new Error("G1 응답이 돌아오지 않음");
+        throw new Error("중분류 데이터 로드 실패");
       }
       const data = await response.json();
-      console.log(data);
+      setcode2name(data);
       console.log(selectedValue)
     } catch (error) {
-      console.error("G1 데이터 불러오기 중 에러 발생", error.message);
+      console.error("중분류 데이터 불러오기 중 에러 발생", error.message);
     }
   };
 
-  const handleSelN1 = async (event) => {
+  const handleSelC2 = async (event) => {
     const selectedValue = event.target.value;
     setSelectedGroup(selectedValue);
     try {
       const response = await fetch(
-        `http://${process.env.REACT_APP_APIKEY}/foodname1`
+        `http://${process.env.REACT_APP_APIKEY}/code3name/${selectedValue}`
       );
       if (!response.ok) {
-        throw new Error("FN1 응답이 돌아오지 않음");
+        throw new Error("소분류 데이터 로드 실패");
       }
       const data = await response.json();
-      console.log(data);
+      setcode3name(data);
       console.log(selectedValue)
     } catch (error) {
-      console.error("FN1 데이터 불러오기 중 에러 발생", error.message);
+      console.error("소분류 데이터 불러오기 중 에러 발생", error.message);
     }
   };
 
-  const handleSelN2 = async (event) => {
+  const handleSelC3 = async (event) => {
     const selectedValue = event.target.value;
     setSelectedGroup(selectedValue);
-    try {
+    try{
       const response = await fetch(
-        `http://${process.env.REACT_APP_APIKEY}/foodname2`
+        `http://${process.env.REACT_APP_APIKEY}/code2name/${selectedValue}`
       );
-      if (!response.ok) {
-        throw new Error("FN2 응답이 돌아오지 않음");
+      if(!response.ok){
+        throw new Error("C3 응답이 돌아오지 않음")
       }
       const data = await response.json();
       console.log(data);
-      console.log(selectedValue)
-    } catch (error) {
-      console.error("FN2 데이터 불러오기 중 에러 발생", error.message);
+      console.log(selectedValue);
+    } catch(error){
+      console.error("C3 데이터 불러오기 중 에러 발생", error.message);
     }
-  };
+  }
 
   return (
     <div className="min-h-screen">
@@ -97,35 +90,35 @@ export default function NutriCal() {
         <hr></hr>
         <div className="m-10 flex flex-row items-center justify-center">
           <select
-            id="group1"
-            onChange={handleSelG1}
+            id="code1name"
+            onChange={handleSelC1}
             ref={selRef}
             className="m-8 p-3 bg-slate-200 w-1/4 rounded-2xl"
           >
             <option>--- 식품 대분류 선택 ---</option>
-            {group1.map((item) => (
+            {code1name.map((item) => (
               <option value={item}>{item}</option>
             ))}
           </select>
           <select
-            id="foodname1"
-            onChange={handleSelN1}
+            id="code2name"
+            onChange={handleSelC2}
             ref={selRef}
             className="m-8 p-3 bg-slate-200 w-1/4 rounded-2xl"
           >
-            <option>--- 대표 식품명 선택 ---</option>
-            {foodname1.map((item) => (
+            <option>--- 식품 중분류 선택 ---</option>
+            {code2name.map((item) => (
               <option value={item}>{item}</option>
             ))}
           </select>
           <select
             id="foodname2"
-            onChange={handleSelN2}
+            onChange={handleSelC3}
             ref={selRef}
             className="m-8 p-3 bg-slate-200 w-1/4 rounded-2xl"
           >
-            <option>--- 식품 중분류 선택 ---</option>
-            {foodname2.map((item) => (
+            <option>--- 식품 소분류 선택 ---</option>
+            {code3name.map((item) => (
               <option value={item}>{item}</option>
             ))}
           </select>

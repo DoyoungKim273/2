@@ -102,7 +102,7 @@ export default function BMI() {
           >
             {bmiCate !== ""
               ? `➡ 당신은 " ${bmiCate} " 입니다. ⬅`
-              : "신장과 몸무게를 입력하면 체질량지수(BMI)의 단계를 산출합니다."}
+              : "신장과 몸무게를 입력하면 체질량지수(BMI)의 단계를 판정합니다."}
           </div>
         </div>
         <div className="bg-pink-200 m-5 text-center font-bold p-2  text-pink-950 rounded-2xl">
@@ -117,7 +117,7 @@ export default function BMI() {
         </div>
         <hr></hr>
         <h2 className="justify-start text-xl text-center font-bold p-2 m-3 text-slate-900">
-          🍼 모유 수유 더 알아보기 🍼
+          🍼 모유 수유 더 알아보기 (바로가기) 🍼
         </h2>
         <div className="flex-row flex">
           <div className="m-5 p-5 w-1/3 bg-purple-100 rounded-2xl">

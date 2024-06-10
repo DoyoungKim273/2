@@ -17,6 +17,16 @@ import GuideList from "./guide/GuideList";
 import BeMember from "./member/BeMember";
 import MyPage from "./member/MyPage";
 import Carb from "./guide/Carb";
+import Fat from "./guide/Fat"
+import Prot from "./guide/Prot"
+import VitA from "./guide/VitA"
+import VitD from "./guide/VitD"
+import VitE from "./guide/VitE"
+import VitK from "./guide/VitK"
+import VitBcomp1 from "./guide/VitBcomp1"
+import VitBcomp2 from "./guide/VitBcomp2"
+import VitC from "./guide/VitC"
+
 
 function App() {
   return (
@@ -99,6 +109,15 @@ function App() {
           <Route path="/BeMember" element={<BeMember/>}/>
           <Route path="/MyPage" element={<MyPage/>}/>
           <Route path="/Carb" element={<Carb/>}/>
+          <Route path="/Fat" element={<Fat/>}/>
+          <Route path="/Prot" element={<Prot/>}/>
+          <Route path="/VitA" element={<VitA/>}/>
+          <Route path="/VitD" element={<VitD/>}/>
+          <Route path="/VitE" element={<VitE/>}/>
+          <Route path="/VitK" element={<VitK/>}/>
+          <Route path="/VitBcomp1" element={<VitBcomp1/>}/>
+          <Route path="/VitBcomp2" element={<VitBcomp2/>}/>
+          <Route path="/VitC" element={<VitC/>}/>
         </Routes>
         </div>
         
