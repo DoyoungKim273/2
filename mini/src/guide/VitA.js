@@ -1,5 +1,9 @@
 import React from "react";
 import vitA from "../img/guide/vitA.png";
+import vitA1 from "./pic/vitA1.png"
+import vitA2 from "./pic/vitA2.png"
+import vitE2 from "./pic/vitE2.png"
+
 export default function Carb() {
   return (
     <div>
@@ -10,6 +14,11 @@ export default function Carb() {
       <div className="flex flex-row justify-center">
         <img src={vitA} alt="vitA" className="p-10"></img>
         <ul className="m-7">
+        <div className="justify-end flex flex-row mx-10">
+          <img src={vitA1} alt="vitA1" className="w-32 h-32 mx-5"></img>
+          <img src={vitA2} alt="vitA2" className="w-32 h-32 mx-5"></img>
+          <img src={vitE2} alt="vitE2" className="w-32 h-32 mx-5"></img>
+          </div>
           <li className="m-5 p-5 bg-purple-100 rounded-2xl">
             <div className="font-bold text-lg"> 💜 비타민 A란?</div>
             <div>

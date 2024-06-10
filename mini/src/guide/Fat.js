@@ -1,5 +1,9 @@
 import React from "react";
 import fat from "../img/guide/fat.png";
+import fat1 from "./pic/fat1.png"
+import fat2 from "./pic/fat2.png"
+import vitE1 from "./pic/vitE1.png"
+
 export default function Carb() {
   return (
     <div>
@@ -8,8 +12,13 @@ export default function Carb() {
       </div>
       <hr></hr>
       <div className="flex flex-row justify-center">
-        <img src={fat} alt="fat" className="p-10"></img>
+        <img src={fat} alt="fat" className="p-5"></img>
         <ul className="m-7">
+        <div className="justify-end flex flex-row mx-10">
+          <img src={fat1} alt="fat1" className="w-32 h-32 mx-5"></img>
+          <img src={fat2} alt="fat2" className="w-32 h-32 mx-5"></img>
+          <img src={vitE1} alt="vitE1" className="w-32 h-32 mx-5"></img>
+          </div>
           <li className="m-5 p-5 bg-purple-100 rounded-2xl">
             <div className="font-bold text-lg"> 💜 지방(지질)이란?</div>
             <div>

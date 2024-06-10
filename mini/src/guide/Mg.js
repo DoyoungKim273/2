@@ -8,7 +8,7 @@ export default function Carb() {
       </div>
       <hr></hr>
       <div className="flex flex-row justify-center">
-        <img src={mg} alt="mg" className="p-10"></img>
+        <img src={mg} alt="mg" className="p-5"></img>
         <ul className="m-7">
           <li className="m-5 p-5 bg-purple-100 rounded-2xl">
             <div className="font-bold text-lg"> 💜 마그네슘(Mg)이란?</div>

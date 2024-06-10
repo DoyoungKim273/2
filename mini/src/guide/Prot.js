@@ -1,5 +1,9 @@
 import React from "react";
 import prot from "../img/guide/prot.png";
+import prot1 from "./pic/prot1.png"
+import prot2 from "./pic/prot2.png"
+import vitD2 from "./pic/vitD2.png"
+
 export default function Carb() {
   return (
     <div>
@@ -10,6 +14,11 @@ export default function Carb() {
       <div className="flex flex-row justify-center">
         <img src={prot} alt="prot" className="p-10"></img>
         <ul className="m-7">
+        <div className="justify-end flex flex-row mx-10">
+          <img src={prot1} alt="prot1" className="w-32 h-32 mx-5"></img>
+          <img src={prot2} alt="prot2" className="w-32 h-32 mx-5"></img>
+          <img src={vitD2} alt="vitD2" className="w-32 h-32 mx-5"></img>
+          </div>
           <li className="m-5 p-5 bg-purple-100 rounded-2xl">
             <div className="font-bold text-lg"> 💜 단백질이란?</div>
             <div>

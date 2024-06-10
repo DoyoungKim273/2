@@ -1,5 +1,9 @@
 import React from "react";
 import carb from "../img/guide/carb.png";
+import carb1 from "./pic/carb1.png"
+import carb2 from "./pic/carb2.png"
+import carb3 from "./pic/carb3.png"
+
 export default function Carb() {
   return (
     <div>
@@ -8,8 +12,13 @@ export default function Carb() {
       </div>
       <hr></hr>
       <div className="flex flex-row justify-center">
-        <img src={carb} alt="carb" className="p-10"></img>
+        <img src={carb} alt="carb" className="p-5"></img>
         <ul className="m-7">
+          <div className="justify-end flex flex-row mx-10">
+          <img src={carb1} alt="carb1" className="w-32 h-32 mx-5"></img>
+          <img src={carb2} alt="carb1" className="w-32 h-32 mx-5"></img>
+          <img src={carb3} alt="carb3" className="w-32 h-32 mx-5"></img>
+          </div>
           <li className="m-5 p-5 bg-purple-100 rounded-2xl">
             <div className="font-bold text-lg"> 💜 탄수화물이란?</div>
             <div>

@@ -1,5 +1,9 @@
 import React from "react";
 import vitBcomp1 from "../img/guide/vitBcomp1.png";
+import vitB1 from "./pic/vitB1.png"
+import vitB2 from "./pic/vitB2.png"
+import vitD2 from "./pic/vitD2.png"
+
 export default function Carb() {
   return (
     <div>
@@ -8,8 +12,13 @@ export default function Carb() {
       </div>
       <hr></hr>
       <div className="flex flex-row justify-center">
-        <img src={vitBcomp1} alt="vitBcomp1" className="p-10"></img>
+        <img src={vitBcomp1} alt="vitBcomp1" className="p-5"></img>
         <ul className="m-7">
+        <div className="justify-end flex flex-row mx-10">
+          <img src={vitB1} alt="vitB1" className="w-32 h-32 mx-5"></img>
+          <img src={vitB2} alt="vitB2" className="w-32 h-32 mx-5"></img>
+          <img src={vitD2} alt="vitD2" className="w-32 h-32 mx-5"></img>
+          </div>
           <li className="m-5 p-5 bg-purple-100 rounded-2xl">
             <div className="font-bold text-lg"> 💜 비타민 B군①(B1, 2, 6, 12)이란?</div>
             <div>

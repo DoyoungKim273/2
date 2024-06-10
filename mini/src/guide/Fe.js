@@ -8,7 +8,7 @@ export default function Carb() {
       </div>
       <hr></hr>
       <div className="flex flex-row justify-center">
-        <img src={fe} alt="fe" className="p-10"></img>
+        <img src={fe} alt="fe" className="p-5"></img>
         <ul className="m-7">
           <li className="m-5 p-5 bg-purple-100 rounded-2xl">
             <div className="font-bold text-lg"> 💜 철(Fe)이란?</div>

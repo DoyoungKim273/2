@@ -50,10 +50,10 @@ export default function NutriCal() {
         throw new Error("키워드 검색 실패");
       }
       const data = await response.json();
-      if(!Array.isArray(data)){
-        console.error(typeof data)
-        data = [];
-      }
+      // if(!Array.isArray(data)){
+      //   console.error(typeof data)
+      //   data = [];
+      // }
       setSearchResult(data);
       console.log(searchResult);
       console.log(data);
@@ -109,7 +109,7 @@ export default function NutriCal() {
   const displaySelectedItems = () => {
     return (
       <tbody className="h-10 justify-between text-center">
-        {searchResult.map((item, index) => (
+        {searchResult && searchResult.map((item, index) => (
           <tr key={index}>
             <td>{selectedCode1}</td>
             <td>{selectedCode2}</td>
@@ -190,7 +190,7 @@ export default function NutriCal() {
         <div className="text-center text-xl font-bold p-2 m-3 text-slate-900">
           ✅ 선택한 음식 목록 ✅
         </div>
-        <div className="w-full flex flex-col justify-center items-center ">
+        <div className="w-full flex flex-col justify-center items-center p-2 m-3">
           <table className="w-11/12 border m-3 rounded-2xl">
             <NutriHead />
           </table>
