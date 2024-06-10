@@ -26,6 +26,14 @@ import VitK from "./guide/VitK"
 import VitBcomp1 from "./guide/VitBcomp1"
 import VitBcomp2 from "./guide/VitBcomp2"
 import VitC from "./guide/VitC"
+import Ca from "./guide/Ca"
+import Mg from "./guide/Mg"
+import Na from "./guide/Na"
+import K from "./guide/K"
+import Fe from "./guide/Fe"
+import Zn from "./guide/Zn"
+import I from "./guide/I"
+
 
 
 function App() {
@@ -118,6 +126,13 @@ function App() {
           <Route path="/VitBcomp1" element={<VitBcomp1/>}/>
           <Route path="/VitBcomp2" element={<VitBcomp2/>}/>
           <Route path="/VitC" element={<VitC/>}/>
+          <Route path="/Ca" element={<Ca/>}/>
+          <Route path="/Mg" element={<Mg/>}/>
+          <Route path="/Na" element={<Na/>}/>
+          <Route path="/K" element={<K/>}/>
+          <Route path="/Fe" element={<Fe/>}/>
+          <Route path="/Zn" element={<Zn/>}/>
+          <Route path="/I" element={<I/>}/>
         </Routes>
         </div>
         

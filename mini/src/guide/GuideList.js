@@ -57,34 +57,36 @@ export default function GuideList() {
       </div>
 
       <hr></hr>
-      <div className="justify-start text-xl text-center font-bold p-2 m-3 text-slate-900">
+      <div className="justify-start text-xl text-center font-bold pt-2 mt-2 mb-6 text-slate-900">
         🧀 무기질 🧀
       </div>
-      <div className="flex flex-row items-center justify-center">
-        <div className="text-center font-bold p-3 m-5">
-          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
-            칼슘
+      <div className="flex flex-row items-center justify-center p-3 mt-2 mb-3">
+        <div className="text-center font-bold px-5 mb-3">
+        <div className="pb-3 mb-3 ">- 다량 무기질 - </div>
+          <Link to="/Ca" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            칼슘(Ca)
           </Link>
-          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
-            나트륨
+          <Link to="/Na" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            나트륨(Na)
           </Link>
-          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
-            칼륨
+          <Link to="/K" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            칼륨(K)
           </Link>
-          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
-            마그네슘
+          <Link to="/Mg" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            마그네슘(Mg)
+          </Link></div>
+          <div className="text-center font-bold px-5 mb-3">
+          <div className="pb-3 mb-3 ">- 미량 무기질 - </div>
+          <Link to="/Fe" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            철(Fe)
           </Link>
-          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
-            철
+          <Link to="/Zn" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            아연(Zn)
           </Link>
-          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
-            아연
-          </Link>
-          <Link to="#" className="p-3 m-3 bg-pink-100 rounded-2xl">
-            요오드
-          </Link>
+          <Link to="/I" className="p-3 m-3 bg-pink-100 rounded-2xl">
+            요오드(I)
+          </Link> </div>
         </div>
-      </div>
       <hr></hr>
     </div>
   );
