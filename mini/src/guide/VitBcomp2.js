@@ -1,5 +1,10 @@
 import React from "react";
 import vitBcomp2 from "../img/guide/vitBcomp2.png";
+import vitB3 from "./pic/vitB3.png"
+import vitB4 from "./pic/vitB4.png"
+import vitA1 from "./pic/vitA1.png"
+
+
 export default function Carb() {
   return (
     <div>
@@ -10,6 +15,11 @@ export default function Carb() {
       <div className="flex flex-row justify-center">
         <img src={vitBcomp2} alt="vitBcomp2" className="p-5"></img>
         <ul className="m-7">
+        <div className="justify-end flex flex-row mx-10">
+          <img src={vitB3} alt="vitB3" className="w-32 h-32 mx-5"></img>
+          <img src={vitB4} alt="vitB4" className="w-32 h-32 mx-5"></img>
+          <img src={vitA1} alt="vitA1" className="w-32 h-32 mx-5"></img>
+          </div>
           <li className="m-5 p-5 bg-purple-100 rounded-2xl">
             <div className="font-bold text-lg"> 💜 비타민 B군②(비오틴, 엽산 등)이란?</div>
             <div>
@@ -30,14 +40,21 @@ export default function Carb() {
 
           </li>
           <li className="m-5 p-5 bg-purple-100 rounded-2xl">
-            <div className="font-bold text-lg"> 💜 임신, 수유기의 비타민 B군②(비오틴, 엽산 등)</div>
+            <div className="font-bold text-lg"> 💜 임신기의 비타민 B군②(비오틴, 엽산 등)</div>
             <div>
-              - 사용자의 신장, 체중 입력에 따라 BMI(체질량지수)를 계산합니다.
+              - 엽산은 임신기간 동안 증가된 조혈 작용은 물론 태아의 성장과 태반 조직의 발달에 필수적인 영양소이다.
               <br />
-              - 계산된 BMI(체질량지수)를 바탕으로 사용자의 임신기의 적정 체중
-              증가량, 수유기의 적정 체중 감소량 정보를 제시합니다.
-              <br />- 수치 도출의 근거는 대한산부인과학회의 자료를 바탕으로
-              합니다.
+              - 임신 중 엽산의 부족은 유산, 임신중독증, 저체중아, 조산아, 특히 신경장애아의 출생빈도를 높인다.
+              <br />
+            - 따라서 임신 초기부터 엽산을 적극적으로 섭취하여야 하며 엽산이 풍부한 푸른 잎 채소, 두류와 엽산 보충제를 복용한다.
+            </div>
+          </li>
+          <li className="m-5 p-5 bg-purple-100 rounded-2xl">
+            <div className="font-bold text-lg"> 💜 수유기의 비타민 B군②(비오틴, 엽산 등)</div>
+            <div>
+              - 수유부는 모유 생성을 위해 엽산 필요량이 증가한다.
+              <br />
+              - 수유부는 엽산이 부족한 경우가 많이 조사되므로 엽산이 풍부한 푸른 잎 채소, 두류와 엽산 보충제를 적극 복용한다.
             </div>
           </li>
         </ul>

@@ -1,5 +1,10 @@
 import React from "react";
 import zn from "../img/guide/zn.png";
+import zn1 from "./pic/zn1.png"
+import zn2 from "./pic/zn2.png"
+import prot2 from "./pic/prot2.png"
+
+
 export default function Carb() {
   return (
     <div>
@@ -10,6 +15,11 @@ export default function Carb() {
       <div className="flex flex-row justify-center">
         <img src={zn} alt="zn" className="p-5"></img>
         <ul className="m-7">
+        <div className="justify-end flex flex-row mx-10">
+          <img src={zn1} alt="zn1" className="w-32 h-32 mx-5"></img>
+          <img src={zn2} alt="zn2" className="w-32 h-32 mx-5"></img>
+          <img src={prot2} alt="prot2" className="w-32 h-32 mx-5"></img>
+          </div>
           <li className="m-5 p-5 bg-purple-100 rounded-2xl">
             <div className="font-bold text-lg"> 💜 아연(Zn)이란?</div>
             <div>
@@ -26,14 +36,22 @@ export default function Carb() {
 
           </li>
           <li className="m-5 p-5 bg-purple-100 rounded-2xl">
-            <div className="font-bold text-lg"> 💜 임신, 수유기의 아연(Zn)</div>
+            <div className="font-bold text-lg"> 💜 임신기의 아연(Zn)</div>
             <div>
-              - 사용자의 신장, 체중 입력에 따라 BMI(체질량지수)를 계산합니다.
+              - 아연은 DNA와 RNA의 합성에 관여하여 생식과 번식에 중요한 역할을 하는 영양소이다.
               <br />
-              - 계산된 BMI(체질량지수)를 바탕으로 사용자의 임신기의 적정 체중
-              증가량, 수유기의 적정 체중 감소량 정보를 제시합니다.
-              <br />- 수치 도출의 근거는 대한산부인과학회의 자료를 바탕으로
-              합니다.
+              - 임신 14주째 혈청 아연 농도가 낮은 여성들에게서 조산, 자연 유산, 선천성 기형 등이 보고된다.
+              <br />
+              - 최근에는 입덧과의 관련성이 제기되므로 아연의 섭취에 유의해야한다.
+              <br />
+              - 아연은 굴, 육류, 가금류 등의 동물성 식품에 풍부하다.
+            </div>
+          </li>
+          <li className="m-5 p-5 bg-purple-100 rounded-2xl">
+            <div className="font-bold text-lg"> 💜 수유기의 아연(Zn)</div>
+            <div>
+              - 유부의 아연 필요량은 성인여성에게 필요한 아연량에 모유로 분비되는 아연의 양만큼을 부가해야 한다.
+              <br/> - 수유시 부가적으로 필요한 양은 5.15 mg/일로 정한다.
             </div>
           </li>
         </ul>

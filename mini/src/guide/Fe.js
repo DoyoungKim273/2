@@ -1,5 +1,10 @@
 import React from "react";
 import fe from "../img/guide/fe.png";
+import ca1 from "./pic/ca1.png"
+import fe1 from "./pic/fe1.png"
+import fe2 from "./pic/fe2.png"
+
+
 export default function Carb() {
   return (
     <div>
@@ -10,6 +15,11 @@ export default function Carb() {
       <div className="flex flex-row justify-center">
         <img src={fe} alt="fe" className="p-5"></img>
         <ul className="m-7">
+        <div className="justify-end flex flex-row mx-10">
+          <img src={ca1} alt="ca1" className="w-32 h-32 mx-5"></img>
+          <img src={fe1} alt="fe1" className="w-32 h-32 mx-5"></img>
+          <img src={fe2} alt="fe2" className="w-32 h-32 mx-5"></img>
+          </div>
           <li className="m-5 p-5 bg-purple-100 rounded-2xl">
             <div className="font-bold text-lg"> 💜 철(Fe)이란?</div>
             <div>
@@ -24,14 +34,21 @@ export default function Carb() {
 
           </li>
           <li className="m-5 p-5 bg-purple-100 rounded-2xl">
-            <div className="font-bold text-lg"> 💜 임신, 수유기의 철(Fe)</div>
+            <div className="font-bold text-lg"> 💜 임신기의 철(Fe)</div>
             <div>
-              - 사용자의 신장, 체중 입력에 따라 BMI(체질량지수)를 계산합니다.
+              - 임신기에는 많은 양의 철이 필요한데 모체는 월경의 정지로 철을 저장하고 철분 흡수율 또한 증가시킨다.
               <br />
-              - 계산된 BMI(체질량지수)를 바탕으로 사용자의 임신기의 적정 체중
-              증가량, 수유기의 적정 체중 감소량 정보를 제시합니다.
-              <br />- 수치 도출의 근거는 대한산부인과학회의 자료를 바탕으로
-              합니다.
+              - 우리나라 임산부의 철 권장섭취량은 24mg으로 비임신부에 비해 10mg 추가된다.
+              <br />
+              - 철은 간이나 육류, 어류, 가금류, 달걀, 녹황색 채소류에 풍부하나 철 보충제 또한 권장된다.
+            </div>
+          </li>
+          <li className="m-5 p-5 bg-purple-100 rounded-2xl">
+            <div className="font-bold text-lg"> 💜 수유기의 철(Fe)</div>
+            <div>
+              - 수유부에 있어 가장 흔한 영양결핍증은 철 결핍으로 인한 빈혈증으로 조사된다.
+              <br />
+              - 이에 간이나 육류, 어류, 가금류, 달걀, 녹황색 채소류의 충분한 섭취가 필요하며 철 보충제 또한 권장된다.
             </div>
           </li>
         </ul>

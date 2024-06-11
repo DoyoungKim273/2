@@ -50,8 +50,11 @@ export default function BMI() {
     } else if(week > 12 && week <= 18){
       setWeek("임신 2분기")
       setWeekGain("0.5kg")
-    } else {
+    } else if(week > 18 && week <= 40) {
       setWeek("임신 3분기")
+      setWeekGain("0.5kg")
+    } else {
+      setWeek("임신 3분기 이후")
       setWeekGain("0.5kg")
     }
 

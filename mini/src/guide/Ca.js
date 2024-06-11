@@ -1,5 +1,9 @@
 import React from "react";
 import ca from "../img/guide/ca.png";
+import ca1 from "./pic/ca1.png"
+import ca2 from "./pic/ca2.png"
+import vitD2 from "./pic/vitD2.png"
+
 export default function Carb() {
   return (
     <div>
@@ -10,6 +14,11 @@ export default function Carb() {
       <div className="flex flex-row justify-center">
         <img src={ca} alt="ca" className="p-5"></img>
         <ul className="m-7">
+        <div className="justify-end flex flex-row mx-10">
+          <img src={ca1} alt="ca1" className="w-32 h-32 mx-5"></img>
+          <img src={ca2} alt="ca2" className="w-32 h-32 mx-5"></img>
+          <img src={vitD2} alt="vitD2" className="w-32 h-32 mx-5"></img>
+          </div>
           <li className="m-5 p-5 bg-purple-100 rounded-2xl">
             <div className="font-bold text-lg"> 💜 칼슘(Ca)이란?</div>
             <div>
@@ -28,14 +37,21 @@ export default function Carb() {
 
           </li>
           <li className="m-5 p-5 bg-purple-100 rounded-2xl">
-            <div className="font-bold text-lg"> 💜 임신, 수유기의 칼슘(Ca)</div>
+            <div className="font-bold text-lg"> 💜 임신기의 칼슘(Ca)</div>
             <div>
-              - 사용자의 신장, 체중 입력에 따라 BMI(체질량지수)를 계산합니다.
+              - 임신 중에는 태아 체조직의 생성과 발육, 모체 기관의 증대로 칼슘의 필요량이 증가한다.
               <br />
-              - 계산된 BMI(체질량지수)를 바탕으로 사용자의 임신기의 적정 체중
-              증가량, 수유기의 적정 체중 감소량 정보를 제시합니다.
-              <br />- 수치 도출의 근거는 대한산부인과학회의 자료를 바탕으로
-              합니다.
+              - 우리나라 임산부의 경우 1일 평균 칼슘 섭취량이 권장섭취량에 미치지 못하는 경우가 대부분으로 조사된다.
+              <br />
+              - 따라서 임산부는 우유 및 유제품을 1일 3회 이상 섭취하고 뼈 째 먹는 생선, 두류, 녹황색 채소를 충분히 섭취하도록 한다.
+            </div>
+          </li>
+          <li className="m-5 p-5 bg-purple-100 rounded-2xl">
+            <div className="font-bold text-lg"> 💜 수유기의 칼슘(Ca)</div>
+            <div>
+              - 수유 기간 중에는 모유로 분비되는 칼슘 때문에 수유부의 칼슘 요구량이 증가한다.
+              <br />
+              - 수유기에 칼슘의 섭취가 부족하면 모체의 뼈를 용출시켜 골다공증을 유발할 우려가 있으므로 유제품과 뼈 째 먹는 생선을 충분히 섭취하여야 한다.
             </div>
           </li>
         </ul>

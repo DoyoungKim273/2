@@ -1,8 +1,8 @@
 import React from "react";
 import vitK from "../img/guide/vitK.png";
-import vitK1 from "./pic/vitK1.png"
-import vitK2 from "./pic/vitK2.png"
-import vitK3 from "./pic/vitK3.png"
+import vitK1 from "./pic/vitK1.png";
+import vitK2 from "./pic/vitK2.png";
+import vitK3 from "./pic/vitK3.png";
 
 export default function Carb() {
   return (
@@ -14,36 +14,52 @@ export default function Carb() {
       <div className="flex flex-row justify-center">
         <img src={vitK} alt="vitK" className="p-5"></img>
         <ul className="m-7">
-        <div className="justify-end flex flex-row mx-10">
-          <img src={vitK1} alt="vitK1" className="w-32 h-32 mx-5"></img>
-          <img src={vitK2} alt="vitK2" className="w-32 h-32 mx-5"></img>
-          <img src={vitK3} alt="vitK3" className="w-32 h-32 mx-5"></img>
+          <div className="justify-end flex flex-row mx-10">
+            <img src={vitK1} alt="vitK1" className="w-32 h-32 mx-5"></img>
+            <img src={vitK2} alt="vitK2" className="w-32 h-32 mx-5"></img>
+            <img src={vitK3} alt="vitK3" className="w-32 h-32 mx-5"></img>
           </div>
           <li className="m-5 p-5 bg-purple-100 rounded-2xl">
             <div className="font-bold text-lg"> 💜 비타민 K란?</div>
             <div>
-              - 비타민 K는 혈액응고에 필수적인 비타민으로 간에서 혈액응고인자의 합성에 관여한다.
-.              <br />
+              - 비타민 K는 혈액응고에 필수적인 비타민으로 간에서 혈액응고인자의
+              합성에 관여한다. . <br />
               - 비타민 K의 주요 급원식품은 간, 녹색채소, 브로콜리, 콩류 등이다.
               <br />
-              - 비타민 K는 섭취한 뒤 대부분 하루가 지나면 체내에서 없어진다. 
+              - 비타민 K는 섭취한 뒤 대부분 하루가 지나면 체내에서 없어진다.
               <br />
-              - 그러나 식사중 비타민 K의 양이 많을 뿐 아니라 장내 세균에 의해서도 합성되므로 결핍증은 흔하지 않다.
-              <br />
-              - 또한 비타민 K는 조리에 의해서도 별로 파괴되지 않는다.
-              </div>
-
+              - 그러나 식사중 비타민 K의 양이 많을 뿐 아니라 장내 세균에
+              의해서도 합성되므로 결핍증은 흔하지 않다.
+              <br />- 또한 비타민 K는 조리에 의해서도 별로 파괴되지 않는다.
+            </div>
           </li>
           <li className="m-5 p-5 bg-purple-100 rounded-2xl">
-            <div className="font-bold text-lg"> 💜 임신, 수유기의 비타민 K
-            </div>
+            <div className="font-bold text-lg"> 💜 임신기의 비타민 K</div>
             <div>
-              - 사용자의 신장, 체중 입력에 따라 BMI(체질량지수)를 계산합니다.
+              - 임신부의 비타민 K 필요량이 비임신부와 차이가 있다는 근거는
+              아직까지 보고된 바 없다.
               <br />
-              - 계산된 BMI(체질량지수)를 바탕으로 사용자의 임신기의 적정 체중
-              증가량, 수유기의 적정 체중 감소량 정보를 제시합니다.
-              <br />- 수치 도출의 근거는 대한산부인과학회의 자료를 바탕으로
-              합니다.
+              - 예를 들면, 임신으로 인해 체내 비타민 K 필요량이 증가한는 객관적
+              근거가 미비하고, 임신부의 비타민 K 결핍에 대한 문헌도 보고된 바
+              없다.
+              <br />- 따라서 임신으로 인한 비타민 K 부가량은 필요 없는 것으로
+              판단되어 성인여성의 비타민 K 충분섭취량과 동일하게 설정하였다.
+            </div>
+          </li>
+          <li className="m-5 p-5 bg-purple-100 rounded-2xl">
+            <div className="font-bold text-lg"> 💜 수유기의 비타민 K</div>
+            <div>
+              - 성인여성, 임신부, 수유부의 비타민 K 섭취량 및 체내 보유수준은
+              서로 다르지 않은 것으로 보고되고 있다.
+              <br />- 따라서 수유로 인한 비타민 K 부가량은 필요 없는 것으로
+              판단된다.
+              <br />
+              - 수유부를 대상으로 수행한 선행 연구에 의하면 수유부의 비타민 K1
+              섭취수준은 모유의 비타민 K1 농도와 유의미한 상관관계가 관찰되지
+              않았다.
+              <br />
+              -따라서 수유로 인한 비타민 K 부가량은 필요 없는 것으로 판단되어
+              성인여성과 동일한 기준으로 충분 섭취량을 설정하였다.
             </div>
           </li>
         </ul>
