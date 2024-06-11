@@ -40,11 +40,11 @@ function App() {
   return (
     <BrowserRouter>
       <div className="w-full mx-auto min-h-screen flex flex-col ">
-        <header className="h-24 bg-purple-500 flex my-5">
+        <header className="h-24 bg-purple-400 flex my-5">
           <Link to="/">
-            <div className="w-80 bg-white h-24 flex items-center">
-              <img src={weblogo} alt="weblogo" className="mx-4 h-20 w-20"></img>
-              <div className="text-purple-950 text-3xl font-bold text-right">
+            <div className="w-96 bg-white h-24 flex items-center">
+              <img src={weblogo} alt="weblogo" className="mx-7 h-20 w-20"></img>
+              <div className="text-purple-900 text-3xl font-bold text-right">
                 엄마랑 아이랑
               </div>
             </div>
@@ -137,7 +137,7 @@ function App() {
         </div>
         
 
-        <footer className="h-16 w-full flex flex-col justify-between items-center fixed bottom-0 bg-purple-500">
+        <footer className="h-16 w-full flex flex-col justify-between items-center fixed bottom-0 bg-purple-300">
           <div className="w-full h-2/3 flex justify-center items-center text-base text-white">
             ⓒ 2024 MOJAMOJA - Doyoung Kim & Nayoung Lee. All right reserved.
           </div>

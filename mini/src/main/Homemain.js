@@ -10,10 +10,10 @@ export default function Homemain() {
       </div>
       <main className="h-4/6 flex-grow flex ">
         <section className="flex-1 h-full">
-          <Noticemain />
+          <Intromain />
         </section>
         <section className="flex-1 h-full">
-          <Intromain />
+          <Noticemain />
         </section>
         <section className="flex-1 h-full">
           <Linkmain />

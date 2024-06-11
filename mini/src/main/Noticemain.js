@@ -4,7 +4,7 @@ export default function Noticemain() {
   return (
     <div>
       <section>
-        <div className="bg-purple-400 h-14">
+        <div className="bg-purple-300 h-14">
             <div className="px-7 py-3 text-white font-bold text-lg"> 🤍 사용 가이드</div>
         </div>
         <ul>
