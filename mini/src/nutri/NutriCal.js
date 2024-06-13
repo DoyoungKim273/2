@@ -1,10 +1,7 @@
 import React from "react";
 import NutriHead from "./NutriHead";
-import NutriDetail from "./NutriDetail";
-import { Link } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import NutriConHead from "./NutriConHead";
-import NutriConHead2 from "./NutriConHead2";
 import Papa from "papaparse";
 
 export default function NutriCal() {
@@ -42,16 +39,15 @@ export default function NutriCal() {
   const parseCsvData = (csvText) => {
     Papa.parse(csvText, {
       complete: (results) => {
-        console.log("Parsed results:", results);
-        const formattedData = {}; // 파싱된 데이터를 저장할 객체 초기화
+        console.log("파싱 결과", results);
+        const formattedData = {};
         results.data.forEach((row) => {
-          // 각 행에 대해 반복
-          formattedData[row.from] = row; // 'from' 값을 키로 사용하여 객체에 저장
+          formattedData[row.from] = row;
         });
-        setNutriNeeds(formattedData); // 상태 업데이트
-        console.log("Formatted Nutrition Needs:", formattedData); // 변환된 데이터 로깅
+        setNutriNeeds(formattedData);
+        console.log("formattedData 값", formattedData);
       },
-      header: true, // 첫 번째 행을 필드명으로 사용
+      header: true,
     });
   };
 
@@ -59,7 +55,7 @@ export default function NutriCal() {
     const fetchData = async () => {
       try {
         const response = await fetch("/data/fi_standard.csv");
-        if (!response.ok) throw new Error("Network response was not ok");
+        if (!response.ok) throw new Error("네트워크 응답 실패");
         const text = await response.text();
         parseCsvData(text);
       } catch (error) {
@@ -68,24 +64,6 @@ export default function NutriCal() {
     };
     fetchData();
   }, []);
-
-  const handleSelectItem = async (item) => {
-    try {
-      const response = await fetch(
-        `http://${process.env.REACT_APP_APIKEY}/nutri?id=${item.id}`
-      );
-      if (!response.ok) throw new Error("영양 정보 불러오기 실패");
-      const nutriData = await response.json();
-      item.nutriInfo = nutriData;
-      console.log("영양 정보", item.nutriInfo);
-      setSelectedItems((prevItems) => [...prevItems, item]);
-      setSearchResult((prevResult) =>
-        prevResult.filter((result) => result.id !== item.id)
-      );
-    } catch (error) {
-      console.error("영양정보 불러오기 중 예외 발생", error.message);
-    }
-  };
 
   const handleAgeChange = (event) => {
     const age = event.target.value;
@@ -100,9 +78,6 @@ export default function NutriCal() {
   };
 
   const updateUserState = (age, condition) => {
-    // if (age && condition) {
-    //   setNutriNeeds(`${condition}_${age}`);
-    // }
     if (age && condition) {
       const key = `${condition}_${age}`;
       console.log(age);
@@ -116,33 +91,60 @@ export default function NutriCal() {
     }
   };
 
+  const handleSelectItem = async (item) => {
+    try {
+      const response = await fetch(
+        `http://${process.env.REACT_APP_APIKEY}/nutri?id=${item.id}`
+      );
+      if (!response.ok) throw new Error("영양 정보 불러오기 실패");
+      const nutriData = await response.json();
+      item.nutriInfo = nutriData;
+      console.log("영양 정보", item.nutriInfo);
+      setSelectedItems((prevItems) => [...prevItems, item]);
+      setSearchResult([]);
+    } catch (error) {
+      console.error("영양정보 불러오기 중 예외 발생", error.message);
+    }
+  };
+
+  
+
   const handleSearch = async () => {
-    setSearchResult([]);
-    if (!selectedCode1 || !selectedCode2) {
-      alert("대분류와 중분류를 입력해주세요.");
+    if (!userAge || !userCondition) {
+      alert("사용자 연령과 임신 / 수유 여부를 입력해주세요.");
       return;
     }
 
-    if (selectedCode1 && selectedCode2 && !selectedCode3 && !keyword) {
-      alert("중분류와 키워드를 함께 입력해주세요");
+    setSearchResult([]);
+
+    if (selectedCode1 && !selectedCode2 && !keyword) {
+      alert("중분류 또는 키워드를 입력해주세요.");
       return;
     }
 
     let url = "";
 
     if (selectedCode1 && selectedCode2 && selectedCode3) {
-      url = `http://${process.env.REACT_APP_APIKEY}/foodname/${selectedCode1}/${selectedCode2}/${selectedCode3}`;
+      url = `http://${process.env.REACT_APP_APIKEY}/allSelect/${selectedCode1}/${selectedCode2}/${selectedCode3}`;
+      if (keyword.trim() !== "") {
+        url = `http://${
+          process.env.REACT_APP_APIKEY
+        }/allSelect/${selectedCode1}/${selectedCode2}/${selectedCode3}/${encodeURIComponent(
+          keyword
+        )}`;
+      }
+    } else if (selectedCode1 && selectedCode2) {
+      url = `http://${process.env.REACT_APP_APIKEY}/foodname/${selectedCode1}/${selectedCode2}`;
       if (keyword.trim() !== "") {
         url += `/${encodeURIComponent(keyword)}`;
       }
-    } else {
-      url = `http://${process.env.REACT_APP_APIKEY}/foodname/${selectedCode1}/${selectedCode2}`;
-      if (keyword.trim() !== "") {
-        url += `?Keyword=${encodeURIComponent(keyword)}`;
-      }
+    } else if (keyword.trim() !== "") {
+      url = `http://${
+        process.env.REACT_APP_APIKEY
+      }/foodname/${encodeURIComponent(keyword)}`;
     }
 
-    console.log(url);
+    if (selectedCode1 && !selectedCode2 && !keyword) console.log(url);
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -152,6 +154,11 @@ export default function NutriCal() {
       setSearchResult((prevResults) => [...prevResults, ...data]);
       console.log(searchResult);
       console.log(data);
+
+      setSelectedCode1("");
+      setSelectedCode2("");
+      setSelectedCode3("");
+      setKeyword("");
     } catch (error) {
       console.error("키워드 검색 데이터 로드 중 에러 발생", error.message);
     }
@@ -213,9 +220,9 @@ export default function NutriCal() {
                   type="checkbox"
                   onChange={() => handleSelectItem(item)}
                 />
-                {selectedCode1}
+                {item.code1name}
               </td>
-              <td>{selectedCode2}</td>
+              <td>{item.code2name}</td>
               <td>{item.code3name}</td>
               <td>{item.originname}</td>
               <td>{item.foodname}</td>
@@ -230,8 +237,8 @@ export default function NutriCal() {
       <tbody className="h-10 justify-between text-center">
         {selectedItems.map((item, index) => (
           <tr key={index}>
-            <td>{selectedCode1}</td>
-            <td>{selectedCode2}</td>
+            <td>{item.code1name}</td>
+            <td>{item.code2name}</td>
             <td>{item.code3name}</td>
             <td>{item.originname}</td>
             <td>{item.foodname}</td>
@@ -242,7 +249,7 @@ export default function NutriCal() {
   };
 
   const nutriplus = () => {
-    return selectedItems.reduce(
+    const totals = selectedItems.reduce(
       (acc, item) => {
         acc.energy += item.nutriInfo.energy || 0;
         acc.carbohydrate += item.nutriInfo.carbohydrate || 0;
@@ -315,18 +322,13 @@ export default function NutriCal() {
         se: 0,
       }
     );
-  };
 
-  // const nutriNeeds = {
-  //   'preg1_19~29' : {},
-  //   'preg2_19~29' : {},
-  //   'preg3_19~29' : {},
-  //   'preg1_30~49' : {},
-  //   'preg2_30~49' : {},
-  //   'preg3_30~49' : {},
-  //   'nursing_19~29' : {},
-  //   'nursing_30~49' : {}
-  // }
+    Object.keys(totals).forEach((key) => {
+      totals[key] = parseFloat(totals[key].toFixed(2));
+    });
+
+    return totals;
+  };
 
   const displayGainResults = () => {
     const totals = nutriplus();
@@ -388,60 +390,58 @@ export default function NutriCal() {
       };
     });
     return gain;
-    // const totals = nutriplus();
-    // const needs = nutriNeeds[`${userCondition}_${userAge}`] || {};
-
-    // if(Object.keys(needs).length === 0){
-    //   console.log("csv 충족 데이터가 매칭되지 않음.")
-    //   return {};
-    // }
-
-    // const gain = {};
-
-    // Object.keys(needs).forEach((key) => {
-    //   gain[key] = {
-    //     required: needs[key],
-    //     intake: totals[key] || 0,
-    //     percentage: needs[key] > 0 ? (((totals[key] || 0) / needs[key]) * 100).toFixed(1) : 'N/A',
-    //   };
-    // });
-    // return gain;
   };
 
   const displayResult = () => {
     const results = calGain();
     if (!results || Object.keys(results).length === 0) {
-      return <p>유효한 영양 데이터 없음</p>;
+      return;
     }
 
     const keysToDisplay = Object.keys(results).slice(2);
-    
+
     return (
       <tbody>
         {keysToDisplay.map((key) => (
-          <td className="text-xs text-center bg-pink-50">
+          <td className="text-xs text-center bg-amber-50">
             {results[key].percentage}%
           </td>
         ))}
       </tbody>
     );
-    // const results = calGain();
+  };
 
-    // if(Object.keys(results).length === 0){
-    //   console.log("csv 결과가 매칭되지 않음.")
-    //   return <p>결과 객체가 비어있음.</p>
-    // }
+  const handleSaveResults = async () => {
+    const dataToSave = {
+      age: userAge,
+      condition: userCondition,
+      selectedItems: selectedItems,
+      nutriTotal: nutriplus(),
+      nutriPersentage: calGain(),
+    };
 
-    // return (
-    //   <div>
-    //     {Object.keys(results).map((key) => (
-    //       <p key={key}>
-    //         {key}: {results[key].intake}mg ({results[key].percentage}% of{" "}
-    //         {results[key].required}mg recommended)
-    //       </p>
-    //     ))}
-    //   </div>
-    // );
+    try {
+      const response = await fetch(
+        `http://${process.env.REACT_APP_APIKEY}/userdata`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataToSave),
+        }
+      );
+
+      if (response.ok) {
+        const responseData = await response.json();
+        alert("입력된 정보가 성공적으로 저장되었습니다.");
+      } else {
+        throw new Error("서버에 문제가 발생하였습니다.");
+      }
+    } catch (error) {
+      console.error("입력된 정보 저장 중 에러 발생", error.message);
+      alert("입력된 정보 저장 중 문제가 발생하였습니다.");
+    }
   };
 
   return (
@@ -456,22 +456,21 @@ export default function NutriCal() {
             id="age"
             onChange={handleAgeChange}
             value={userAge}
-            className="mx-8 p-3 bg-pink-100 w-1/4 rounded-2xl  text-slate-600"
+            className="mx-8 p-3 bg-amber-100 w-1/4 rounded-2xl  text-slate-600"
           >
             <option>--- 사용자 연령 선택 ---</option>
             <option value="19~29">19 ~ 29세</option>
-            <option value="39~49">30 ~ 49세</option>
+            <option value="30~49">30 ~ 49세</option>
           </select>
           <select
             id="state"
             onChange={handleConditionChange}
             value={userCondition}
-            className="mx-8 p-3 bg-pink-100 w-1/4 rounded-2xl text-slate-600"
+            className="mx-8 p-3 bg-amber-100 w-1/4 rounded-2xl text-slate-600"
           >
             <option>--- 임신 / 수유 여부 선택 ---</option>
             <option value="preg1">임신 1분기( ~ 12주)</option>
             <option value="preg2">임신 2분기(13주 ~ 18주)</option>
-            <option value="preg3">임신 3분기(18주 ~ 40주)</option>
             <option value="preg3">임신 3분기(18주 ~ 40주)</option>
             <option value="nursing">수유기</option>
           </select>
@@ -480,6 +479,7 @@ export default function NutriCal() {
           <select
             id="code1name"
             onChange={handleSelC1}
+            value={selectedCode1}
             className="mx-8 p-3 bg-slate-200 w-1/4 rounded-2xl  text-slate-600"
           >
             <option>--- 식품 대분류 선택 ---</option>
@@ -490,6 +490,7 @@ export default function NutriCal() {
           <select
             id="code2name"
             onChange={handleSelC2}
+            value={selectedCode2}
             className="mx-8 p-3 bg-slate-200 w-1/4 rounded-2xl  text-slate-600"
           >
             <option>--- 식품 중분류 선택 ---</option>
@@ -500,6 +501,7 @@ export default function NutriCal() {
           <select
             id="foodname2"
             onChange={handleSelC3}
+            value={selectedCode3}
             className="mx-8 p-3 bg-slate-200 w-1/4 rounded-2xl  text-slate-600"
           >
             <option>--- 식품 소분류 선택 ---</option>
@@ -515,13 +517,10 @@ export default function NutriCal() {
             onChange={(e) => setKeyword(e.target.value)}
           ></input>
           <button
-            className=" m-5 bg-purple-400 text-white p-3 rounded-2xl w-36 font-bold"
+            className=" m-5 bg-amber-100 text-slate-800 p-3 rounded-3xl w-40 font-bold"
             onClick={handleSearch}
           >
-            입력
-          </button>
-          <button className=" m-5 bg-purple-600 text-white p-3 rounded-2xl w-36 font-bold">
-            취소
+            검색
           </button>
         </div>
 
@@ -555,6 +554,12 @@ export default function NutriCal() {
             {displayGainResults()}
             {displayResult()}
           </table>
+          <button
+            className=" m-5 bg-amber-100 text-slate-800 p-3 rounded-3xl w-36 font-bold"
+            onClick={handleSaveResults}
+          >
+            결과 저장
+          </button>
         </div>
       </div>
     </div>

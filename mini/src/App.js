@@ -1,4 +1,4 @@
-// 수정
+import { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import weblogo from "./img/weblogo.png";
 import "./App.css";
@@ -33,14 +33,22 @@ import K from "./guide/K"
 import Fe from "./guide/Fe"
 import Zn from "./guide/Zn"
 import I from "./guide/I"
-
-
+import NewMain from "./main/NewMain";
+import './style.css';
 
 function App() {
+
+  const [pageLoaded, setPageLoaded] = useState(false);
+
+  useEffect(() => {
+    // 페이지 로드 완료 상태 설정
+    setPageLoaded(true);
+  }, []);
+
   return (
     <BrowserRouter>
-      <div className="w-full mx-auto min-h-screen flex flex-col ">
-        <header className="h-24 bg-purple-400 flex my-5">
+      <div className={`w-full mx-auto min-h-screen flex flex-col ${pageLoaded ? 'visible' : 'hidden'}`}>
+        <header className="h-24 bg-purple-900 flex my-5">
           <Link to="/">
             <div className="w-96 bg-white h-24 flex items-center">
               <img src={weblogo} alt="weblogo" className="mx-7 h-20 w-20"></img>
@@ -51,6 +59,20 @@ function App() {
           </Link>
           <nav className="w-10/12 float-right h-full flex justify-between">
             <ul>
+            <li>
+                <Link to="#"> ▸ 사용 가이드</Link>
+                <ul>
+                  <li>
+                    <Link to="/NutriCal">식단을 통한 영양 평가</Link>
+                  </li>
+                  <li>
+                    <Link to="/GuideList">올바른 식사 지도</Link>
+                  </li>
+                  <li>
+                    <Link to="/BMI">바람직한 체중 계산</Link>
+                  </li>
+                </ul>
+              </li>
               <li>
                 <Link to="#"> ▸ 임산부</Link>
                 <ul>
@@ -84,19 +106,19 @@ function App() {
             <div className="flex space-x-4 px-20">
               <Link
                 to="/Login"
-                className="py-2 px-4 h-10 bg-purple-300 text-purple-950 rounded-3xl font-bold"
+                className="py-2 px-4 h-10 bg-amber-100 text-purple-950 rounded-3xl font-bold"
               >
                 로그인
               </Link>
               <Link
                 to="/MyPage"
-                className="py-2 px-4 h-10 bg-purple-300 text-purple-950 rounded-3xl font-bold"
+                className="py-2 px-4 h-10 bg-amber-100 text-purple-950 rounded-3xl font-bold"
               >
                 마이페이지
               </Link>
               <Link
                 to="/BeMember"
-                className="py-2 px-4 h-10 bg-purple-300 text-purple-950 rounded-3xl font-bold"
+                className="py-2 px-4 h-10 bg-amber-100 text-purple-950 rounded-3xl font-bold"
               >
                 회원가입
               </Link>
@@ -106,7 +128,7 @@ function App() {
 
         <div className="min-h-screen">
         <Routes>
-          <Route path="/" element={<Homemain />} />
+          <Route path="/" element={<NewMain />} />
           <Route path="/BMI" element={<BMI />} />
           <Route path="/BMI2" element={<BMI2 />} />
           <Route path="/NutriCal" element={<NutriCal />} />
@@ -137,7 +159,7 @@ function App() {
         </div>
         
 
-        <footer className="h-16 w-full flex flex-col justify-between items-center fixed bottom-0 bg-purple-300">
+        <footer className="h-16 w-full flex flex-col justify-between items-center fixed bottom-0 bg-purple-900">
           <div className="w-full h-2/3 flex justify-center items-center text-base text-white">
             ⓒ 2024 MOJAMOJA - Doyoung Kim & Nayoung Lee. All right reserved.
           </div>

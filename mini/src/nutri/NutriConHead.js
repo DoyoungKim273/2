@@ -32,7 +32,7 @@ export default function NutriHead() {
         <th>아연(mg)</th>
         <th>구리(µg)</th>
         <th>망간(mg)</th>
-        <th>셀레늄</th>
+        <th>셀레늄(mg)</th>
         <th>칼슘(mg)</th>
         <th>나트륨(mg)</th>
         <th>마그네슘(mg)</th>
