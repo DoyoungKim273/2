@@ -16,7 +16,8 @@ export default function NutriCal() {
   const [searchResult, setSearchResult] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
   const [nutriNeeds, setNutriNeeds] = useState({});
-  const [userAge, setUserAge] = useState("");
+  const [userAge1, setUserAge1] = useState("");
+  const [userAge2, setUserAge2] = useState("");
   const [userCondition1, setUserCondition1] = useState("");
   const [userCondition2, setUserCondition2] = useState("");
 
@@ -67,28 +68,34 @@ export default function NutriCal() {
     fetchData();
   }, []);
 
-  const handleAgeChange = (event) => {
-    const age = event.target.value;
-    setUserAge(age);
-    updateUserState(age, userCondition1);
+  const handleAgeChange1 = (event) => {
+    const age1 = event.target.value;
+    setUserAge1(age1);
+    updateUserState(age1, userCondition1);
+  };
+
+  const handleAgeChange2 = (event) => {
+    const age2 = event.target.value;
+    setUserAge2(age2);
+    updateUserState(age2, userCondition1);
   };
 
   const handleConditionChange1 = (event) => {
     const condition1 = event.target.value;
     setUserCondition1(condition1);
-    updateUserState(userAge, condition1);
+    updateUserState(userAge1, condition1);
   };
 
   const handleConditionChange2 = (event) => {
     const condition2 = event.target.value;
     setUserCondition2(condition2);
-    updateUserState(userAge, condition2);
+    updateUserState(userAge1, condition2);
   };
 
-  const updateUserState = (age, condition1) => {
-    if (age && condition1) {
-      const key = `${condition1}_${age}`;
-      console.log(age);
+  const updateUserState = (age1, condition1) => {
+    if (age1 && condition1) {
+      const key = `${condition1}_${age1}`;
+      console.log(age1);
       console.log(condition1);
       console.log(key);
       if (nutriNeeds[key]) {
@@ -116,7 +123,7 @@ export default function NutriCal() {
   };
 
   const handleSearch = async () => {
-    if (!userAge || !userCondition1) {
+    if (!userAge1 || !userCondition1) {
       alert("사용자 연령과 임신 / 수유 여부를 입력해주세요.");
       return;
     }
@@ -226,7 +233,7 @@ export default function NutriCal() {
                   type="checkbox"
                   onChange={() => handleSelectItem(item)}
                 />
-                {item.code1name}
+                {item.code1name}  
               </td>
               <td>{item.code2name}</td>
               <td>{item.code3name}</td>
@@ -400,7 +407,7 @@ export default function NutriCal() {
 
   const calGain = () => {
     const totals = nutriplus();
-    const key = `${userCondition1}_${userAge}`;
+    const key = `${userCondition1}_${userAge1}`;
     const needs = nutriNeeds[key];
     if (!needs) {
       console.log("선택된 연령과 상태에 대한 값이 없음.");
@@ -466,7 +473,8 @@ export default function NutriCal() {
 
   const handleSaveResults = async () => {
     const dataToSave = {
-      age: userAge,
+      age1: userAge1,
+      age2: userAge2,
       condition1: userCondition1,
       condition2: userCondition2,
       selectedItems: selectedItems,
@@ -507,15 +515,23 @@ export default function NutriCal() {
         <hr></hr>
         <div className="m-7 flex flex-row items-center justify-center">
           <select
-            id="age"
-            onChange={handleAgeChange}
-            value={userAge}
+            id="age1"
+            onChange={handleAgeChange1}
+            value={userAge1}
             className="mx-8 p-3 bg-amber-100 w-1/4 rounded-2xl  text-slate-600"
           >
-            <option>--- 사용자 연령 선택 ---</option>
+            <option>--- 사용자 연령 범위 선택 ---</option>
             <option value="19~29">19 ~ 29세</option>
             <option value="30~49">30 ~ 49세</option>
           </select>
+          <input
+            type="number"
+            placeholder="▶ 사용자 연령 입력"
+            className="mx-8 p-3 bg-amber-100 w-1/4 rounded-2xl"
+            id="age2"
+            onChange={handleAgeChange2}
+            value={userAge2}
+          ></input>
           <select
             id="state1"
             onChange={handleConditionChange1}

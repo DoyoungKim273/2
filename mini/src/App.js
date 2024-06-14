@@ -43,7 +43,6 @@ function App() {
   const [pageLoaded, setPageLoaded] = useState(false);
 
   useEffect(() => {
-    // 페이지 로드 완료 상태 설정
     setPageLoaded(true);
   }, []);
 
