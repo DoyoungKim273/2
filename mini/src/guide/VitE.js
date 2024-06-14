@@ -23,7 +23,7 @@ export default function Carb() {
             <div className="font-bold text-lg"> 💜 비타민 E란?</div>
             <div>
               - 비타민 E는 지방산이나 중성 지방과 함께 흡수되며 항산화제로서의
-              기능을 한다. . <br />
+              기능을 한다.<br />
               - 비타민 E는 식물성 기름, 밀의 배아, 땅콩, 아스파라거스,
               마가린등에 많이 존재한다.
               <br />
@@ -58,6 +58,9 @@ export default function Carb() {
               충분섭취량에 3.0 mg α-TE을 가산한다.
             </div>
           </li>
+          <div className="text-end text-sm mx-10">
+          출처 : 21세기 영양학(6판, 최혜미 저, 교문사), 생애주기 영양학(5판, 김은경 저, 신광출판사), 2020 한국인영양소섭취기준(KDRIs)  
+          </div>
         </ul>
       </div>
     </div>

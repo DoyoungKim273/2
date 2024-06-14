@@ -11,9 +11,9 @@ export default function BMI() {
   const [week, setWeek] = useState("");
   const [weekGain, setWeekGain] = useState("");
 
-  // BMI 계산 함수
+ 
   const calculateBMI = () => {
-    const heightInMeters = parseFloat(height) / 100; // cm를 m로 변환
+    const heightInMeters = parseFloat(height) / 100;
     const weightInKg = parseFloat(weight);
 
     if (heightInMeters > 0 && weightInKg > 0) {
@@ -65,9 +65,12 @@ export default function BMI() {
   return (
     <div className="min-h-screen">
       <div id="bmi-calculator">
+        <div>
         <h2 className="justify-start text-xl text-center font-bold p-2 m-3 text-slate-900">
           ⏲ 임산부를 위한 바람직한 체중 계산기 ⏲
         </h2>
+        <div className="text-end text-xs mb-3 mx-5">* 계산은 대한산부인과학회의 기준을 바탕으로 합니다.</div>
+        </div>  
         <hr></hr>
         <div className="flex flex-row items-center justify-center">
           <input
@@ -95,7 +98,7 @@ export default function BMI() {
             className="m-10 p-3 bg-slate-200 w-1/4 rounded-2xl"
           />
           <button
-            className="bg-purple-700 text-white text-bold w-40 p-3 rounded-2xl"
+            className="bg-purple-800 text-white text-bold w-40 p-3 rounded-2xl"
             onClick={calculateBMI}
           >
             BMI 계산
@@ -135,9 +138,8 @@ export default function BMI() {
           {week !== ""
           ? `당신은 "${week}" 입니다. 주별 체중 증가량은 "${weekGain}"이 적당합니다.` : "임신 분기에 따른 적정 주별 체중 증가량을 산출합니다."}
         </div>
-
         <hr></hr>
-        <div className="items-center justify-center flex">
+        <div className="items-center justify-center flex flex-col">
           <img src={BMItable} alt="BMItable"></img>
         </div>
       </div>

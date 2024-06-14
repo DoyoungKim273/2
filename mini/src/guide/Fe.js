@@ -51,6 +51,9 @@ export default function Carb() {
               - 이에 간이나 육류, 어류, 가금류, 달걀, 녹황색 채소류의 충분한 섭취가 필요하며 철 보충제 또한 권장된다.
             </div>
           </li>
+          <div className="text-end text-sm mx-10">
+          출처 : 21세기 영양학(6판, 최혜미 저, 교문사), 생애주기 영양학(5판, 김은경 저, 신광출판사), 2020 한국인영양소섭취기준(KDRIs)  
+          </div>
         </ul>
       </div>
     </div>

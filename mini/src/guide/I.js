@@ -60,6 +60,9 @@ export default function Carb() {
               추가 평균필요량으로 설정한다.
             </div>
           </li>
+          <div className="text-end text-sm mx-10">
+          출처 : 21세기 영양학(6판, 최혜미 저, 교문사), 생애주기 영양학(5판, 김은경 저, 신광출판사), 2020 한국인영양소섭취기준(KDRIs)  
+          </div>
         </ul>
       </div>
     </div>

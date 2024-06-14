@@ -47,9 +47,15 @@ export default function BMI() {
   return (
     <div className="min-h-screen">
       <div id="bmi-calculator">
-        <h2 className="justify-start text-xl text-center font-bold p-2 m-3 text-slate-900">
-          ⏲ 수유부를 위한 바람직한 체중 계산기 ⏲
-        </h2>
+        <div>
+          <h2 className="justify-start text-xl text-center font-bold p-2 m-3 text-slate-900">
+            ⏲ 수유부를 위한 바람직한 체중 계산기 ⏲
+          </h2>
+          <div className="text-end text-xs mb-3 mx-5">
+            * 계산은 대한산부인과학회의 기준을 바탕으로 합니다.
+          </div>
+        </div>
+
         <hr></hr>
         <div className="flex flex-row items-center justify-center">
           <input
@@ -77,7 +83,7 @@ export default function BMI() {
             className="m-10 p-3 bg-slate-200 w-1/4 rounded-2xl"
           />
           <button
-            className="bg-purple-700 text-white text-bold w-40 p-3 rounded-2xl"
+            className="bg-purple-800 text-white text-bold w-40 p-3 rounded-2xl"
             onClick={calculateBMI}
           >
             BMI 계산
@@ -121,15 +127,12 @@ export default function BMI() {
         </h2>
         <div className="flex-row flex">
           <div className="m-5 p-5 w-1/3 bg-purple-100 rounded-2xl">
-            <a
-              href="https://bfmed.co.kr/re/"
-              className="font-bold text-lg"
-            >
-              💜 대한모유수유의사회
+            <a href="https://bfmed.co.kr/re/" className="font-bold text-lg">
+              💜 대한모유수유의학회
             </a>
             <div>
               - 모유 먹이기, 아이 돌보기에 대한 정보 제공
-              <br />- 대한모유수유의사회 소속 의사의 모유 수유 상담 서비스 제공
+              <br />- 모유수유 Q&A 게시판 운영, 모유수유 관련 사이트 소개
             </div>
           </div>
           <div className="m-5 p-5 w-1/3 bg-purple-100 rounded-2xl">
@@ -154,7 +157,8 @@ export default function BMI() {
             </a>
             <div>
               - 모유 수유 방법, 모유 수유의 장점에 대해 자세히 소개
-              <br />- 모유 수유 과정에서 자주 하는 질문에 대한 전문적인 답변 제공
+              <br />- 모유 수유 과정에서 자주 하는 질문에 대한 전문적인 답변
+              제공
             </div>
           </div>
         </div>

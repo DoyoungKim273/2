@@ -2,6 +2,7 @@ import React from "react";
 import NutriHead from "./NutriHead";
 import { useState, useEffect } from "react";
 import NutriConHead from "./NutriConHead";
+import NutriConHead2 from "./NutriConHead2";
 import Papa from "papaparse";
 
 export default function NutriCal() {
@@ -16,7 +17,8 @@ export default function NutriCal() {
   const [selectedItems, setSelectedItems] = useState([]);
   const [nutriNeeds, setNutriNeeds] = useState({});
   const [userAge, setUserAge] = useState("");
-  const [userCondition, setUserCondition] = useState("");
+  const [userCondition1, setUserCondition1] = useState("");
+  const [userCondition2, setUserCondition2] = useState("");
 
   useEffect(() => {
     const fetchInitialData = async () => {
@@ -68,20 +70,26 @@ export default function NutriCal() {
   const handleAgeChange = (event) => {
     const age = event.target.value;
     setUserAge(age);
-    updateUserState(age, userCondition);
+    updateUserState(age, userCondition1);
   };
 
-  const handleConditionChange = (event) => {
-    const condition = event.target.value;
-    setUserCondition(condition);
-    updateUserState(userAge, condition);
+  const handleConditionChange1 = (event) => {
+    const condition1 = event.target.value;
+    setUserCondition1(condition1);
+    updateUserState(userAge, condition1);
   };
 
-  const updateUserState = (age, condition) => {
-    if (age && condition) {
-      const key = `${condition}_${age}`;
+  const handleConditionChange2 = (event) => {
+    const condition2 = event.target.value;
+    setUserCondition2(condition2);
+    updateUserState(userAge, condition2);
+  };
+
+  const updateUserState = (age, condition1) => {
+    if (age && condition1) {
+      const key = `${condition1}_${age}`;
       console.log(age);
-      console.log(condition);
+      console.log(condition1);
       console.log(key);
       if (nutriNeeds[key]) {
         console.log("매칭되는 영양 데이터", nutriNeeds[key]);
@@ -107,10 +115,8 @@ export default function NutriCal() {
     }
   };
 
-  
-
   const handleSearch = async () => {
-    if (!userAge || !userCondition) {
+    if (!userAge || !userCondition1) {
       alert("사용자 연령과 임신 / 수유 여부를 입력해주세요.");
       return;
     }
@@ -330,11 +336,11 @@ export default function NutriCal() {
     return totals;
   };
 
-  const displayGainResults = () => {
+  const displayGainResults1 = () => {
     const totals = nutriplus();
 
-    return (
-      <tbody className="text-xs items-center justify-center text-center">
+    const firstRow = (
+      <tr className="text-xs items-center justify-center text-center">
         <td>{totals.energy}</td>
         <td>{totals.carbohydrate}</td>
         <td>{totals.dietaryFiber}</td>
@@ -352,6 +358,21 @@ export default function NutriCal() {
         <td>{totals.vitA}</td>
         <td>{totals.vitD}</td>
         <td>{totals.vitC}</td>
+      </tr>
+    );
+
+    return (
+      <tbody className="text-xs items-center justify-center text-center">
+        {firstRow}
+      </tbody>
+    );
+  };
+
+  const displayGainResults2 = () => {
+    const totals = nutriplus();
+
+    const secondRow = (
+      <tr className="text-xs items-center justify-center text-center">
         <td>{totals.thiamine}</td>
         <td>{totals.riboflavin}</td>
         <td>{totals.niacin}</td>
@@ -368,13 +389,18 @@ export default function NutriCal() {
         <td>{totals.na}</td>
         <td>{totals.mg}</td>
         <td>{totals.ala}</td>
+      </tr>
+    );
+    return (
+      <tbody className="text-xs items-center justify-center text-center">
+        {secondRow}
       </tbody>
     );
   };
 
   const calGain = () => {
     const totals = nutriplus();
-    const key = `${userCondition}_${userAge}`;
+    const key = `${userCondition1}_${userAge}`;
     const needs = nutriNeeds[key];
     if (!needs) {
       console.log("선택된 연령과 상태에 대한 값이 없음.");
@@ -392,18 +418,45 @@ export default function NutriCal() {
     return gain;
   };
 
-  const displayResult = () => {
+  const displayResult1 = () => {
     const results = calGain();
     if (!results || Object.keys(results).length === 0) {
       return;
     }
 
-    const keysToDisplay = Object.keys(results).slice(2);
+    const keysToDisplay = Object.keys(results).slice(2, 19);
 
     return (
       <tbody>
         {keysToDisplay.map((key) => (
-          <td className="text-xs text-center bg-amber-50">
+          <td
+            className={`text-xs text-center ${
+              results[key].percentage >= 100 ? "bg-pink-200" : "bg-amber-50"
+            }`}
+          >
+            {results[key].percentage}%
+          </td>
+        ))}
+      </tbody>
+    );
+  };
+
+  const displayResult2 = () => {
+    const results = calGain();
+    if (!results || Object.keys(results).length === 0) {
+      return;
+    }
+
+    const keysToDisplay = Object.keys(results).slice(19);
+
+    return (
+      <tbody>
+        {keysToDisplay.map((key) => (
+          <td
+            className={`text-xs text-center ${
+              results[key].percentage >= 100 ? "bg-pink-200" : "bg-amber-50"
+            }`}
+          >
             {results[key].percentage}%
           </td>
         ))}
@@ -414,7 +467,8 @@ export default function NutriCal() {
   const handleSaveResults = async () => {
     const dataToSave = {
       age: userAge,
-      condition: userCondition,
+      condition1: userCondition1,
+      condition2: userCondition2,
       selectedItems: selectedItems,
       nutriTotal: nutriplus(),
       nutriPersentage: calGain(),
@@ -463,17 +517,25 @@ export default function NutriCal() {
             <option value="30~49">30 ~ 49세</option>
           </select>
           <select
-            id="state"
-            onChange={handleConditionChange}
-            value={userCondition}
+            id="state1"
+            onChange={handleConditionChange1}
+            value={userCondition1}
             className="mx-8 p-3 bg-amber-100 w-1/4 rounded-2xl text-slate-600"
           >
             <option>--- 임신 / 수유 여부 선택 ---</option>
             <option value="preg1">임신 1분기( ~ 12주)</option>
             <option value="preg2">임신 2분기(13주 ~ 18주)</option>
-            <option value="preg3">임신 3분기(18주 ~ 40주)</option>
+            <option value="preg3">임신 3분기(19주 ~ 40주)</option>
             <option value="nursing">수유기</option>
           </select>
+          <input
+            type="number"
+            placeholder="▶ 주 수 입력"
+            className="mx-8 p-3 bg-amber-100 w-1/4 rounded-2xl"
+            id="state2"
+            onChange={handleConditionChange2}
+            value={userCondition2}
+          ></input>
         </div>
         <div className="m-5 flex flex-row items-center justify-center">
           <select
@@ -529,6 +591,7 @@ export default function NutriCal() {
           📄 검색된 음식 목록 📄
         </div>
         <div className="w-full flex flex-col justify-center items-center p-2 m-3">
+        <div className="w-11/12 text-xs text-end"> * 검색 목록 중 섭취한 음식을 체크합니다.</div>
           <table className="w-11/12 border m-3 rounded-2xl">
             <NutriHead />
             {displaySelectedItems()}
@@ -539,6 +602,7 @@ export default function NutriCal() {
           ✅ 선택한 음식 목록 ✅
         </div>
         <div className="w-full flex flex-col justify-center items-center p-2 m-3">
+        <div className="w-11/12 text-xs text-end"> * 영양소 수치는 식품의약품안전처 식품영양성분DB를 바탕으로 계산됩니다.</div>
           <table className="w-11/12 border m-3 rounded-2xl">
             <NutriHead />
             {displayChosenItems()}
@@ -549,10 +613,17 @@ export default function NutriCal() {
           📊 합산 결과 📊
         </div>
         <div className="w-full flex flex-col justify-center items-center px-2 mx-3 mb-20">
-          <table className="w-auto border m-3">
+          <div className="w-4/5 text-xs text-end"> * 각 영양소 클릭 시 식사지도 페이지로 이동합니다.
+          <br/> * 권장섭취량이 충족된 영양소는 분홍색으로 표시됩니다.</div>
+          <table className="w-4/5 border m-3">
             <NutriConHead />
-            {displayGainResults()}
-            {displayResult()}
+            {displayGainResults1()}
+            {displayResult1()}
+          </table>
+          <table className="w-4/5 border m-3">
+            <NutriConHead2 />
+            {displayGainResults2()}
+            {displayResult2()}
           </table>
           <button
             className=" m-5 bg-amber-100 text-slate-800 p-3 rounded-3xl w-36 font-bold"

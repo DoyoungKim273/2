@@ -18,12 +18,9 @@ export default function MyPage() {
         </div>
       <hr></hr>
       <div className="justify-start text-xl text-center font-bold p-2 m-5 text-slate-900">
-        ⏲ 나의 체중 기록 ⏲
-      </div>
-      <hr></hr>
-      <div className="justify-start text-xl text-center font-bold p-2 m-5 text-slate-900">
         📄 나의 메모 📄
       </div>
+      <hr></hr>
     </div>
   );
 }

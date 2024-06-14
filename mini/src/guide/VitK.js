@@ -23,7 +23,7 @@ export default function Carb() {
             <div className="font-bold text-lg"> 💜 비타민 K란?</div>
             <div>
               - 비타민 K는 혈액응고에 필수적인 비타민으로 간에서 혈액응고인자의
-              합성에 관여한다. . <br />
+              합성에 관여한다. <br />
               - 비타민 K의 주요 급원식품은 간, 녹색채소, 브로콜리, 콩류 등이다.
               <br />
               - 비타민 K는 섭취한 뒤 대부분 하루가 지나면 체내에서 없어진다.
@@ -62,6 +62,9 @@ export default function Carb() {
               성인여성과 동일한 기준으로 충분 섭취량을 설정하였다.
             </div>
           </li>
+          <div className="text-end text-sm mx-10">
+          출처 : 21세기 영양학(6판, 최혜미 저, 교문사), 생애주기 영양학(5판, 김은경 저, 신광출판사), 2020 한국인영양소섭취기준(KDRIs)  
+          </div>
         </ul>
       </div>
     </div>

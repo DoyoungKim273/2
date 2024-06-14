@@ -32,10 +32,10 @@ export default function Noticemain() {
               href="https://bfmed.co.kr/re/"
               className="font-bold"
             >
-              💜 대한모유수유의사회
+              💜 대한모유수유의학회
             </a>
             <div className="text-sm">
-               - 대한모유수유의사회 소속 의사의 모유 수유 상담 서비스 제공
+               - 모유 수유 Q & A 게시판 운영 및 모유 수유 관련 사이트 다수 소개
             </div>
           </div>
           </div>
