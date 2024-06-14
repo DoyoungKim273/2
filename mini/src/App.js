@@ -114,19 +114,19 @@ function App() {
             <div className="flex space-x-4 px-20">
               <Link
                 to="/Login"
-                className="py-2 px-4 h-10 bg-amber-100 text-purple-950 rounded-3xl font-bold"
+                className="py-2 px-4 h-10 bg-amber-100  hover:bg-amber-300 text-purple-950 rounded-3xl font-bold"
               >
                 로그인
               </Link>
               <Link
                 to="/MyPage"
-                className="py-2 px-4 h-10 bg-amber-100 text-purple-950 rounded-3xl font-bold"
+                className="py-2 px-4 h-10 bg-amber-100  hover:bg-amber-300 text-purple-950 rounded-3xl font-bold"
               >
                 마이페이지
               </Link>
               <Link
                 to="/BeMember"
-                className="py-2 px-4 h-10 bg-amber-100 text-purple-950 rounded-3xl font-bold"
+                className="py-2 px-4 h-10 bg-amber-100  hover:bg-amber-300 text-purple-950 rounded-3xl font-bold"
               >
                 회원가입
               </Link>

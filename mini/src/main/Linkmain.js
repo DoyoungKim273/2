@@ -10,7 +10,7 @@ export default function Noticemain() {
             지원 사이트 <br /> 바로가기
           </li>
           <div className="flex flex-row">
-            <li className="my-5 mx-3 p-3 bg-purple-100 rounded-2xl">
+            <li className="my-5 mx-3 p-3 bg-purple-100  hover:bg-purple-300 rounded-2xl">
               <a
                 href="https://www.childcare.go.kr/?menuno=1"
                 className="font-bold"
@@ -23,7 +23,7 @@ export default function Noticemain() {
                 지원 포털
               </div>
             </li>
-            <li className="my-5 mx-3 p-3 bg-purple-100 rounded-2xl">
+            <li className="my-5 mx-3 p-3 bg-purple-100   hover:bg-purple-300 rounded-2xl">
               <a href="https://www.ksog.org/" className="font-bold">
                 💜 대한산부인과학회
               </a>
@@ -32,7 +32,7 @@ export default function Noticemain() {
                 공식 사이트
               </div>
             </li>
-            <li className="my-5 mx-3 p-3 bg-purple-100 rounded-2xl">
+            <li className="my-5 mx-3 p-3 bg-purple-100  hover:bg-purple-300 rounded-2xl">
               <a
                 href="https://www.socialservice.or.kr:444/user/htmlEditor/view2.do?p_sn=13"
                 className="font-bold"
@@ -44,7 +44,7 @@ export default function Noticemain() {
                 등을 안내
               </div>
             </li>
-            <div className="my-5 mx-3 p-3 bg-purple-100 rounded-2xl">
+            <div className="my-5 mx-3 p-3 bg-purple-100  hover:bg-purple-300 rounded-2xl">
               <a href="https://bfmed.co.kr/re/" className="font-bold">
                 💜 대한모유수유의학회
               </a>
