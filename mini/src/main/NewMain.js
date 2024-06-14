@@ -15,7 +15,7 @@ export default function NewMain() {
       <img 
       src={mainImg} 
       alt="mainImg" 
-      className={`h-2/5 m-1 ${imgLoaded ? '' : 'hidden'}`}
+      className={`h-2/5 m-1 transition-opacity duration-1000 ${imgLoaded ? 'opacity-100' : 'opacity-30'}`}
       onLoad={handleImgLoad}></img>
       </div>
       {imgLoaded && <Linkmain/>}
