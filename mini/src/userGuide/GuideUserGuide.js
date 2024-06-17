@@ -5,7 +5,7 @@ export default function GuideUserGuide() {
   return (
     <div>
       <div className="justify-center items-center flex flex-col">
-        <img src={guide} alt="guide" className="justify-center w-3/5 mt-10"></img>
+        <img src={guide} alt="guide" className="justify-center w-9/12 mt-10 mb-20"></img>
       </div>
     </div>
   )
