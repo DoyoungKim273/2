@@ -40,7 +40,7 @@ export default function Carb() {
             <Tooltip wrapperStyle={{ width: 100, backgroundColor: "#ccc" }} />
             {/* <Legend width={100} wrapperStyle={{ top: 40, right: 20, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} /> */}
             <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <Bar dataKey="uv" fill="#fcd34d" barSize={30} />
+            <Bar dataKey="amt" fill="#fcd34d" barSize={30} />
           </BarChart>
         </div>
         

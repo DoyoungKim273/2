@@ -22,8 +22,8 @@ export default function Carb() {
     { name: "찹쌀", amt: 82 },
     { name: "백미", amt: 75 },
     { name: "국수", amt: 60 },
-    { name: "빵", uv: 50 },
-    { name: "떡", uv: 49 },
+    { name: "빵", amt: 50 },
+    { name: "떡", amt: 49 },
   ];
 
   return (
