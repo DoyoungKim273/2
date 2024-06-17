@@ -518,6 +518,7 @@ export default function NutriCal() {
     return keysToDisplay.map((key) => ({
       name: key,
       percentage: parseFloat(results[key].percentage),
+      fill: parseFloat(results[key].percentage) >= 100 ? "#ffd6ed" : "#ffea94"
     }));
   };
 
@@ -532,6 +533,7 @@ export default function NutriCal() {
     return keysToDisplay.map((key) => ({
       name: key,
       percentage: parseFloat(results[key].percentage),
+      fill: parseFloat(results[key].percentage) >= 100 ? "#ffd6ed" : "#ffea94"
     }));
   };
 
