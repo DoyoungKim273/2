@@ -41,6 +41,7 @@ import GuideUserGuide from "./userGuide/GuideUserGuide";
 import MyNutri from "./member/MyNutri";
 import MyMemo from "./member/MyMemo"
 import MyMemoRe from "./member/MyMemoRe"
+import { MoonLoader } from "react-spinners";
 
 function App() {
   const [pageLoaded, setPageLoaded] = useState(false);
