@@ -83,7 +83,7 @@ export default function BMI() {
             className="m-10 p-3 bg-slate-200 w-1/4 rounded-2xl"
           />
           <button
-            className="bg-purple-800 text-white text-bold w-40 p-3 rounded-2xl"
+            className="bg-purple-800 hover:bg-purple-500 text-white text-bold w-40 p-3 rounded-2xl"
             onClick={calculateBMI}
           >
             BMI 계산
@@ -126,7 +126,7 @@ export default function BMI() {
           🍼 모유 수유 더 알아보기 (바로가기) 🍼
         </h2>
         <div className="flex-row flex">
-          <div className="m-5 p-5 w-1/3 bg-purple-100 rounded-2xl">
+          <div className="m-5 p-5 w-1/3 bg-purple-100 hover:bg-purple-300 rounded-2xl">
             <a href="https://bfmed.co.kr/re/" className="font-bold text-lg">
               💜 대한모유수유의학회
             </a>
@@ -135,7 +135,7 @@ export default function BMI() {
               <br />- 모유수유 Q&A 게시판 운영, 모유수유 관련 사이트 소개
             </div>
           </div>
-          <div className="m-5 p-5 w-1/3 bg-purple-100 rounded-2xl">
+          <div className="m-5 p-5 w-1/3 bg-purple-100 hover:bg-purple-300 rounded-2xl">
             <a
               href="https://www.pediatrics.or.kr/bbs/?code=infantcare&category=A&gubun=B"
               className="font-bold text-lg"
@@ -148,7 +148,7 @@ export default function BMI() {
               제공
             </div>
           </div>
-          <div className="m-5 p-5 w-1/3 bg-purple-100 rounded-2xl">
+          <div className="m-5 p-5 w-1/3 bg-purple-100  hover:bg-purple-300 rounded-2xl">
             <a
               href="https://www.koreanursing.or.kr/leading_initiatives/breast_feeding_faq.php"
               className="font-bold text-lg"

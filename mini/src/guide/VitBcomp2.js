@@ -3,9 +3,27 @@ import vitBcomp2 from "../img/guide/vitBcomp2.png";
 import vitB3 from "./pic/vitB3.png"
 import vitB4 from "./pic/vitB4.png"
 import vitA1 from "./pic/vitA1.png"
-
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  CartesianGrid,
+} from "recharts";
 
 export default function Carb() {
+  const data = [
+    { name: "대두", amt: 755 },
+    { name: "파김치", amt: 449 },
+    { name: "김", amt: 346 },
+    { name: "시금치", amt: 272 },
+    { name: "총각김치", amt: 257 },
+    { name: "들깻잎", amt: 150 },
+    { name: "된장", amt: 139 },
+  ];
+
   return (
     <div>
       <div className="justify-start text-xl text-center font-bold p-2 m-3 text-slate-900">
@@ -13,7 +31,18 @@ export default function Carb() {
       </div>
       <hr></hr>
       <div className="flex flex-row justify-center">
-        <img src={vitBcomp2} alt="vitBcomp2" className="p-5"></img>
+        {/* <img src={vitBcomp2} alt="vitBcomp2" className="p-5"></img> */}
+        <div className="flex flex-col justify-center mt-28">
+        <div className="text-end text-xs">* 100g 기준 함량(µg) </div>
+          <BarChart width={600} height={600} data={data}>
+            <XAxis dataKey="name" stroke="#000000" />
+            <YAxis />
+            <Tooltip wrapperStyle={{ width: 100, backgroundColor: "#ccc" }} />
+            {/* <Legend width={100} wrapperStyle={{ top: 40, right: 20, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} /> */}
+            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+            <Bar dataKey="amt" fill="#fcd34d" barSize={30} />
+          </BarChart>
+        </div>
         <ul className="m-7">
         <div className="justify-end flex flex-row mx-10">
           <img src={vitB3} alt="vitB3" className="w-32 h-32 mx-5"></img>

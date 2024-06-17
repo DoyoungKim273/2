@@ -3,9 +3,27 @@ import zn from "../img/guide/zn.png";
 import zn1 from "./pic/zn1.png"
 import zn2 from "./pic/zn2.png"
 import prot2 from "./pic/prot2.png"
-
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  CartesianGrid,
+} from "recharts";
 
 export default function Carb() {
+  const data = [
+    { name: "굴", amt: 15.9 },
+    { name: "시리얼", amt: 9.72 },
+    { name: "돼지 간", amt: 6.72 },
+    { name: "소고기", amt: 4.4 },
+    { name: "보리", amt: 2.05 },
+    { name: "시금치", amt: 2.01 },
+    { name: "두부", amt: 1.17 },
+  ];
+
   return (
     <div>
       <div className="justify-start text-xl text-center font-bold p-2 m-3 text-slate-900">
@@ -13,7 +31,18 @@ export default function Carb() {
       </div>
       <hr></hr>
       <div className="flex flex-row justify-center">
-        <img src={zn} alt="zn" className="p-5"></img>
+        {/* <img src={zn} alt="zn" className="p-5"></img> */}
+        <div className="flex flex-col justify-center mt-28">
+        <div className="text-end text-xs">* 100g 기준 함량(mg) </div>
+          <BarChart width={600} height={600} data={data}>
+            <XAxis dataKey="name" stroke="#000000" />
+            <YAxis />
+            <Tooltip wrapperStyle={{ width: 100, backgroundColor: "#ccc" }} />
+            {/* <Legend width={100} wrapperStyle={{ top: 40, right: 20, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} /> */}
+            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+            <Bar dataKey="amt" fill="#fcd34d" barSize={30} />
+          </BarChart>
+        </div>
         <ul className="m-7">
         <div className="justify-end flex flex-row mx-10">
           <img src={zn1} alt="zn1" className="w-32 h-32 mx-5"></img>

@@ -38,6 +38,9 @@ import "./style.css";
 import NutriUserGuide from "./userGuide/NutriUserGuide";
 import BMIUserGuide from "./userGuide/BMIUserGuide";
 import GuideUserGuide from "./userGuide/GuideUserGuide";
+import MyNutri from "./member/MyNutri";
+import MyMemo from "./member/MyMemo"
+import MyMemoRe from "./member/MyMemoRe"
 
 function App() {
   const [pageLoaded, setPageLoaded] = useState(false);
@@ -57,7 +60,7 @@ function App() {
           <Link to="/">
             <div className="w-96 bg-white h-24 flex items-center">
               <img src={weblogo} alt="weblogo" className="mx-7 h-20 w-20"></img>
-              <div className="text-purple-900 text-3xl font-bold text-right">
+              <div className="text-purple-900 hover:text-amber-500 text-3xl font-bold text-right">
                 엄마랑 아이랑
               </div>
             </div>
@@ -65,7 +68,7 @@ function App() {
           <nav className="w-10/12 float-right h-full flex justify-between">
             <ul>
               <li>
-                <Link to="#"> ▸ 사용 가이드</Link>
+                <Link to="#">  사용 가이드</Link>
                 <ul>
                   <li>
                     <Link to="/NutriUserGuide">회원 혜택  </Link>
@@ -82,7 +85,7 @@ function App() {
                 </ul>
               </li>
               <li>
-                <Link to="#"> ▸ 임산부</Link>
+                <Link to="#">  임산부</Link>
                 <ul>
                   <li>
                     <Link to="/NutriCal">식단을 통한 영양 평가</Link>
@@ -96,7 +99,7 @@ function App() {
                 </ul>
               </li>
               <li>
-                <Link to="#"> ▸ 수유부</Link>
+                <Link to="#">  수유부</Link>
                 <ul>
                   <li>
                     <Link to="/NutriCal">식단을 통한 영양 평가</Link>
@@ -166,6 +169,9 @@ function App() {
             <Route path="/NutriUserGuide" element={<NutriUserGuide />} />
             <Route path="/BMIUserGuide" element={<BMIUserGuide />} />
             <Route path="/GuideUserGuide" element={<GuideUserGuide />} />
+            <Route path="/MyMemo" element={<MyMemo />} />
+            <Route path="/MyMemoRe" element={<MyMemoRe />} />
+            <Route path="/MyNutri" element={<MyNutri />} />
           </Routes>
         </div>
 

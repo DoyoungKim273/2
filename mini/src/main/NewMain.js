@@ -9,7 +9,7 @@ export default function NewMain() {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setOpacity(0.8);
+      setOpacity(0.7);
       setTimeout(()=> {
         setCurrentImg((current) => (current === mainImg ? mainImg_2 : mainImg));
         setOpacity(1);

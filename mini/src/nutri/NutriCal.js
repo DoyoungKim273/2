@@ -510,7 +510,7 @@ export default function NutriCal() {
             id="age"
             onChange={handleAgeChange}
             value={userAge}
-            className="mx-8 p-3 bg-amber-100 w-1/4 rounded-2xl  text-slate-600"
+            className="mx-8 p-3 bg-amber-100 hover:bg-amber-200 w-1/4 rounded-2xl  text-slate-600"
           >
             <option>--- 사용자 연령 선택 ---</option>
             <option value="19~29">19 ~ 29세</option>
@@ -520,7 +520,7 @@ export default function NutriCal() {
             id="state1"
             onChange={handleConditionChange1}
             value={userCondition1}
-            className="mx-8 p-3 bg-amber-100 w-1/4 rounded-2xl text-slate-600"
+            className="mx-8 p-3 bg-amber-100  hover:bg-amber-200 w-1/4 rounded-2xl text-slate-600"
           >
             <option>--- 임신 / 수유 여부 선택 ---</option>
             <option value="preg1">임신 1분기( ~ 12주)</option>
@@ -531,7 +531,7 @@ export default function NutriCal() {
           <input
             type="number"
             placeholder="▶ 주 수 입력"
-            className="mx-8 p-3 bg-amber-100 w-1/4 rounded-2xl"
+            className="mx-8 p-3 bg-amber-100  hover:bg-amber-200 w-1/4 rounded-2xl"
             id="state2"
             onChange={handleConditionChange2}
             value={userCondition2}
@@ -542,7 +542,7 @@ export default function NutriCal() {
             id="code1name"
             onChange={handleSelC1}
             value={selectedCode1}
-            className="mx-8 p-3 bg-slate-200 w-1/4 rounded-2xl  text-slate-600"
+            className="mx-8 p-3 bg-slate-200 hover:bg-slate-300 w-1/4 rounded-2xl  text-slate-600"
           >
             <option>--- 식품 대분류 선택 ---</option>
             {code1name.map((item) => (
@@ -553,7 +553,7 @@ export default function NutriCal() {
             id="code2name"
             onChange={handleSelC2}
             value={selectedCode2}
-            className="mx-8 p-3 bg-slate-200 w-1/4 rounded-2xl  text-slate-600"
+            className="mx-8 p-3 bg-slate-200  hover:bg-slate-300 w-1/4 rounded-2xl  text-slate-600"
           >
             <option>--- 식품 중분류 선택 ---</option>
             {code2name.map((item) => (
@@ -564,7 +564,7 @@ export default function NutriCal() {
             id="foodname2"
             onChange={handleSelC3}
             value={selectedCode3}
-            className="mx-8 p-3 bg-slate-200 w-1/4 rounded-2xl  text-slate-600"
+            className="mx-8 p-3 bg-slate-200  hover:bg-slate-300 w-1/4 rounded-2xl  text-slate-600"
           >
             <option>--- 식품 소분류 선택 ---</option>
             {code3name.map((item) => (
@@ -574,12 +574,12 @@ export default function NutriCal() {
           <input
             type="text"
             placeholder="▶ 식품 키워드 입력"
-            className="mx-8 p-3 bg-slate-200 w-1/4 rounded-2xl"
+            className="mx-8 p-3 bg-slate-200 hover:bg-slate-300  w-1/4 rounded-2xl"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
           ></input>
           <button
-            className=" m-5 bg-amber-100 text-slate-800 p-3 rounded-3xl w-40 font-bold"
+            className=" m-5 bg-amber-100 hover:bg-amber-300 text-slate-800 p-3 rounded-3xl w-40 font-bold"
             onClick={handleSearch}
           >
             검색
@@ -592,7 +592,6 @@ export default function NutriCal() {
         </div>
         <div className="w-full flex flex-col justify-center items-center p-2 m-3">
           <div className="w-11/12 text-xs text-end">
-            {" "}
             * 검색 목록 중 섭취한 음식을 체크합니다.
           </div>
           <table className="w-11/12 border m-3 rounded-2xl">
@@ -606,7 +605,6 @@ export default function NutriCal() {
         </div>
         <div className="w-full flex flex-col justify-center items-center p-2 m-3">
           <div className="w-11/12 text-xs text-end">
-            {" "}
             * 영양소 수치는 식품의약품안전처 식품영양성분DB를 바탕으로
             계산됩니다.
           </div>
@@ -635,7 +633,7 @@ export default function NutriCal() {
             {displayResult2()}
           </table>
           <button
-            className=" m-5 bg-amber-100 text-slate-800 p-3 rounded-3xl w-36 font-bold"
+            className=" m-5 bg-amber-100 hover:bg-amber-300 text-slate-800 p-3 rounded-3xl w-36 font-bold"
             onClick={handleSaveResults}
           >
             결과 저장

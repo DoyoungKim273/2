@@ -15,7 +15,6 @@ export default function Noticemain() {
                 href="https://www.childcare.go.kr/?menuno=1"
                 className="font-bold"
               >
-                {" "}
                 💜 임신육아종합포털 아이사랑
               </a>
               <div className="text-sm">

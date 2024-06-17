@@ -3,8 +3,27 @@ import na from "../img/guide/na.png";
 import na1 from "./pic/na1.png";
 import na2 from "./pic/na2.png";
 import carb3 from "./pic/carb3.png";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  CartesianGrid,
+} from "recharts";
 
 export default function Carb() {
+  const data = [
+    { name: "소금", amt: 33417 },
+    { name: "조미료", amt: 15836 },
+    { name: "어패류젓", amt: 11826 },
+    { name: "건미역", amt: 7535 },
+    { name: "된장", amt: 4339 },
+    { name: "고추장", amt: 2486 },
+    { name: "배추김치", amt: 548 },
+  ];
+
   return (
     <div>
       <div className="justify-start text-xl text-center font-bold p-2 m-3 text-slate-900">
@@ -12,7 +31,19 @@ export default function Carb() {
       </div>
       <hr></hr>
       <div className="flex flex-row justify-center">
-        <img src={na} alt="na" className="p-5"></img>
+        {/* <img src={na} alt="na" className="p-5"></img> */}
+        <div className="flex flex-col justify-center mt-28">
+        <div className="text-end text-xs">* 100g 기준 함량(mg) </div>
+          <BarChart width={600} height={600} data={data}>
+            <XAxis dataKey="name" stroke="#000000" />
+            <YAxis />
+            <Tooltip wrapperStyle={{ width: 100, backgroundColor: "#ccc" }} />
+            {/* <Legend width={100} wrapperStyle={{ top: 40, right: 20, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} /> */}
+            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+            <Bar dataKey="amt" fill="#fcd34d" barSize={30} />
+          </BarChart>
+        </div>
+
         <ul className="m-7">
           <div className="justify-end flex flex-row mx-10">
             <img src={na1} alt="na1" className="w-32 h-32 mx-5"></img>

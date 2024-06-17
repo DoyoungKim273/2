@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Login() {
   const [id, setid] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleidChange = (event) => {
     setid(event.target.value);
@@ -27,8 +28,11 @@ export default function Login() {
       });
     if(response.ok){
       console.log("로그인 성공");
+      alert("로그인에 성공하였습니다.")
+      navigate(`/`)
     } else {
       console.log("로그인 실패");
+      alert("로그인에 실패하였습니다.")
     }
   } catch (error){
     console.log("네트워크 오류", error.message)

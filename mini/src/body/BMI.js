@@ -98,7 +98,7 @@ export default function BMI() {
             className="m-10 p-3 bg-slate-200 w-1/4 rounded-2xl"
           />
           <button
-            className="bg-purple-800 text-white text-bold w-40 p-3 rounded-2xl"
+            className="bg-purple-800 hover:bg-purple-500 text-white text-bold w-40 p-3 rounded-2xl"
             onClick={calculateBMI}
           >
             BMI 계산
