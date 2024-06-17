@@ -4,6 +4,15 @@ import { useState, useEffect } from "react";
 import NutriConHead from "./NutriConHead";
 import NutriConHead2 from "./NutriConHead2";
 import Papa from "papaparse";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  CartesianGrid,
+} from "recharts";
 
 export default function NutriCal() {
   const [selectedCode1, setSelectedCode1] = useState("");
@@ -498,6 +507,34 @@ export default function NutriCal() {
     }
   };
 
+  const graphData1 = () => {
+    const results = calGain();
+    if (!results || Object.keys(results).length === 0) {
+      return [];
+    }
+
+    const keysToDisplay = Object.keys(results).slice(2, 19);
+
+    return keysToDisplay.map((key) => ({
+      name: key,
+      percentage: parseFloat(results[key].percentage),
+    }));
+  };
+
+  const graphData2 = () => {
+    const results = calGain();
+    if (!results || Object.keys(results).length === 0) {
+      return [];
+    }
+
+    const keysToDisplay = Object.keys(results).slice(19);
+
+    return keysToDisplay.map((key) => ({
+      name: key,
+      percentage: parseFloat(results[key].percentage),
+    }));
+  };
+
   return (
     <div className="min-h-screen overflow-y-auto">
       <div>
@@ -621,6 +658,22 @@ export default function NutriCal() {
           <div className="w-4/5 text-xs text-end">
             * 각 영양소 클릭 시 식사지도 페이지로 이동합니다.
             <br /> * 권장섭취량이 충족된 영양소는 분홍색으로 표시됩니다.
+          </div>
+          <div className="flex flex-row mt-5">
+          <BarChart width={600} height={300} data={graphData1()}>
+            <XAxis dataKey="name" stroke="#00000" />
+            <YAxis />
+            <Tooltip wrapperStyle={{ width: 100, backgroundColor: "#ccc" }} />
+            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+            <Bar dataKey="percentage" fill="#fcd34d" barSize={30} />
+          </BarChart>
+          <BarChart width={600} height={300} data={graphData2()}>
+            <XAxis dataKey="name" stroke="#00000" />
+            <YAxis />
+            <Tooltip wrapperStyle={{ width: 100, backgroundColor: "#ccc" }} />
+            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+            <Bar dataKey="percentage" fill="#fcd34d" barSize={30} />
+          </BarChart>
           </div>
           <table className="w-4/5 border m-3">
             <NutriConHead />
