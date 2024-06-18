@@ -85,7 +85,7 @@ export default function BeMember() {
       } else {
         const errorText = await response.text();
         console.error("회원가입 실패", errorText)
-        alert("회원가입에 실패하였습니다.")
+        alert("회원가입에 실패하였습니다. <사유> : " + errorText)
       }
     } catch (error) {
       console.error("네트워크 오류", error.message);

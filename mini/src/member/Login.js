@@ -22,7 +22,7 @@ export default function Login() {
     console.log("백으로 넘어가는 데이터", dataToGo)
 
     try{
-      const response = await fetch(`http://${process.env.REACT_APP_APIKEY}/Login`,{
+      const response = await fetch(`http://${process.env.REACT_APP_APIKEY}/login`,{
         method:"POST",
         headers:{
           'Content-Type':'application/json',

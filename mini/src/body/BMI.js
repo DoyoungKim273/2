@@ -16,6 +16,11 @@ export default function BMI() {
     const heightInMeters = parseFloat(height) / 100;
     const weightInKg = parseFloat(weight);
 
+    if(!height || !weight || !inputWeek){
+      alert("신장과 체중, 임신 주수를 모두 입력해주세요.")
+      return;
+    }
+
     if (heightInMeters > 0 && weightInKg > 0) {
       const bmiValue = weightInKg / (heightInMeters * heightInMeters);
       setBmi(bmiValue.toFixed(2));

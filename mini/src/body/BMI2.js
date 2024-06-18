@@ -1,21 +1,33 @@
-// 수정 확인 1014
 import React, { useEffect, useState } from "react";
 import BMItable from "../img/BMItable.png";
 export default function BMI() {
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
   const [weight2, setWeight2] = useState("");
+  const [calWeight, setCalWeight] = useState("");
   const [bmi, setBmi] = useState(null);
   const [bmiCate, setBmiCate] = useState("");
   const [inputWeek, setInputWeek] = useState("");
   const [weekGain, setWeekGain] = useState("");
 
-  // BMI 계산 함수
+  const handleInputChange = (setter) => (e) => {
+    setter(e.target.value);
+    if (bmi || bmiCate || weekGain) {
+      setBmi(null);
+      setBmiCate("");
+      setWeekGain("");
+    }
+  };
   const calculateBMI = () => {
-    const heightInMeters = parseFloat(height) / 100; // cm를 m로 변환
+    const heightInMeters = parseFloat(height) / 100;
     const weightInKg = parseFloat(weight);
+    setCalWeight(weight);
     let recommendedGain = 0;
 
+    if (!height || !weight || !weight2) {
+      alert("신장과 체중을 입력해주세요.");
+      return;
+    }
     if (heightInMeters > 0 && weightInKg > 0) {
       const bmiValue = weightInKg / (heightInMeters * heightInMeters);
       setBmi(bmiValue.toFixed(2));
@@ -50,8 +62,14 @@ export default function BMI() {
       alert("모유수유 기간을 입력해주세요.");
       setWeekGain("");
     }
-    if(weight - recommendedGain <= weight2){
-      alert("당신은 현재 임신 전 체중입니다. BMI 값만 참고하시기 바랍니다.")
+
+    setHeight("");
+    setWeight("");
+    setWeight2("");
+    setInputWeek("");
+
+    if (parseFloat(weight) - recommendedGain <= parseFloat(weight2)) {
+      alert("계산된 체중은 임신 전 체중보다 작으므로 유효하지 않습니다. 화면에 나타난   적정 체중은 유효하지 않으니 BMI 값만 참고하시기 바랍니다.");
     }
   };
 
@@ -74,7 +92,7 @@ export default function BMI() {
             id="height"
             placeholder="키 (cm)"
             value={height}
-            onChange={(e) => setHeight(e.target.value)}
+            onChange={handleInputChange(setHeight)}
             className="m-10 p-3 bg-slate-200 w-1/5 rounded-2xl"
           />
           <input
@@ -82,7 +100,7 @@ export default function BMI() {
             id="weight2"
             placeholder="임신 이전 몸무게 (kg)"
             value={weight2}
-            onChange={(e) => setWeight2(e.target.value)}
+            onChange={handleInputChange(setWeight2)}
             className="m-10 p-3 bg-slate-200 w-1/5 rounded-2xl"
           />
           <input
@@ -90,7 +108,7 @@ export default function BMI() {
             id="weight"
             placeholder="현재 몸무게 (kg)"
             value={weight}
-            onChange={(e) => setWeight(e.target.value)}
+            onChange={handleInputChange(setWeight)}
             className="m-10 p-3 bg-slate-200 w-1/5 rounded-2xl"
           />
 
@@ -99,7 +117,7 @@ export default function BMI() {
             id="week"
             placeholder="출산 후 경과 주수"
             value={inputWeek}
-            onChange={(e) => setInputWeek(e.target.value)}
+            onChange={handleInputChange(setInputWeek)}
             className="m-10 p-3 bg-slate-200 w-1/5 rounded-2xl"
           />
           <button
@@ -127,7 +145,7 @@ export default function BMI() {
             className="text-center font-bold p-2 m-3 text-purple-950 "
           >
             {bmiCate !== ""
-              ? `➡ 당신은 " ${bmiCate} " 입니다. ⬅`
+              ? `➡ 당신은 현재 " ${bmiCate} " 입니다. ⬅`
               : "신장과 몸무게를 입력하면 체질량지수(BMI)의 단계를 판정합니다."}
           </div>
         </div>
@@ -136,9 +154,9 @@ export default function BMI() {
             ? `지금 시점에서 당신의 체중은 임신 당시 체중에서 "${weekGain}kg" 을 뺀 값이 적당합니다.`
             : "신장과 몸무게를 입력하면 적정한 체중 감소량을 산출합니다."}
         </div>
-        <div className="bg-pink-100 m-5 text-center font-bold p-2  text-pink-950 rounded-2xl">
+        <div className="bg-pink-100 mt-5 mb-9 text-center font-bold p-2  text-pink-950 rounded-2xl">
           {weekGain !== ""
-            ? `단, 현재 체중인 "${weight}kg"에서 "${weekGain}kg" 을 뺀 값이 임신 전 체중보다 작다면 이 값은 유효하지 않습니다.`
+            ? `단, 현재 체중인 "${calWeight}kg"에서 "${weekGain}kg" 을 뺀 값이 임신 전 체중보다 작다면 이 값은 유효하지 않습니다.`
             : "단, 현재 당신이 임신 전에 비해 저체중이라면 이 수치는 유효하지 않습니다."}
         </div>
         <hr></hr>
