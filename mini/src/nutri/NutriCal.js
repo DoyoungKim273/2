@@ -771,14 +771,14 @@ export default function NutriCal() {
             이상 '보라'색으로 표시됩니다.
           </div>
           <div className="flex flex-row mt-5">
-            <BarChart width={600} height={300} data={graphData1()}>
+            <BarChart width={700} height={300} data={graphData1()}>
               <XAxis dataKey="name" stroke="#00000" />
               <YAxis />
               <Tooltip wrapperStyle={{ width: 100, backgroundColor: "#ccc" }} />
               <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
               <Bar dataKey="percentage" fill="#fcd34d" barSize={30} />
             </BarChart>
-            <BarChart width={600} height={300} data={graphData2()}>
+            <BarChart width={700} height={300} data={graphData2()}>
               <XAxis dataKey="name" stroke="#00000" />
               <YAxis />
               <Tooltip wrapperStyle={{ width: 100, backgroundColor: "#ccc" }} />
@@ -786,6 +786,7 @@ export default function NutriCal() {
               <Bar dataKey="percentage" fill="#fcd34d" barSize={30} />
             </BarChart>
           </div>
+          <div className="w-4/5 mt-3 text-xs text-end">* 식사지도 페이지는 주요 영양소를 중심으로 지원됩니다.</div>
           <table className="w-4/5 border m-3">
             <NutriConHead />
             {displayGainResults1()}
