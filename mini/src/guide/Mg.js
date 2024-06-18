@@ -24,7 +24,7 @@ export default function Carb() {
     { name: "보리", amt: 54 },
   ];
   return (
-    <div>
+    <div className="mb-16">
       <div className="justify-start text-xl text-center font-bold p-2 m-3 text-slate-900">
         🧀 무기질 - 마그네슘(Mg) 🧀
       </div>

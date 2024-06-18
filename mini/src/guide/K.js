@@ -24,7 +24,7 @@ export default function Carb() {
     { name: "오이", amt: 196 },
   ];
   return (
-    <div>
+    <div className="mb-16">
       <div className="justify-start text-xl text-center font-bold p-2 m-3 text-slate-900">
         🧀 무기질 - 칼륨(K) 🧀
       </div>

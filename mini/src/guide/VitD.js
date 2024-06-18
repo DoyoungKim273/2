@@ -25,7 +25,7 @@ export default function Carb() {
   ];
 
   return (
-    <div>
+    <div className="mb-16">
       <div className="justify-start text-xl text-center font-bold p-2 m-3 text-slate-900">
         🍎 지용성 비타민 - 비타민 D 🍎
       </div>

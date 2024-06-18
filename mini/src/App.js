@@ -53,7 +53,8 @@ function App() {
   return (
     <BrowserRouter>
       <div
-        className={`w-full mx-auto min-h-screen flex flex-col ${
+        // className={`w-full mx-auto min-h-screen flex flex-col ${
+        className={`w-full flex flex-col ${
           pageLoaded ? "visible" : "hidden"
         }`}
       >
@@ -138,7 +139,8 @@ function App() {
           </nav>
         </header>
 
-        <div className="min-h-screen">
+        <div>
+        {/* <div className="min-h-screen"> */}
           <Routes>
             <Route path="/" element={<NewMain />} />
             <Route path="/BMI" element={<BMI />} />
