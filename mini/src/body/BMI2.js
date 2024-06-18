@@ -69,7 +69,7 @@ export default function BMI() {
     setInputWeek("");
 
     if (parseFloat(weight) - recommendedGain <= parseFloat(weight2)) {
-      alert("계산된 체중은 임신 전 체중보다 작으므로 유효하지 않습니다. 화면에 나타난   적정 체중은 유효하지 않으니 BMI 값만 참고하시기 바랍니다.");
+      alert("계산된 체중은 임신 전 체중보다 작으므로 유효하지 않습니다. 화면에 나타난 적정 체중은 유효하지 않으니 BMI 값만 참고하시기 바랍니다.");
     }
   };
 
