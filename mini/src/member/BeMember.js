@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function BeMember() {
-  const [id, setId] = useState("");
+  const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [userAge, setUserAge] = useState("");
   const [userCondition1, setUserCondition1] = useState("");
@@ -11,8 +11,8 @@ export default function BeMember() {
 
   const navigate = useNavigate();
 
-  const handleidChange = (event) => {
-    setId(event.target.value);
+  const handleuserIdChange = (event) => {
+    setUserId(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
@@ -24,25 +24,57 @@ export default function BeMember() {
   };
 
   const handleConditionChange1 = (event) => {
-    setUserCondition1(event.target.value);
+    setUserCondition1(event.target.value);  
+    setUserCondition2('')
   };
 
   const handleConditionChange2 = (event) => {
-    setUserCondition2(event.target.value);
+    setUserCondition2(event.target.value);  
   };
+
+  const validateCondition2 = () => {
+    const condition2 = parseInt(userCondition2)
+
+    if(userCondition1 === '임신 1분기( ~ 12주)' && (parseInt(condition2) <= 0 || parseInt(condition2) > 12)){
+      alert("임신 1분기의 주수는 최대 12주까지입니다. 올바른 주수를 입력해주세요.")
+      setUserCondition2('')
+    }else if(userCondition1 === '임신 2분기(13주 ~ 18주)' && (parseInt(condition2) < 13 || parseInt(condition2) > 18)){
+      alert("임신 2분기의 주수는 13주부터 18주까지입니다. 올바른 주수를 입력해주세요.")
+      setUserCondition2('')
+    }else if(userCondition1 === '임신 3분기(19주 ~ 40주)' && (parseInt(condition2) < 19 || parseInt(condition2) > 40)) {
+      alert("임신 3분기의 주수는 19주부터 40주까지입니다. 올바른 주수를 입력해주세요.")
+      setUserCondition2('')
+    }else{
+      setUserCondition2(userCondition2)
+    }
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if (!userAge || !userCondition1 || !userCondition2) {
+      alert("사용자 연령과 임신 / 수유 여부 및 주 수를 입력해주세요.");
+      return;
+    }
+
+    if(!userId || !password){
+      alert("이메일과 비밀번호를 모두 입력해주세요.");
+      return;
+    }
+
+
+    const dataToGo = { userId, password, userAge, userCondition1, userCondition2 }
+    console.log("백으로 넘어가는 데이터", dataToGo)
+
     try {
       const response = await fetch(
-        `http://${process.env.REACT_APP_APIKEY}/bemember`,
+        `http://${process.env.REACT_APP_APIKEY}/BeMember`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ id, password, userAge, userCondition1, userCondition2 }),
+          body: JSON.stringify({ userId, password, userAge, userCondition1, userCondition2 }),
         }
       );
 
@@ -51,7 +83,8 @@ export default function BeMember() {
         alert("회원가입에 성공하였습니다.")
         navigate(`/`)
       } else {
-        console.log("회원가입 실패");
+        const errorText = await response.text();
+        console.error("회원가입 실패", errorText)
         alert("회원가입에 실패하였습니다.")
       }
     } catch (error) {
@@ -88,10 +121,10 @@ export default function BeMember() {
               className="w-56 mx-8 p-3 bg-amber-100  hover:bg-amber-200  rounded-2xl text-slate-600"
             >
               <option>--- 임신 / 수유 여부 선택 ---</option>
-              <option value="preg1">임신 1분기( ~ 12주)</option>
-              <option value="preg2">임신 2분기(13주 ~ 18주)</option>
-              <option value="preg3">임신 3분기(19주 ~ 40주)</option>
-              <option value="nursing">수유기</option>
+              <option value="임신 1분기( ~ 12주)">임신 1분기( ~ 12주)</option>
+              <option value="임신 2분기(13주 ~ 18주)">임신 2분기(13주 ~ 18주)</option>
+              <option value="임신 3분기(19주 ~ 40주)">임신 3분기(19주 ~ 40주)</option>
+              <option value="수유기">수유기</option>
             </select>
             <input
               type="number"
@@ -99,6 +132,7 @@ export default function BeMember() {
               className="w-56 mx-8 p-3 bg-amber-100  hover:bg-amber-200 rounded-2xl"
               id="state2"
               onChange={handleConditionChange2}
+              onBlur={validateCondition2}
               value={userCondition2}
             ></input>
           </div>
@@ -108,12 +142,12 @@ export default function BeMember() {
             </label>
             <div className="mt-2">
               <input
-                id="id"
-                name="id"
+                id="userId"
+                name="userId"
                 type="id"
                 required
-                value={id}
-                onChange={handleidChange}
+                value={userId}
+                onChange={handleuserIdChange}
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
               ></input>
             </div>
@@ -145,7 +179,6 @@ export default function BeMember() {
             <button
               type="submit"
               className="flex w-full justify-center rounded-xl bg-amber-100 px-3 py-1.5 text-sm font-semibold leading-6 text-slate-800 shadow-sm hover:bg-amber-500"
-              onChange={handleSubmit}
             >
               회원가입
             </button>
@@ -157,7 +190,7 @@ export default function BeMember() {
             to="/Login"
             className="font-semibold leading-6 text-purple-950 hover:text-amber-700"
           >
-            로그인 바로가기
+            로그인 바로가기 
           </Link>
         </p>
       </div>

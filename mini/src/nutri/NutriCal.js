@@ -85,15 +85,32 @@ export default function NutriCal() {
   const handleConditionChange1 = (event) => {
     const condition1 = event.target.value;
     setUserCondition1(condition1);
+    setUserCondition2('')
     updateUserState(userAge, condition1);
   };
 
   const handleConditionChange2 = (event) => {
     const condition2 = event.target.value;
     setUserCondition2(condition2);
-    updateUserState(userAge, condition2);
   };
 
+  const validateCondition2 = () => {
+    const condition2 = parseInt(userCondition2)
+
+    if(userCondition1 === 'preg1' && (parseInt(condition2) <= 0 || parseInt(condition2) > 12)){
+      alert("임신 1분기의 주수는 최대 12주까지입니다. 올바른 주수를 입력해주세요.")
+      setUserCondition2('')
+    }else if(userCondition1 === 'preg2' && (parseInt(condition2) < 13 || parseInt(condition2) > 18)){
+      alert("임신 2분기의 주수는 13주부터 18주까지입니다. 올바른 주수를 입력해주세요.")
+      setUserCondition2('')
+    }else if(userCondition1 === 'preg3' && (parseInt(condition2) < 19 || parseInt(condition2) > 40)) {
+      alert("임신 3분기의 주수는 19주부터 40주까지입니다. 올바른 주수를 입력해주세요.")
+      setUserCondition2('')
+    }else{
+      updateUserState(userAge, condition2);
+    }
+
+  }
   const updateUserState = (age, condition1) => {
     if (age && condition1) {
       const key = `${condition1}_${age}`;
@@ -125,12 +142,17 @@ export default function NutriCal() {
   };
 
   const handleSearch = async () => {
-    if (!userAge || !userCondition1) {
-      alert("사용자 연령과 임신 / 수유 여부를 입력해주세요.");
+    if (!userAge || !userCondition1 || !userCondition2) {
+      alert("사용자 연령과 임신 / 수유 여부 및 주 수를 입력해주세요.");
       return;
     }
 
     setSearchResult([]);
+
+    if(!selectedCode1 && !selectedCode2 && !selectedCode3 && !keyword){
+      alert("올바른 검색 방식이 아닙니다. 분류 또는 키워드를 입력해주세요");
+      return;
+    }
 
     if (selectedCode1 && !selectedCode2 && !keyword) {
       alert("중분류 또는 키워드를 입력해주세요.");
@@ -573,6 +595,7 @@ export default function NutriCal() {
             className="mx-8 p-3 bg-amber-100  hover:bg-amber-200 w-1/4 rounded-2xl"
             id="state2"
             onChange={handleConditionChange2}
+            onBlur={validateCondition2}
             value={userCondition2}
           ></input>
         </div>

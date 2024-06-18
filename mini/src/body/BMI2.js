@@ -4,6 +4,7 @@ import BMItable from "../img/BMItable.png";
 export default function BMI() {
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
+  const [weight2, setWeight2] = useState("");
   const [bmi, setBmi] = useState(null);
   const [bmiCate, setBmiCate] = useState("");
   const [inputWeek, setInputWeek] = useState("");
@@ -13,6 +14,7 @@ export default function BMI() {
   const calculateBMI = () => {
     const heightInMeters = parseFloat(height) / 100; // cm를 m로 변환
     const weightInKg = parseFloat(weight);
+    let recommendedGain = 0;
 
     if (heightInMeters > 0 && weightInKg > 0) {
       const bmiValue = weightInKg / (heightInMeters * heightInMeters);
@@ -36,11 +38,20 @@ export default function BMI() {
     }
 
     const weekPassed = parseInt(inputWeek);
-    if (weekPassed > 0) {
-      const recommendedGain = weekPassed * 0.5;
+    if (weekPassed > 0 && weekPassed < 97) {
+      recommendedGain = weekPassed * 0.5;
       setWeekGain(recommendedGain.toFixed(2));
-    } else {
+    } else if (weekPassed > 97) {
+      alert(
+        "모유수유는 통상적으로 2년을 권장합니다. 2년 이상의 기간은 계산하지 않습니다."
+      );
       setWeekGain("");
+    } else {
+      alert("모유수유 기간을 입력해주세요.");
+      setWeekGain("");
+    }
+    if(weight - recommendedGain <= weight2){
+      alert("당신은 현재 임신 전 체중입니다. BMI 값만 참고하시기 바랍니다.")
     }
   };
 
@@ -64,7 +75,15 @@ export default function BMI() {
             placeholder="키 (cm)"
             value={height}
             onChange={(e) => setHeight(e.target.value)}
-            className="m-10 p-3 bg-slate-200 w-1/4 rounded-2xl"
+            className="m-10 p-3 bg-slate-200 w-1/5 rounded-2xl"
+          />
+          <input
+            type="number"
+            id="weight2"
+            placeholder="임신 이전 몸무게 (kg)"
+            value={weight2}
+            onChange={(e) => setWeight2(e.target.value)}
+            className="m-10 p-3 bg-slate-200 w-1/5 rounded-2xl"
           />
           <input
             type="number"
@@ -72,18 +91,19 @@ export default function BMI() {
             placeholder="현재 몸무게 (kg)"
             value={weight}
             onChange={(e) => setWeight(e.target.value)}
-            className="m-10 p-3 bg-slate-200 w-1/4 rounded-2xl"
+            className="m-10 p-3 bg-slate-200 w-1/5 rounded-2xl"
           />
+
           <input
             type="number"
             id="week"
             placeholder="출산 후 경과 주수"
             value={inputWeek}
             onChange={(e) => setInputWeek(e.target.value)}
-            className="m-10 p-3 bg-slate-200 w-1/4 rounded-2xl"
+            className="m-10 p-3 bg-slate-200 w-1/5 rounded-2xl"
           />
           <button
-            className="bg-purple-800 hover:bg-purple-500 text-white text-bold w-40 p-3 rounded-2xl"
+            className="bg-purple-800 hover:bg-purple-500 text-white text-bold w-40 p-3 mx-7 rounded-2xl"
             onClick={calculateBMI}
           >
             BMI 계산

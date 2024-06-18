@@ -3,12 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Login() {
-  const [id, setid] = useState("");
+  const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleidChange = (event) => {
-    setid(event.target.value);
+  const handleUserIdChange = (event) => {
+    setUserId(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
@@ -18,13 +18,16 @@ export default function Login() {
   const handleLogin = async (event) => {
     event.preventDefault();
 
+    const dataToGo = {userId, password}
+    console.log("백으로 넘어가는 데이터", dataToGo)
+
     try{
-      const response = await fetch(`http://${process.env.REACT_APP_APIKEY}/login`,{
+      const response = await fetch(`http://${process.env.REACT_APP_APIKEY}/Login`,{
         method:"POST",
         headers:{
           'Content-Type':'application/json',
         },
-        body:JSON.stringify({id, password}),
+        body:JSON.stringify({userId, password}),
       });
     if(response.ok){
       console.log("로그인 성공");
@@ -61,9 +64,9 @@ export default function Login() {
                 id="id"
                 name="id"
                 type="id"
-                value={id}
+                value={userId}
                 required
-                onChange={handleidChange}
+                onChange={handleUserIdChange}
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 "
               ></input>
             </div>
