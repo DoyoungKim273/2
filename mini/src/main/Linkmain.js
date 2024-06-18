@@ -4,7 +4,7 @@ export default function Noticemain() {
   return (
     <div>
       <section>
-        <ul className="flex flex-row mb-24 justify-center">
+        <ul className="flex flex-row mb-16 justify-center">
           <li className="my-5 mx-3 px-6 py-3 bg-amber-100 rounded-2xl w-36 font-bold text-sm text-end">
             모자건강 <br />
             지원 사이트 <br /> 바로가기

@@ -25,8 +25,8 @@ export default function NutriCal() {
   const [searchResult, setSearchResult] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
   const [nutriNeeds, setNutriNeeds] = useState({});
-  const [userAge, setUserAge] = useState("");
-  const [userCondition1, setUserCondition1] = useState("");
+  const [userAge, setUserAge] = useState("default");
+  const [userCondition1, setUserCondition1] = useState("default");
   const [userCondition2, setUserCondition2] = useState("");
 
   useEffect(() => {
@@ -78,39 +78,88 @@ export default function NutriCal() {
 
   const handleAgeChange = (event) => {
     const age = event.target.value;
+    if (
+      selectedItems.length > 0 &&
+      !window.confirm("검색한 결과가 초기화됩니다. 계속하시겠습니까?")
+    ) {
+      return;
+    }
+    resetResearch();
     setUserAge(age);
+    setUserCondition1("default")
+    setUserCondition2("")
     updateUserState(age, userCondition1);
   };
 
   const handleConditionChange1 = (event) => {
     const condition1 = event.target.value;
+    if (
+      selectedItems.length > 0 &&
+      !window.confirm("검색한 결과가 초기화됩니다. 계속하시겠습니까?")
+    ) {
+      return;
+    }
+    resetResearch();
     setUserCondition1(condition1);
-    setUserCondition2('')
+    setUserCondition2("");
     updateUserState(userAge, condition1);
   };
 
   const handleConditionChange2 = (event) => {
     const condition2 = event.target.value;
+    if(condition2 !== userCondition2 && selectedItems.length > 0){
+      if(!window.confirm("검색한 결과가 초기화됩니다. 계속하시겠습니까?")){
+        return;
+      }
+      resetResearch();
+      setUserCondition1("default");
+    }
     setUserCondition2(condition2);
   };
 
-  const validateCondition2 = () => {
-    const condition2 = parseInt(userCondition2)
+  const resetResearch = () => {
+    setSearchResult([]);
+    setSelectedItems([]);
+    setKeyword("");
+    setSelectedCode1("");
+    setSelectedCode2("");
+    setSelectedCode3("");
+    // setUserAge("default");
+    // setUserCondition1("default")
+    // setUserCondition2("")
+  };
 
-    if(userCondition1 === 'preg1' && (parseInt(condition2) <= 0 || parseInt(condition2) > 12)){
-      alert("임신 1분기의 주수는 최대 12주까지입니다. 올바른 주수를 입력해주세요.")
-      setUserCondition2('')
-    }else if(userCondition1 === 'preg2' && (parseInt(condition2) < 13 || parseInt(condition2) > 18)){
-      alert("임신 2분기의 주수는 13주부터 18주까지입니다. 올바른 주수를 입력해주세요.")
-      setUserCondition2('')
-    }else if(userCondition1 === 'preg3' && (parseInt(condition2) < 19 || parseInt(condition2) > 40)) {
-      alert("임신 3분기의 주수는 19주부터 40주까지입니다. 올바른 주수를 입력해주세요.")
-      setUserCondition2('')
-    }else{
+  const validateCondition2 = () => {
+    const condition2 = parseInt(userCondition2);
+
+    if (
+      userCondition1 === "preg1" &&
+      (parseInt(condition2) <= 0 || parseInt(condition2) > 12)
+    ) {
+      alert(
+        "임신 1분기의 주수는 최대 12주까지입니다. 올바른 주수를 입력해주세요."
+      );
+      setUserCondition2("");
+    } else if (
+      userCondition1 === "preg2" &&
+      (parseInt(condition2) < 13 || parseInt(condition2) > 18)
+    ) {
+      alert(
+        "임신 2분기의 주수는 13주부터 18주까지입니다. 올바른 주수를 입력해주세요."
+      );
+      setUserCondition2("");
+    } else if (
+      userCondition1 === "preg3" &&
+      (parseInt(condition2) < 19 || parseInt(condition2) > 40)
+    ) {
+      alert(
+        "임신 3분기의 주수는 19주부터 40주까지입니다. 올바른 주수를 입력해주세요."
+      );
+      setUserCondition2("");
+    } else {
       updateUserState(userAge, condition2);
     }
-
-  }
+  };
   const updateUserState = (age, condition1) => {
     if (age && condition1) {
       const key = `${condition1}_${age}`;
@@ -149,7 +198,7 @@ export default function NutriCal() {
 
     setSearchResult([]);
 
-    if(!selectedCode1 && !selectedCode2 && !selectedCode3 && !keyword){
+    if (!selectedCode1 && !selectedCode2 && !selectedCode3 && !keyword) {
       alert("올바른 검색 방식이 아닙니다. 분류 또는 키워드를 입력해주세요");
       return;
     }
@@ -459,15 +508,21 @@ export default function NutriCal() {
 
     return (
       <tbody>
-        {keysToDisplay.map((key) => (
-          <td
-            className={`text-xs text-center ${
-              results[key].percentage >= 100 ? "bg-pink-200" : "bg-amber-50"
-            }`}
-          >
-            {results[key].percentage}%
-          </td>
-        ))}
+        {keysToDisplay.map((key) => {
+          const percentage = results[key].percentage;
+          let bgColor;
+
+          if (percentage >= 150) {
+            bgColor = "bg-purple-300";
+          } else if (percentage >= 100) {
+            bgColor = "bg-amber-100";
+          } else {
+            bgColor = "bg-pink-200";
+          }
+          return (
+            <td className={`text-xs text-center ${bgColor}`}>{percentage}%</td>
+          );
+        })}
       </tbody>
     );
   };
@@ -482,15 +537,21 @@ export default function NutriCal() {
 
     return (
       <tbody>
-        {keysToDisplay.map((key) => (
-          <td
-            className={`text-xs text-center ${
-              results[key].percentage >= 100 ? "bg-pink-200" : "bg-amber-50"
-            }`}
-          >
-            {results[key].percentage}%
-          </td>
-        ))}
+        {keysToDisplay.map((key) => {
+          const percentage = results[key].percentage;
+          let bgColor;
+
+          if (percentage >= 150) {
+            bgColor = "bg-purple-300";
+          } else if (percentage >= 100) {
+            bgColor = "bg-amber-100 ";
+          } else {
+            bgColor = "bg-pink-200";
+          }
+          return (
+            <td className={`text-xs text-center ${bgColor}`}>{percentage}%</td>
+          );
+        })}
       </tbody>
     );
   };
@@ -537,11 +598,23 @@ export default function NutriCal() {
 
     const keysToDisplay = Object.keys(results).slice(2, 19);
 
-    return keysToDisplay.map((key) => ({
-      name: key,
-      percentage: parseFloat(results[key].percentage),
-      fill: parseFloat(results[key].percentage) >= 100 ? "#ffd6ed" : "#ffea94"
-    }));
+    return keysToDisplay.map((key) => {
+      const percentage = parseFloat(results[key].percentage);
+      let fill;
+
+      if (percentage >= 150) {
+        fill = "#d19cff";
+      } else if (percentage >= 100) {
+        fill = "#ffea94";
+      } else {
+        fill = "#ffd6ed";
+      }
+      return {
+        name: key,
+        percentage: percentage,
+        fill: fill,
+      };
+    });
   };
 
   const graphData2 = () => {
@@ -552,11 +625,23 @@ export default function NutriCal() {
 
     const keysToDisplay = Object.keys(results).slice(19);
 
-    return keysToDisplay.map((key) => ({
-      name: key,
-      percentage: parseFloat(results[key].percentage),
-      fill: parseFloat(results[key].percentage) >= 100 ? "#ffd6ed" : "#ffea94"
-    }));
+    return keysToDisplay.map((key) => {
+      const percentage = parseFloat(results[key].percentage);
+      let fill;
+
+      if (percentage >= 150) {
+        fill = "#d19cff";
+      } else if (percentage >= 100) {
+        fill = "#ffea94";
+      } else {
+        fill = "#ffd6ed";
+      }
+      return {
+        name: key,
+        percentage: percentage,
+        fill: fill,
+      };
+    });
   };
 
   return (
@@ -573,7 +658,7 @@ export default function NutriCal() {
             value={userAge}
             className="mx-8 p-3 bg-amber-100 hover:bg-amber-200 w-1/4 rounded-2xl  text-slate-600"
           >
-            <option>--- 사용자 연령 선택 ---</option>
+            <option value="default" disabled hidden selected>--- 사용자 연령 선택 ---</option>
             <option value="19~29">19 ~ 29세</option>
             <option value="30~49">30 ~ 49세</option>
           </select>
@@ -583,7 +668,7 @@ export default function NutriCal() {
             value={userCondition1}
             className="mx-8 p-3 bg-amber-100  hover:bg-amber-200 w-1/4 rounded-2xl text-slate-600"
           >
-            <option>--- 임신 / 수유 여부 선택 ---</option>
+            <option value="default" disabled hidden selected>--- 임신 / 수유 여부 선택 ---</option>
             <option value="preg1">임신 1분기( ~ 12주)</option>
             <option value="preg2">임신 2분기(13주 ~ 18주)</option>
             <option value="preg3">임신 3분기(19주 ~ 40주)</option>
@@ -682,23 +767,24 @@ export default function NutriCal() {
         <div className="w-full flex flex-col justify-center items-center px-2 mx-3 mb-20">
           <div className="w-4/5 text-xs text-end">
             * 각 영양소 클릭 시 식사지도 페이지로 이동합니다.
-            <br /> * 권장섭취량이 충족된 영양소는 분홍색으로 표시됩니다.
+            <br /> * 권장섭취량 미만 '분홍', 100% 이상 150% 미만 '노랑', 150%
+            이상 '보라'색으로 표시됩니다.
           </div>
           <div className="flex flex-row mt-5">
-          <BarChart width={600} height={300} data={graphData1()}>
-            <XAxis dataKey="name" stroke="#00000" />
-            <YAxis />
-            <Tooltip wrapperStyle={{ width: 100, backgroundColor: "#ccc" }} />
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <Bar dataKey="percentage" fill="#fcd34d" barSize={30} />
-          </BarChart>
-          <BarChart width={600} height={300} data={graphData2()}>
-            <XAxis dataKey="name" stroke="#00000" />
-            <YAxis />
-            <Tooltip wrapperStyle={{ width: 100, backgroundColor: "#ccc" }} />
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <Bar dataKey="percentage" fill="#fcd34d" barSize={30} />
-          </BarChart>
+            <BarChart width={600} height={300} data={graphData1()}>
+              <XAxis dataKey="name" stroke="#00000" />
+              <YAxis />
+              <Tooltip wrapperStyle={{ width: 100, backgroundColor: "#ccc" }} />
+              <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+              <Bar dataKey="percentage" fill="#fcd34d" barSize={30} />
+            </BarChart>
+            <BarChart width={600} height={300} data={graphData2()}>
+              <XAxis dataKey="name" stroke="#00000" />
+              <YAxis />
+              <Tooltip wrapperStyle={{ width: 100, backgroundColor: "#ccc" }} />
+              <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+              <Bar dataKey="percentage" fill="#fcd34d" barSize={30} />
+            </BarChart>
           </div>
           <table className="w-4/5 border m-3">
             <NutriConHead />
