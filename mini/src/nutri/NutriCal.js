@@ -558,11 +558,18 @@ export default function NutriCal() {
   };
 
   const handleSaveResults = async () => {
+    const  itemsToSave = selectedItems.map(
+      item => {
+        const {nutriInfo, ...rest} = item;
+        return rest;
+      }
+    )
+
     const dataToSave = {
       age: userAge,
       condition1: userCondition1,
       condition2: userCondition2,
-      selectedItems: selectedItems,
+      selectedItems: itemsToSave,
       nutriTotal: nutriplus(),
       nutriPersentage: calGain(),
     };

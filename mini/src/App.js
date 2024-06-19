@@ -6,9 +6,6 @@ import "./App.css";
 import BMI from "./body/BMI";
 import BMI2 from "./body/BMI2";
 import NutriCal from "./nutri/NutriCal";
-import Noticemain from "./main/Noticemain";
-import Intromain from "./main/Intromain";
-import Linkmain from "./main/Linkmain";
 import NutriDetail from "./nutri/NutriDetail";
 
 import Homemain from "./main/Homemain";
@@ -42,7 +39,6 @@ import GuideUserGuide from "./userGuide/GuideUserGuide";
 import MyNutri from "./member/MyNutri";
 import MyMemo from "./member/MyMemo";
 import MyMemoRe from "./member/MyMemoRe";
-import { MoonLoader } from "react-spinners";
 import { isLoggedInState } from "./state/UserState";
 
 function App() {
