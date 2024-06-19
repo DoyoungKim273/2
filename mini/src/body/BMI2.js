@@ -154,7 +154,7 @@ export default function BMI() {
             ? `지금 시점에서 당신의 체중은 임신 당시 체중에서 "${weekGain}kg" 을 뺀 값이 적당합니다.`
             : "신장과 몸무게를 입력하면 적정한 체중 감소량을 산출합니다."}
         </div>
-        <div className="bg-pink-100 mt-5 mb-9 text-center font-bold p-2  text-pink-950 rounded-2xl">
+        <div className="bg-pink-100 mx-5 mt-5 mb-9 text-center font-bold p-2  text-pink-950 rounded-2xl">
           {weekGain !== ""
             ? `단, 현재 체중인 "${calWeight}kg"에서 "${weekGain}kg" 을 뺀 값이 임신 전 체중보다 작다면 이 값은 유효하지 않습니다.`
             : "단, 현재 당신이 임신 전에 비해 저체중이라면 이 수치는 유효하지 않습니다."}
