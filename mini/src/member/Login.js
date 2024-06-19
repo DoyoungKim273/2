@@ -1,8 +1,12 @@
 import React from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { isLoggedInState } from "../state/UserState";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Login() {
+  const [isLoggedIn, setIsLoggedin] = useRecoilState(isLoggedInState);
+
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -18,29 +22,34 @@ export default function Login() {
   const handleLogin = async (event) => {
     event.preventDefault();
 
-    const dataToGo = {userId, password}
-    console.log("백으로 넘어가는 데이터", dataToGo)
+    const dataToGo = { userId, password };
+    console.log("백으로 넘어가는 데이터", dataToGo);
 
-    try{
-      const response = await fetch(`http://${process.env.REACT_APP_APIKEY}/login`,{
-        method:"POST",
-        headers:{
-          'Content-Type':'application/json',
-        },
-        body:JSON.stringify({userId, password}),
-      });
-    if(response.ok){
-      console.log("로그인 성공");
-      alert("로그인에 성공하였습니다.")
-      navigate(`/`)
-    } else {
-      console.log("로그인 실패");
-      alert("로그인에 실패하였습니다.")
+    try {
+      const response = await fetch(
+        `http://${process.env.REACT_APP_APIKEY}/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId, password }),
+        }
+      );
+      if (response.ok) {
+        setIsLoggedin(true);
+        console.log("로그인 성공");
+        alert("로그인에 성공하였습니다.");
+        navigate(`/`);
+      } else {
+        console.log("로그인 실패");
+        alert("로그인에 실패하였습니다.");
+      }
+    } catch (error) {
+      console.log("네트워크 오류", error.message);
+      alert("네트워크 오류로 로그인에 실패하였습니다.");
     }
-  } catch (error){
-    console.log("네트워크 오류", error.message)
-    }
-  }
+  };
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -53,10 +62,7 @@ export default function Login() {
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="space-y-6" action="#" method="POST">
           <div>
-            <label
-              for="id"
-              className="block font-bold leading-6 text-gray-900"
-            >
+            <label for="id" className="block font-bold leading-6 text-gray-900">
               이메일
             </label>
             <div className="mt-2">

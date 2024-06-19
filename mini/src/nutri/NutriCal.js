@@ -13,6 +13,9 @@ import {
   Legend,
   CartesianGrid,
 } from "recharts";
+import { isLoggedInState } from "../state/UserState";
+import { useRecoilValue } from "recoil";
+import { Link } from "react-router-dom";
 
 export default function NutriCal() {
   const [selectedCode1, setSelectedCode1] = useState("");
@@ -28,6 +31,7 @@ export default function NutriCal() {
   const [userAge, setUserAge] = useState("default");
   const [userCondition1, setUserCondition1] = useState("default");
   const [userCondition2, setUserCondition2] = useState("");
+  const isLoggedIn = useRecoilValue(isLoggedInState);
 
   useEffect(() => {
     const fetchInitialData = async () => {
@@ -86,8 +90,8 @@ export default function NutriCal() {
     }
     resetResearch();
     setUserAge(age);
-    setUserCondition1("default")
-    setUserCondition2("")
+    setUserCondition1("default");
+    setUserCondition2("");
     updateUserState(age, userCondition1);
   };
 
@@ -107,8 +111,8 @@ export default function NutriCal() {
 
   const handleConditionChange2 = (event) => {
     const condition2 = event.target.value;
-    if(condition2 !== userCondition2 && selectedItems.length > 0){
-      if(!window.confirm("검색한 결과가 초기화됩니다. 계속하시겠습니까?")){
+    if (condition2 !== userCondition2 && selectedItems.length > 0) {
+      if (!window.confirm("검색한 결과가 초기화됩니다. 계속하시겠습니까?")) {
         return;
       }
       resetResearch();
@@ -124,9 +128,6 @@ export default function NutriCal() {
     setSelectedCode1("");
     setSelectedCode2("");
     setSelectedCode3("");
-    // setUserAge("default");
-    // setUserCondition1("default")
-    // setUserCondition2("")
   };
 
   const validateCondition2 = () => {
@@ -491,7 +492,7 @@ export default function NutriCal() {
     Object.keys(needs).forEach((key) => {
       gain[key] = {
         required: needs[key],
-        intake: totals[key] || 0,
+        // intake: totals[key] || 0,
         percentage: (((totals[key] || 0) / needs[key]) * 100).toFixed(1),
       };
     });
@@ -566,6 +567,8 @@ export default function NutriCal() {
       nutriPersentage: calGain(),
     };
 
+    console.log("백으로 전송하는 데이터", JSON.stringify(dataToSave));
+
     try {
       const response = await fetch(
         `http://${process.env.REACT_APP_APIKEY}/userdata`,
@@ -581,12 +584,20 @@ export default function NutriCal() {
       if (response.ok) {
         const responseData = await response.json();
         alert("입력된 정보가 성공적으로 저장되었습니다.");
+        console.log(responseData);
       } else {
-        throw new Error("서버에 문제가 발생하였습니다.");
+        const errorResponse = await response.json();
+        console.error("서버 에러 발생", errorResponse);
+        throw new Error(
+          `서버에 문제가 발생하였습니다. : ${errorResponse.message}`
+        );
       }
     } catch (error) {
       console.error("입력된 정보 저장 중 에러 발생", error.message);
       alert("입력된 정보 저장 중 문제가 발생하였습니다.");
+      if (error.responseData) {
+        console.error("백엔드 응답", error.responseData);
+      }
     }
   };
 
@@ -658,7 +669,9 @@ export default function NutriCal() {
             value={userAge}
             className="mx-8 p-3 bg-amber-100 hover:bg-amber-200 w-1/4 rounded-2xl  text-slate-600"
           >
-            <option value="default" disabled hidden selected>--- 사용자 연령 선택 ---</option>
+            <option value="default" disabled hidden selected>
+              --- 사용자 연령 선택 ---
+            </option>
             <option value="19~29">19 ~ 29세</option>
             <option value="30~49">30 ~ 49세</option>
           </select>
@@ -668,7 +681,9 @@ export default function NutriCal() {
             value={userCondition1}
             className="mx-8 p-3 bg-amber-100  hover:bg-amber-200 w-1/4 rounded-2xl text-slate-600"
           >
-            <option value="default" disabled hidden selected>--- 임신 / 수유 여부 선택 ---</option>
+            <option value="default" disabled hidden selected>
+              --- 임신 / 수유 여부 선택 ---
+            </option>
             <option value="preg1">임신 1분기( ~ 12주)</option>
             <option value="preg2">임신 2분기(13주 ~ 18주)</option>
             <option value="preg3">임신 3분기(19주 ~ 40주)</option>
@@ -786,7 +801,9 @@ export default function NutriCal() {
               <Bar dataKey="percentage" fill="#fcd34d" barSize={30} />
             </BarChart>
           </div>
-          <div className="w-4/5 mt-3 text-xs text-end">* 식사지도 페이지는 주요 영양소를 중심으로 지원됩니다.</div>
+          <div className="w-4/5 mt-3 text-xs text-end">
+            * 식사지도 페이지는 주요 영양소를 중심으로 지원됩니다.
+          </div>
           <table className="w-4/5 border m-3">
             <NutriConHead />
             {displayGainResults1()}
@@ -797,12 +814,23 @@ export default function NutriCal() {
             {displayGainResults2()}
             {displayResult2()}
           </table>
-          <button
-            className=" m-5 bg-amber-100 hover:bg-amber-300 text-slate-800 p-3 rounded-3xl w-36 font-bold"
-            onClick={handleSaveResults}
-          >
-            결과 저장
-          </button>
+          {isLoggedIn ? (
+            <button
+              className=" m-5 bg-amber-100 hover:bg-amber-300 text-slate-800 p-3 rounded-3xl w-36 font-bold"
+              onClick={handleSaveResults}
+            >
+              결과 저장
+            </button>
+          ) : (
+            <>
+              <div className="text-xs mt-3">↓ 회원가입 시 저장 서비스 이용이 가능합니다. ↓ </div>
+              <Link 
+                to="/BeMember"
+                className=" m-5 text-center bg-amber-100 hover:bg-amber-300 text-slate-800 p-3 rounded-3xl w-36 font-bold">
+                회원가입
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>

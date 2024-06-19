@@ -6,7 +6,7 @@ export default function NutriHead() {
       <tr className="h-10 text-center text-xs bg-slate-400 text-white">
         <th><a href="/GuideList" target="_blank">에너지(kcal)</a></th>
         <th><a href="/Carb" target="_blank">탄수화물(g)</a></th>
-        <th><a href="/GuideList" target="_blank">식이섬유(g)</a></th>
+        <th><a href="/Carb  " target="_blank">식이섬유(g)</a></th>
         <th><a href="/Fat" target="_blank">지방(g)</a></th>
         <th><a href="/Fat" target="_blank">리놀레산(g)</a></th>
         <th><a href="/Prot" target="_blank">단백질(g)</a></th>

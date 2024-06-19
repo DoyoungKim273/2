@@ -1,4 +1,4 @@
-﻿id,from,energy,carbohydrate,dietary_fiber,fat,linoleic,protein,methionine,leucine,isoleucine,valine,lysine,threonine,histidine,water,vitA,vitD,vitC,thiamine,riboflavin,niacin,folate,vitB12,p,k,fe,zn,cu,mn,se,ca,na,mg,ala
+﻿id,from,energy,carbohydrate,dietaryFiber,fat,linoleic,protein,methionine,leucine,isoleucine,valine,lysine,threonine,histidine,water,vitA,vitD,vitC,thiamine,riboflavin,niacin,folate,vitB12,p,k,fe,zn,cu,mn,se,ca,na,mg,ala
 1,preg1_19~29,2000,175,25,45,10,55,1.4,3.1,1.4,1.7,2.9,3.8,1.5,2300,720,10,110,1.5,1.6,18,620,2.6,700,3500,24,10.5,780,3.5,64,700,1500,320,1.2
 2,preg2_19~29,2340,175,25,45,10,70,1.4,3.1,1.4,1.7,2.9,3.8,1.5,2300,720,10,110,1.5,1.6,18,620,2.6,700,3500,24,10.5,780,3.5,64,700,1500,320,1.2
 3,preg3_19~29,2450,175,25,45,10,85,1.4,3.1,1.4,1.7,2.9,3.8,1.5,2300,720,10,110,1.5,1.6,18,620,2.6,700,3500,24,10.5,780,3.5,64,700,1500,320,1.2

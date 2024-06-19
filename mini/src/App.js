@@ -1,6 +1,7 @@
+import { useRecoilValue } from "recoil";
 import { useState, useEffect } from "react";
 import logo from "./logo.svg";
-import weblogo from "./img/weblogo.png";
+import weblogo from "./img/logo.png";
 import "./App.css";
 import BMI from "./body/BMI";
 import BMI2 from "./body/BMI2";
@@ -39,12 +40,14 @@ import NutriUserGuide from "./userGuide/NutriUserGuide";
 import BMIUserGuide from "./userGuide/BMIUserGuide";
 import GuideUserGuide from "./userGuide/GuideUserGuide";
 import MyNutri from "./member/MyNutri";
-import MyMemo from "./member/MyMemo"
-import MyMemoRe from "./member/MyMemoRe"
+import MyMemo from "./member/MyMemo";
+import MyMemoRe from "./member/MyMemoRe";
 import { MoonLoader } from "react-spinners";
+import { isLoggedInState } from "./state/UserState";
 
 function App() {
   const [pageLoaded, setPageLoaded] = useState(false);
+  const isLoggedIn = useRecoilValue(isLoggedInState);
 
   useEffect(() => {
     setPageLoaded(true);
@@ -54,14 +57,12 @@ function App() {
     <BrowserRouter>
       <div
         // className={`w-full mx-auto min-h-screen flex flex-col ${
-        className={`w-full flex flex-col ${
-          pageLoaded ? "visible" : "hidden"
-        }`}
+        className={`w-full flex flex-col ${pageLoaded ? "visible" : "hidden"}`}
       >
         <header className="h-24 bg-purple-900 flex my-5">
           <Link to="/">
             <div className="w-96 bg-white h-24 flex items-center">
-              <img src={weblogo} alt="weblogo" className="mx-7 h-20 w-20"></img>
+              <img src={weblogo} alt="weblogo" className="mx-6 h-24 w-28"></img>
               <div className="text-purple-900 hover:text-amber-500 text-3xl font-bold text-right">
                 엄마랑 아이랑
               </div>
@@ -70,10 +71,10 @@ function App() {
           <nav className="w-10/12 float-right h-full flex justify-between">
             <ul>
               <li>
-                <Link to="#">  사용 가이드</Link>
+                <Link to="#"> 사용 가이드</Link>
                 <ul>
                   <li>
-                    <Link to="/NutriUserGuide">회원 혜택  </Link>
+                    <Link to="/NutriUserGuide">회원 혜택 </Link>
                   </li>
                   <li>
                     <Link to="/NutriUserGuide">식단을 통한 영양 평가</Link>
@@ -87,7 +88,7 @@ function App() {
                 </ul>
               </li>
               <li>
-                <Link to="#">  임산부</Link>
+                <Link to="#"> 임산부</Link>
                 <ul>
                   <li>
                     <Link to="/NutriCal">식단을 통한 영양 평가</Link>
@@ -101,7 +102,7 @@ function App() {
                 </ul>
               </li>
               <li>
-                <Link to="#">  수유부</Link>
+                <Link to="#"> 수유부</Link>
                 <ul>
                   <li>
                     <Link to="/NutriCal">식단을 통한 영양 평가</Link>
@@ -117,30 +118,44 @@ function App() {
             </ul>
 
             <div className="flex space-x-4 px-20">
-              <Link
-                to="/Login"
-                className="py-2 px-4 h-10 bg-amber-100  hover:bg-amber-300 text-purple-950 rounded-3xl font-bold"
-              >
-                로그인
-              </Link>
-              <Link
-                to="/MyPage"
-                className="py-2 px-4 h-10 bg-amber-100  hover:bg-amber-300 text-purple-950 rounded-3xl font-bold"
-              >
-                마이페이지
-              </Link>
-              <Link
-                to="/BeMember"
-                className="py-2 px-4 h-10 bg-amber-100  hover:bg-amber-300 text-purple-950 rounded-3xl font-bold"
-              >
-                회원가입
-              </Link>
+              {isLoggedIn ? (
+                <>
+                <div className="item-center text-white mt-2 mx-3"> 🤍 환영합니다 회원님 🤍 </div>
+                  <Link
+                    to="/"
+                    className="py-2 px-4 h-10 bg-amber-100  hover:bg-amber-300 text-purple-950 rounded-3xl font-bold"
+                  >
+                    로그아웃
+                  </Link>
+                  <Link
+                    to="/MyPage"
+                    className="py-2 px-4 h-10 bg-amber-100  hover:bg-amber-300 text-purple-950 rounded-3xl font-bold"
+                  >
+                    마이페이지
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/Login"
+                    className="py-2 px-4 h-10 bg-amber-100  hover:bg-amber-300 text-purple-950 rounded-3xl font-bold"
+                  >
+                    로그인
+                  </Link>
+                  <Link
+                    to="/BeMember"
+                    className="py-2 px-4 h-10 bg-amber-100  hover:bg-amber-300 text-purple-950 rounded-3xl font-bold"
+                  >
+                    회원가입
+                  </Link>
+                </>
+              )}
             </div>
           </nav>
         </header>
 
         <div>
-        {/* <div className="min-h-screen"> */}
+          {/* <div className="min-h-screen"> */}
           <Routes>
             <Route path="/" element={<NewMain />} />
             <Route path="/BMI" element={<BMI />} />
@@ -149,7 +164,6 @@ function App() {
             <Route path="/Login" element={<Login />} />
             <Route path="/NutriDetail" element={<NutriDetail />} />
             <Route path="/GuideList" element={<GuideList />} />
-            <Route path="/Login" element={<Login />} />
             <Route path="/BeMember" element={<BeMember />} />
             <Route path="/MyPage" element={<MyPage />} />
             <Route path="/Carb" element={<Carb />} />
