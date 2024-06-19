@@ -572,7 +572,7 @@ export default function NutriCal() {
       condition2: userCondition2,
       selectedItems: itemsToSave,
       nutriTotal: nutriplus(),
-      nutriPersentage: calGain(),
+      nutriPercentage: calGain(),
     };
 
     console.log("백으로 전송하는 데이터", JSON.stringify(dataToSave));
