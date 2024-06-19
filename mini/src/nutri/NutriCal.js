@@ -349,6 +349,7 @@ export default function NutriCal() {
         acc.isoleucine += item.nutriInfo.isoleucine || 0;
         acc.valine += item.nutriInfo.valine || 0;
         acc.lysine += item.nutriInfo.lysine || 0;
+        acc.threonine += item.nutriInfo.threonine || 0;
         acc.histidine += item.nutriInfo.histidine || 0;
         acc.water += item.nutriInfo.water || 0;
         acc.vitA += item.nutriInfo.vitA || 0;
@@ -616,7 +617,7 @@ export default function NutriCal() {
 
     const keysToDisplay = Object.keys(results).slice(2, 19);
 
-    return keysToDisplay.map((key) => {
+    return keysToDisplay.map((key, index) => {
       const percentage = parseFloat(results[key].percentage);
       let fill;
 
@@ -627,8 +628,13 @@ export default function NutriCal() {
       } else {
         fill = "#ffd6ed";
       }
+
+      let name = key.substring(0, 4);
+      if(index === 6){
+        name = key.substring(0, 3)
+      }
       return {
-        name: key,
+        name: name,
         percentage: percentage,
         fill: fill,
       };
@@ -655,7 +661,7 @@ export default function NutriCal() {
         fill = "#ffd6ed";
       }
       return {
-        name: key,
+        name: key.substring(0, 4),
         percentage: percentage,
         fill: fill,
       };
