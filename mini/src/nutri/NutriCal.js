@@ -31,6 +31,8 @@ export default function NutriCal() {
   const [userAge, setUserAge] = useState("default");
   const [userCondition1, setUserCondition1] = useState("default");
   const [userCondition2, setUserCondition2] = useState("");
+  const [nutriTotal, setNutriTotal] = useState({});
+  const [nutriPercentage, setNutriPercentage] = useState({});
   const isLoggedIn = useRecoilValue(isLoggedInState);
 
   useEffect(() => {
@@ -336,6 +338,8 @@ export default function NutriCal() {
   };
 
   const nutriplus = () => {
+    if(!selectedItems.length) return {};
+
     const totals = selectedItems.reduce(
       (acc, item) => {
         acc.energy += item.nutriInfo.energy || 0;
@@ -414,9 +418,14 @@ export default function NutriCal() {
     Object.keys(totals).forEach((key) => {
       totals[key] = parseFloat(totals[key].toFixed(2));
     });
-
+    
     return totals;
   };
+
+  useEffect(() => {
+    const totals = nutriplus();
+    setNutriTotal(totals);
+  }, [selectedItems])
 
   const displayGainResults1 = () => {
     const totals = nutriplus();
@@ -500,6 +509,11 @@ export default function NutriCal() {
     return gain;
   };
 
+  useEffect(() => {
+    const gain = calGain();
+    setNutriPercentage(gain);
+  }, [selectedItems]) // Too much re-rendering 해결 방안
+
   const displayResult1 = () => {
     const results = calGain();
     if (!results || Object.keys(results).length === 0) {
@@ -558,21 +572,34 @@ export default function NutriCal() {
     );
   };
 
-  const handleSaveResults = async () => {
-    const  itemsToSave = selectedItems.map(
-      item => {
-        const {nutriInfo, ...rest} = item;
-        return rest;
-      }
-    )
+  const nutriDataComb = (nutriTotal, nutriPercentage) => {
+    if(!nutriTotal || !nutriPercentage){
+      console.log("유효하지 않은 데이터 입력됨", nutriTotal, nutriPercentage);
+      return[];
+    }
+    
+    const nutriName = Object.keys(nutriTotal);
+
+    const combData = nutriName.map((name) => ({
+      name: name,
+      total: nutriTotal[name],
+      required: nutriPercentage[name].required,
+      percentage: nutriPercentage[name].percentage,
+    }));
+
+    console.log(combData);
+    return combData;
+  };
+
+  const handleSaveResults = async (nutriTotal, nutriPercentage) => {
+    const nutriDataSet = nutriDataComb(nutriTotal, nutriPercentage);
 
     const dataToSave = {
       age: userAge,
       condition1: userCondition1,
       condition2: userCondition2,
-      selectedItems: itemsToSave,
-      nutriTotal: nutriplus(),
-      nutriPercentage: calGain(),
+      selectedItems: selectedItems.map((item) => item.id),
+      nutriTotal: nutriDataSet,
     };
 
     console.log("백으로 전송하는 데이터", JSON.stringify(dataToSave));
@@ -630,8 +657,8 @@ export default function NutriCal() {
       }
 
       let name = key.substring(0, 4);
-      if(index === 6){
-        name = key.substring(0, 3)
+      if (index === 6) {
+        name = key.substring(0, 3);
       }
       return {
         name: name,
@@ -798,7 +825,7 @@ export default function NutriCal() {
             <br /> * 권장섭취량 미만 '분홍', 100% 이상 150% 미만 '노랑', 150%
             이상 '보라'색으로 표시됩니다.
           </div>
-          <div className="flex flex-row mt-5">
+          <div className="flex flex-row mt-5 mr-16">
             <BarChart width={700} height={300} data={graphData1()}>
               <XAxis dataKey="name" stroke="#00000" />
               <YAxis />
@@ -830,16 +857,20 @@ export default function NutriCal() {
           {isLoggedIn ? (
             <button
               className=" m-5 bg-amber-100 hover:bg-amber-300 text-slate-800 p-3 rounded-3xl w-36 font-bold"
-              onClick={handleSaveResults}
+              // onClick={handleSaveResults}
+              onClick={() => handleSaveResults(nutriTotal, nutriPercentage)}
             >
               결과 저장
             </button>
           ) : (
             <>
-              <div className="text-xs mt-3">↓ 회원가입 시 저장 서비스 이용이 가능합니다. ↓ </div>
-              <Link 
+              <div className="text-xs mt-3">
+                ↓ 회원가입 시 저장 서비스 이용이 가능합니다. ↓{" "}
+              </div>
+              <Link
                 to="/BeMember"
-                className=" m-5 text-center bg-amber-100 hover:bg-amber-300 text-slate-800 p-3 rounded-3xl w-36 font-bold">
+                className=" m-5 text-center bg-amber-100 hover:bg-amber-300 text-slate-800 p-3 rounded-3xl w-36 font-bold"
+              >
                 회원가입
               </Link>
             </>
