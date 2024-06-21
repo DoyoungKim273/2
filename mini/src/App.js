@@ -40,6 +40,7 @@ import MyNutri from "./member/MyNutri";
 import MyMemo from "./member/MyMemo";
 import MyMemoRe from "./member/MyMemoRe";
 import MyMemoReExample from "./member/MyMemoReExample"
+import MemberUserGuide from "./userGuide/MemberUserGuide"
 import { isLoggedInState } from "./state/UserState";
 
 function App() {
@@ -71,7 +72,7 @@ function App() {
                 <Link to="#"> 사용 가이드</Link>
                 <ul>
                   <li>
-                    <Link to="/NutriUserGuide">회원 혜택 </Link>
+                    <Link to="/MemberUserGuide">회원 혜택 </Link>
                   </li>
                   <li>
                     <Link to="/NutriUserGuide">식단을 통한 영양 평가</Link>
@@ -187,6 +188,7 @@ function App() {
             <Route path="/MyMemoRe" element={<MyMemoRe />} />
             <Route path="/MyNutri" element={<MyNutri />} />
             <Route path="MyPage/MyMemoReExample" element={<MyMemoReExample />} />
+            <Route path="/MemberUserGuide" element={<MemberUserGuide />} />
           </Routes>
         </div>
 

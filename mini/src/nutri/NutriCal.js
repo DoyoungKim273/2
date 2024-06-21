@@ -585,7 +585,7 @@ export default function NutriCal() {
       name: name,
       total: nutriTotal[name],
       required: nutriPercentage[name].required,
-      percentage: nutriPercentage[name].percentage,
+      // percentage: nutriPercentage[name].percentage,
     }));
 
     console.log(combData);
