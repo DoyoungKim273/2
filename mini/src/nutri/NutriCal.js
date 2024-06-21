@@ -33,6 +33,7 @@ export default function NutriCal() {
   const [userCondition2, setUserCondition2] = useState("");
   const [nutriTotal, setNutriTotal] = useState({});
   const [nutriPercentage, setNutriPercentage] = useState({});
+  const [title, setTitle] = useState("");
   const isLoggedIn = useRecoilValue(isLoggedInState);
 
   useEffect(() => {
@@ -302,8 +303,8 @@ export default function NutriCal() {
       <tbody className="h-10 justify-between text-center">
         {searchResult &&
           searchResult.map((item, index) => (
-            <tr key={index}>
-              <td>
+            <tr key={index} className="border-b border-gray-100">
+              <td className="p-1">
                 <input
                   className="mx-2"
                   type="checkbox"
@@ -311,10 +312,10 @@ export default function NutriCal() {
                 />
                 {item.code1name}
               </td>
-              <td>{item.code2name}</td>
-              <td>{item.code3name}</td>
-              <td>{item.originname}</td>
-              <td>{item.foodname}</td>
+              <td className="p-1">{item.code2name}</td>
+              <td className="p-1">{item.code3name}</td>
+              <td className="p-1">{item.originname}</td>
+              <td className="p-1">{item.foodname}</td>
             </tr>
           ))}
       </tbody>
@@ -325,12 +326,12 @@ export default function NutriCal() {
     return (
       <tbody className="h-10 justify-between text-center">
         {selectedItems.map((item, index) => (
-          <tr key={index}>
-            <td>{item.code1name}</td>
-            <td>{item.code2name}</td>
-            <td>{item.code3name}</td>
-            <td>{item.originname}</td>
-            <td>{item.foodname}</td>
+          <tr key={index} className="border-b border-gray-100">
+            <td className="p-1">{item.code1name}</td>
+            <td className="p-1">{item.code2name}</td>
+            <td className="p-1">{item.code3name}</td>
+            <td className="p-1">{item.originname}</td>
+            <td className="p-1">{item.foodname}</td>
           </tr>
         ))}
       </tbody>
@@ -595,6 +596,7 @@ export default function NutriCal() {
     const nutriDataSet = nutriDataComb(nutriTotal, nutriPercentage);
 
     const dataToSave = {
+      title: title, 
       age: userAge,
       condition1: userCondition1,
       condition2: userCondition2,
@@ -855,6 +857,13 @@ export default function NutriCal() {
             {displayResult2()}
           </table>
           {isLoggedIn ? (
+            <>
+            <input
+            type="text"
+            placeholder=" ▶ 영양 정보 저장 키워드 입력"
+            className="mx-8 my-3 p-2 bg-slate-200 hover:bg-slate-300  w-1/4 rounded-2xl"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}></input>
             <button
               className=" m-5 bg-amber-100 hover:bg-amber-300 text-slate-800 p-3 rounded-3xl w-36 font-bold"
               // onClick={handleSaveResults}
@@ -862,6 +871,8 @@ export default function NutriCal() {
             >
               결과 저장
             </button>
+            </>
+            
           ) : (
             <>
               <div className="text-xs mt-3">

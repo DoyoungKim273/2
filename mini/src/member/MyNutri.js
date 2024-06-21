@@ -4,48 +4,50 @@ import { Link } from "react-router-dom";
 import NutriConHead from "../nutri/NutriConHead";
 import NutriConHead2 from "../nutri/NutriConHead2";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
+import nutriData from "../data/NutriExample.json";
 
 export default function MyNutri() {
-  const [backData, setBackData] = useState(null);
+  // const [backData, setBackData] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `http://${process.env.REACT_APP_APIKEY}/{id}/NutriResult`
-        );
-        if (!response.ok) throw new Error("전체 데이터 응답 실패");
-        const data = await response.json();
-        console.log(data);
-        setBackData(data);
-      } catch (error) {
-        console.error("전체 데이터 로드중 에러 발생", error.message);
-      }
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `http://${process.env.REACT_APP_APIKEY}/{id}/NutriResult`
+  //       );
+  //       if (!response.ok) throw new Error("전체 데이터 응답 실패");
+  //       const data = await response.json();
+  //       console.log(data);
+  //       setBackData(data);
+  //     } catch (error) {
+  //       console.error("전체 데이터 로드중 에러 발생", error.message);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
 
+  const preg_nursing = (condition1) => {
+    if (condition1 === "preg1") {
+      return "임신 1분기";
+    } else if (condition1 === "preg2") {
+      return "임신 2분기";
+    } else if (condition1 === "preg3") {
+      return "임신 3분기";
+    } else {
+      return "수유기";
+    }
+  };
   const displayData = () => {
     return (
       <tbody className="h-10 justify-between text-center">
         <tr>
-          <td>번호</td>
-          <td>age</td>
-          <td>condition1</td>
-          <td>condition2</td>
-          <td>selectedItems</td>
-          <td>날짜</td>
+          <td>{nutriData.num}</td>
+          <td>{nutriData.age}</td>
+          <td>{preg_nursing(nutriData.condition1)}</td>
+          <td>{nutriData.condition2}</td>
+          <td className="p-2">{nutriData.selectedItems.join(" , ")}</td>
+          <td>{nutriData.timeStamp}</td>
         </tr>
-        {/* {backData.map((item, index) => (
-            <tr key={index}>
-              <td>{item.num}</td>
-              <td>{item.age}</td>
-              <td>{item.condition1}</td>
-              <td>{item.condition2}</td>
-              <td>{(item.selectedItems).map(item).join(',')}</td>
-              <td>{item.date}</td>
-            </tr>
-          ))} */}
       </tbody>
     );
   };
@@ -53,23 +55,9 @@ export default function MyNutri() {
   const displayNum1 = () => {
     const firstRow = (
       <tr className="text-xs items-center justify-center text-center">
-        <td>energy</td>
-        <td>carbohydrate</td>
-        <td>dietaryFiber</td>
-        <td>fat</td>
-        <td>linoleic</td>
-        <td>protein</td>
-        <td>methionine</td>
-        <td>leucine</td>
-        <td>isoleucine</td>
-        <td>valine</td>
-        <td>lysine</td>
-        <td>threonine</td>
-        <td>histidine</td>
-        <td>water</td>
-        <td>vitA</td>
-        <td>vitD</td>
-        <td>vitC</td>
+        {nutriData.nutriTotal.slice(0, 17).map((item) => (
+          <td>{item.total}</td>
+        ))}
       </tr>
     );
 
@@ -78,39 +66,14 @@ export default function MyNutri() {
         {firstRow}
       </tbody>
     );
-
-    // const firstRow = backData ? backData.nutriTotal.map((item, index) => (
-    //   <tr key={index} className="text-xs items-center justify-center text-center">
-    //     <td>{item.total}</td>
-    //   </tr>
-    // )) : [];
-
-    // return(
-    //   <tbody className="text-xs items-center justify-center text-center">
-    //     {firstRow}
-    //   </tbody>
-    // )
   };
 
   const displayNum2 = () => {
     const secondRow = (
       <tr className="text-xs items-center justify-center text-center">
-        <td>thiamine</td>
-        <td>riboflavin</td>
-        <td>niacin</td>
-        <td>folate</td>
-        <td>vitB12</td>
-        <td>p</td>
-        <td>k</td>
-        <td>fe</td>
-        <td>zn</td>
-        <td>cu</td>
-        <td>mn</td>
-        <td>se</td>
-        <td>ca</td>
-        <td>na</td>
-        <td>mg</td>
-        <td>ala</td>
+        {nutriData.nutriTotal.slice(17).map((item) => (
+          <td>{item.total}</td>
+        ))}
       </tr>
     );
     return (
@@ -118,40 +81,26 @@ export default function MyNutri() {
         {secondRow}
       </tbody>
     );
-
-    // const secondRow = backData ? backData.nutriTotal.map((item, index) => (
-    //   <tr key={index} className="text-xs items-center justify-center text-center">
-    //     <td>{item.total}</td>
-    //   </tr>
-    // )) : [];
-
-    // return(
-    //   <tbody className="text-xs items-center justify-center text-center">
-    //     {secondRow}
-    //   </tbody>
-    // )
   };
 
   const displayPer1 = () => {
     const firstRow = (
       <tr className="text-xs items-center justify-center text-center">
-        <td>energy</td>
-        <td>carbohydrate</td>
-        <td>dietaryFiber</td>
-        <td>fat</td>
-        <td>linoleic</td>
-        <td>protein</td>
-        <td>methionine</td>
-        <td>leucine</td>
-        <td>isoleucine</td>
-        <td>valine</td>
-        <td>lysine</td>
-        <td>threonine</td>
-        <td>histidine</td>
-        <td>water</td>
-        <td>vitA</td>
-        <td>vitD</td>
-        <td>vitC</td>
+        {nutriData.nutriTotal.slice(0, 17).map((item) => {
+          const percentage = item.percentage;
+          let bgColor;
+
+          if (percentage >= 150) {
+            bgColor = "bg-purple-300";
+          } else if (percentage >= 100) {
+            bgColor = "bg-amber-100 ";
+          } else {
+            bgColor = "bg-pink-200";
+          }
+          return (
+            <td className={`text-xs text-center ${bgColor}`}>{percentage}%</td>
+          );
+        })}
       </tr>
     );
 
@@ -160,44 +109,26 @@ export default function MyNutri() {
         {firstRow}
       </tbody>
     );
-
-    // const firstRow = backData
-    //   ? backData.nutriTotal.map((item, index) => (
-    //       <tr
-    //         key={index}
-    //         className="text-xs items-center justify-center text-center"
-    //       >
-    //         <td>{item.percentage}</td>
-    //       </tr>
-    //     ))
-    //   : [];
-
-    // return (
-    //   <tbody className="text-xs items-center justify-center text-center">
-    //     {firstRow}
-    //   </tbody>
-    // );
   };
 
   const displayPer2 = () => {
     const secondRow = (
       <tr className="text-xs items-center justify-center text-center">
-        <td>thiamine</td>
-        <td>riboflavin</td>
-        <td>niacin</td>
-        <td>folate</td>
-        <td>vitB12</td>
-        <td>p</td>
-        <td>k</td>
-        <td>fe</td>
-        <td>zn</td>
-        <td>cu</td>
-        <td>mn</td>
-        <td>se</td>
-        <td>ca</td>
-        <td>na</td>
-        <td>mg</td>
-        <td>ala</td>
+        {nutriData.nutriTotal.slice(17).map((item) => {
+          const percentage = item.percentage;
+          let bgColor;
+
+          if (percentage >= 150) {
+            bgColor = "bg-purple-300";
+          } else if (percentage >= 100) {
+            bgColor = "bg-amber-100 ";
+          } else {
+            bgColor = "bg-pink-200";
+          }
+          return (
+            <td className={`text-xs text-center ${bgColor}`}>{percentage}%</td>
+          );
+        })}
       </tr>
     );
     return (
@@ -205,28 +136,68 @@ export default function MyNutri() {
         {secondRow}
       </tbody>
     );
-
-  //   const secondRow = backData
-  //   ? backData.nutriTotal.map((item, index) => (
-  //       <tr
-  //         key={index}
-  //         className="text-xs items-center justify-center text-center"
-  //       >
-  //         <td>{item.percentage}</td>
-  //       </tr>
-  //     ))
-  //   : [];
-
-  // return (
-  //   <tbody className="text-xs items-center justify-center text-center">
-  //     {secondRow}
-  //   </tbody>
-  // );
   };
 
-  const displaygraph1 = () => {};
+  const displaygraph1 = () => {
+  const names = nutriData.nutriTotal.map(item => item.name).slice(0, 17);
 
-  const displaygraph2 = () => {};
+
+    const graphData1 = names.map((name, index) => {
+      const item = nutriData.nutriTotal.find(it => it.name === name);
+        const percentage = item.percentage;
+        let fill;
+
+        if (percentage >= 150) {
+          fill = "#d19cff";
+        } else if (percentage >= 100) {
+          fill = "#ffea94";
+        } else {
+          fill = "#ffd6ed";
+        }
+
+        let displayName = name.substring(0, 4);
+        if (index === 6) {
+          displayName = name.substring(0, 3);
+        }
+        return {
+          name: displayName,
+          percentage: percentage,
+          fill: fill,
+        };
+      });
+      return graphData1;
+  };
+
+  const displaygraph2 = () => {
+    const names = nutriData.nutriTotal.map(item => item.name).slice(17);
+
+
+    const graphData2 = names.map((name, index) => {
+      const item = nutriData.nutriTotal.find(it => it.name === name);
+        const percentage = item.percentage;
+        let fill;
+
+        if (percentage >= 150) {
+          fill = "#d19cff";
+        } else if (percentage >= 100) {
+          fill = "#ffea94";
+        } else {
+          fill = "#ffd6ed";
+        }
+
+        let displayName = name.substring(0, 4);
+        if (index === 6) {
+          displayName = name.substring(0, 3);
+        }
+        return {
+          name: displayName,
+          percentage: percentage,
+          fill: fill,
+        };
+      });
+      return graphData2;
+
+  };
 
   return (
     <div>
@@ -258,7 +229,7 @@ export default function MyNutri() {
               <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
               <Bar dataKey="percentage" fill="#fcd34d" barSize={30} />
             </BarChart>
-            <BarChart width={700} height={300} data={displaygraph2}>
+            <BarChart width={700} height={300} data={displaygraph2()}>
               <XAxis dataKey="name" stroke="#00000" />
               <YAxis />
               <Tooltip wrapperStyle={{ width: 100, backgroundColor: "#ccc" }} />

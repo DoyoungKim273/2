@@ -39,6 +39,7 @@ import GuideUserGuide from "./userGuide/GuideUserGuide";
 import MyNutri from "./member/MyNutri";
 import MyMemo from "./member/MyMemo";
 import MyMemoRe from "./member/MyMemoRe";
+import MyMemoReExample from "./member/MyMemoReExample"
 import { isLoggedInState } from "./state/UserState";
 
 function App() {
@@ -185,6 +186,7 @@ function App() {
             <Route path="/MyMemo" element={<MyMemo />} />
             <Route path="/MyMemoRe" element={<MyMemoRe />} />
             <Route path="/MyNutri" element={<MyNutri />} />
+            <Route path="MyPage/MyMemoReExample" element={<MyMemoReExample />} />
           </Routes>
         </div>
 
