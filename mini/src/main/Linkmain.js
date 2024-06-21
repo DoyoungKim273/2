@@ -4,12 +4,11 @@ export default function Noticemain() {
   return (
     <div>
       <section>
-        <ul className="flex flex-row mb-16 justify-center">
+        <ul className="grid grid-flow-col justify-center"> 
           <li className="my-5 mx-3 px-6 py-3 bg-amber-100 rounded-2xl w-36 font-bold text-sm text-end">
             모자건강 <br />
             지원 사이트 <br /> 바로가기
           </li>
-          <div className="flex flex-row">
             <li className="my-5 mx-3 p-3 bg-purple-100  hover:bg-purple-300 rounded-2xl">
               <a
                 href="https://www.childcare.go.kr/?menuno=1"
@@ -51,7 +50,6 @@ export default function Noticemain() {
                 - 모유 수유 Q & A 게시판 운영 및 모유 수유 관련 사이트 다수 소개 
               </div>
             </div>
-          </div>
         </ul>
       </section>
     </div>
