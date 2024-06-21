@@ -19,6 +19,15 @@ export default function MyNutri() {
   const displayContent = () => {
     return memoData.memoContent;
   }
+
+  const displayContent2 = () => {
+    return memoData.memoContent2;
+  }
+  
+  const displayContent3 = () => {
+    return memoData.memoContent3;
+  }
+  
   return (
     <div>
       <div className="justify-start text-xl text-center font-bold p-2 m-5 text-slate-900">
@@ -31,8 +40,14 @@ export default function MyNutri() {
           {displayMemoData()}
         </table>
         <div className="w-full flex flex-col justify-center items-center p-2 m-3">
-          <div className="p-3 m-3 w-9/12 bg-slate-200 hover:bg-slate-300 rounded-2xl text-center">
+          <div className="p-3 m-3 w-9/12 bg-slate-200 hover:bg-slate-300 rounded-2xl">
           ✅  {displayContent()}
+          </div>
+          <div className="p-3 m-3 w-9/12 bg-slate-200 hover:bg-slate-300 rounded-2xl">
+          ✅  {displayContent2()}
+          </div>
+          <div className="p-3 m-3 w-9/12 bg-slate-200 hover:bg-slate-300 rounded-2xl">
+          ✅  {displayContent3()}
           </div>
         </div>
       </div>
