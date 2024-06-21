@@ -100,6 +100,29 @@ nav ul ul li {
   padding: 10px;
 }
 
+@media(max-width:1500px){
+
+  nav ul li { 
+    font-size: large;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    width: auto;
+  }
+
+  nav ul ul li {
+    font-size: small;
+    width: 160%;
+  }
+
+  header nav {
+    width: auto;
+    float: none;
+    font-size: small;
+  }
+}
+
 .absolute{
   position: absolute;
   top: 0;
