@@ -81,7 +81,7 @@ export default function BMI() {
 
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-y-auto">
       <div id="bmi-calculator">
         <div>
         <h2 className="justify-start text-xl text-center font-bold p-2 m-3 text-slate-900">
