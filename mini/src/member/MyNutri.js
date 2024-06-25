@@ -224,14 +224,14 @@ export default function MyNutri() {
           <div className="flex flex-row mt-5 mr-16 ">
             <BarChart width={700} height={300} data={displaygraph1()}>
               <XAxis dataKey="name" stroke="#00000" />
-              <YAxis />
+              <YAxis domain={[0, 'dataMax + 50']}/>
               <Tooltip wrapperStyle={{ width: 100, backgroundColor: "#ccc" }} />
               <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
               <Bar dataKey="percentage" fill="#fcd34d" barSize={30} />
             </BarChart>
             <BarChart width={700} height={300} data={displaygraph2()}>
               <XAxis dataKey="name" stroke="#00000" />
-              <YAxis />
+              <YAxis domain={[0, 'dataMax + 50']}/>
               <Tooltip wrapperStyle={{ width: 100, backgroundColor: "#ccc" }} />
               <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
               <Bar dataKey="percentage" fill="#fcd34d" barSize={30} />
