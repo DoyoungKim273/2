@@ -25,11 +25,11 @@ export default function SearchId() {
              body: JSON.stringify({phoneNumber}),
             }
         );
-        // const data = await response();
+        const data = await response.json();
         if(response.ok){
             console.log("아이디 찾기 성공")
-            console.log(response)
-            alert("당신의 아이디는" + {response} + "입니다.")
+            console.log(data.userId)
+            alert(`당신의 아이디는 ${data.userId} 입니다.`)
         }else{
             console.log("아이디 찾기 실패")
         }
