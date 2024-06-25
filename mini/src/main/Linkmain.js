@@ -4,14 +4,14 @@ export default function Noticemain() {
   return (
     <div>
       <section>
-        <div className="grid grid-flow-col justify-center"> 
+        {/* <div className="grid grid-flow-col justify-center">  */}
         {/* <div className="grid grid-rows-1 justify-center sm:grid-cols-3 sm:grid-rows-2">  */}
-        {/* <div class="grid grid-rows-2 grid-cols-3 2xl:grid-cols-5 2xl:grid-rows-1 "> */}
-          <div className="h-24 my-5 mx-3 px-6 py-5 bg-amber-100 rounded-2xl w-32 font-bold text-sm text-center flex-1">
+        <div class="grid grid-rows-2 grid-cols-5 2xl:grid-cols-9 2xl:grid-rows-1 ">
+          <div className="col-span-1 row-span-2 h-24 my-5 mx-3 px-6 py-5 bg-amber-100 rounded-2xl w-11/12 font-bold text-sm text-center flex-1">
             모자건강 <br />
             지원 사이트 <br /> 바로가기
           </div>
-            <div className="h-24 my-5 mx-3 p-3 bg-purple-100  hover:bg-purple-300 rounded-2xl flex-1">
+            <div className="col-span-2 h-24 my-5 mx-3 p-3 bg-purple-100  hover:bg-purple-300 rounded-2xl flex-1">
               <a
                 href="https://www.childcare.go.kr/?menuno=1"
                 className="font-bold"
@@ -23,7 +23,7 @@ export default function Noticemain() {
                 지원 포털
               </div>
             </div>
-            <div className=" h-24 my-5 mx-3 p-3 bg-purple-100   hover:bg-purple-300 rounded-2xl flex-1">
+            <div className="col-span-2 h-24 my-5 mx-3 p-3 bg-purple-100   hover:bg-purple-300 rounded-2xl flex-1">
               <a href="https://www.ksog.org/" className="font-bold">
                 💜 대한산부인과학회
               </a>
@@ -32,7 +32,7 @@ export default function Noticemain() {
                 공식 사이트
               </div>
             </div>
-            <div className="h-24 my-5 mx-3 p-3 bg-purple-100  hover:bg-purple-300 rounded-2xl flex-1">
+            <div className=" col-span-2 h-24 my-5 mx-3 p-3 bg-purple-100  hover:bg-purple-300 rounded-2xl flex-1">
               <a
                 href="https://www.socialservice.or.kr:444/user/htmlEditor/view2.do?p_sn=13"
                 className="font-bold"
@@ -44,7 +44,7 @@ export default function Noticemain() {
                 등을 안내
               </div>
             </div>
-            <div className="h-24 my-5 mx-3 p-3 bg-purple-100  hover:bg-purple-300 rounded-2xl flex-1">
+            <div className=" col-span-2 h-24 my-5 mx-3 p-3 bg-purple-100  hover:bg-purple-300 rounded-2xl flex-1">
               <a href="https://bfmed.co.kr/re/" className="font-bold">
                 💜 대한모유수유의학회
               </a>

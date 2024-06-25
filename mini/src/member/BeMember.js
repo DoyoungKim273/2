@@ -8,6 +8,7 @@ export default function BeMember() {
   const [userAge, setUserAge] = useState("");
   const [userCondition1, setUserCondition1] = useState("");
   const [userCondition2, setUserCondition2] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const navigate = useNavigate();
 
@@ -31,6 +32,10 @@ export default function BeMember() {
   const handleConditionChange2 = (event) => {
     setUserCondition2(event.target.value);
   };
+
+  const handlePhoneNumber = (event) => {
+    setPhoneNumber(event.target.value);
+  }
 
   const validateCondition2 = () => {
     const condition2 = parseInt(userCondition2);
@@ -83,6 +88,7 @@ export default function BeMember() {
       userAge,
       userCondition1,
       userCondition2,
+      phoneNumber,
     };
     console.log("백으로 넘어가는 데이터", dataToGo);
 
@@ -100,6 +106,7 @@ export default function BeMember() {
             userAge,
             userCondition1,
             userCondition2,
+            phoneNumber,
           }),
         }
       );
@@ -167,6 +174,30 @@ export default function BeMember() {
             </div>
           </div>
 
+          <div>
+            <div className="flex items-center justify-between">
+              <label
+                for="phoneNumber"
+                className="block font-bold leading-6 text-gray-900"
+              >
+                전화번호
+              </label>
+              {/* <div className="text-end text-xs text-gray-700">하이픈(-)없이 숫자만을 입력해주세요</div> */}
+            </div>
+            <div className="mt-2">
+              <input
+                id="phoneNumber"
+                name="phoneNumber"
+                type="phoneNumber"
+                required
+                placeholder="예 ) 010-1234-5678"
+                value={phoneNumber}
+                onChange={handlePhoneNumber}
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 "
+              ></input>
+            </div>
+          </div>
+
           {/* <div>
             <div className="flex items-center justify-between">
               <label
@@ -189,7 +220,7 @@ export default function BeMember() {
             </div>
           </div> */}
           <div className="m-10 flex flex-row items-center justify-center">
-          {/* <div className="sm:mx-auto sm:w-full sm:max-w-sm"> */}
+            {/* <div className="sm:mx-auto sm:w-full sm:max-w-sm"> */}
             <select
               id="age"
               onChange={handleAgeChange}

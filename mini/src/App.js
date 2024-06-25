@@ -42,6 +42,8 @@ import MyMemoRe from "./member/MyMemoRe";
 import MyMemoReExample from "./member/MyMemoReExample"
 import MemberUserGuide from "./userGuide/MemberUserGuide"
 import { isLoggedInState } from "./state/UserState";
+import SearchId from "./member/SearchId";
+import SearchPass from "./member/SearchPass";
 
 function App() {
   const [pageLoaded, setPageLoaded] = useState(false);
@@ -189,6 +191,8 @@ function App() {
             <Route path="/MyNutri" element={<MyNutri />} />
             <Route path="MyPage/MyMemoReExample" element={<MyMemoReExample />} />
             <Route path="/MemberUserGuide" element={<MemberUserGuide />} />
+            <Route path="/SearchId" element={<SearchId />} />
+            <Route path="/SearchPass" element={<SearchPass />} />
           </Routes>
         </div>
 

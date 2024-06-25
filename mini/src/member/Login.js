@@ -66,6 +66,9 @@ export default function Login() {
               이메일
             </label>
             <div className="mt-2">
+              <div className="text-xs m-2 text-end  hover:text-amber-600">
+                <Link to="/SearchId">가입하신 이메일을 잊으셨나요?</Link>
+              </div>
               <input
                 id="id"
                 name="id"
@@ -88,6 +91,9 @@ export default function Login() {
               </label>
             </div>
             <div className="mt-2">
+              <div className="text-xs m-2 text-end hover:text-amber-600">
+                <Link to="/SearchPass">가입하신 비밀번호를 잊으셨나요?</Link>
+              </div>
               <input
                 id="password"
                 name="password"
