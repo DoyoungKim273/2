@@ -60,8 +60,8 @@ function App() {
         <header className="h-24 bg-purple-900 flex my-5">
           <Link to="/">
             <div className="w-96 bg-white h-24 flex items-center">
-              <img src={weblogo} alt="weblogo" className="mx-6 h-24 w-28"></img>
-              <div className="text-purple-900 hover:text-amber-500 text-3xl font-bold text-right">
+              <img src={weblogo} alt="weblogo" className="custom-div-size1 mx-6 h-24 w-28"></img>
+              <div className=" custom-div-size2 text-purple-900 hover:text-amber-500 text-3xl font-bold text-right">
                 엄마랑 아이랑
               </div>
             </div>

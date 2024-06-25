@@ -102,8 +102,13 @@ nav ul ul li {
 
 @media(max-width:1500px){
 
+.custom-div-size1 {
+    width: 4rem;
+    height: 4rem;
+  }
+
   nav ul li { 
-    font-size: large;
+    font-size: medium;
     margin-right: 10px;
     margin-left: 10px;
     padding-right: 20px;
