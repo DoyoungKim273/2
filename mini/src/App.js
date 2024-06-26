@@ -149,6 +149,7 @@ function App() {
                     🤍 환영합니다 회원님 🤍{" "}
                   </div>
                   <Link
+                    to="/"
                     onClick={handleLogout}
                     className="py-2 px-4 h-10 bg-amber-100  hover:bg-amber-300 text-purple-950 rounded-3xl font-bold"
                   >
