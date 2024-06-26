@@ -1,4 +1,5 @@
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue} from "recoil"; //  useRecoilState는 상태값과 그 값을 설정하는 함수를 배열로 반환
+import { useSetRecoilState } from "recoil"; // 단순히 상태를 설정하는 함수만 필요하다면 useSetRecoilState를 사용
 import { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import weblogo from "./img/logo.png";
@@ -8,7 +9,6 @@ import BMI2 from "./body/BMI2";
 import NutriCal from "./nutri/NutriCal";
 import NutriDetail from "./nutri/NutriDetail";
 
-import Homemain from "./main/Homemain";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Login from "./member/Login";
 import GuideList from "./guide/GuideList";
@@ -39,19 +39,27 @@ import GuideUserGuide from "./userGuide/GuideUserGuide";
 import MyNutri from "./member/MyNutri";
 import MyMemo from "./member/MyMemo";
 import MyMemoRe from "./member/MyMemoRe";
-import MyMemoReExample from "./member/MyMemoReExample"
-import MemberUserGuide from "./userGuide/MemberUserGuide"
-import { isLoggedInState } from "./state/UserState";
+import MyMemoReExample from "./member/MyMemoReExample";
+import MemberUserGuide from "./userGuide/MemberUserGuide";
+import { isLoggedInState, userIdState } from "./state/UserState";
 import SearchId from "./member/SearchId";
 import SearchPass from "./member/SearchPass";
 
 function App() {
   const [pageLoaded, setPageLoaded] = useState(false);
   const isLoggedIn = useRecoilValue(isLoggedInState);
+  const setUserId = useSetRecoilState(userIdState);
 
   useEffect(() => {
+    const savedUserId = localStorage.getItem("userId");
+    if (savedUserId) {
+      setUserId(savedUserId);
+    }
     setPageLoaded(true);
-  }, []);
+  }, [setUserId]);
+  // useEffect(() => {
+  //   setPageLoaded(true);
+  // }, []);
 
   return (
     <BrowserRouter>
@@ -62,7 +70,11 @@ function App() {
         <header className="h-24 bg-purple-900 flex my-5">
           <Link to="/">
             <div className="w-96 bg-white h-24 flex items-center">
-              <img src={weblogo} alt="weblogo" className="custom-div-size1 mx-6 h-24 w-28"></img>
+              <img
+                src={weblogo}
+                alt="weblogo"
+                className="custom-div-size1 mx-6 h-24 w-28"
+              ></img>
               <div className=" custom-div-size2 text-purple-900 hover:text-amber-500 text-3xl font-bold text-right">
                 엄마랑 아이랑
               </div>
@@ -120,7 +132,10 @@ function App() {
             <div className="flex space-x-4 px-20">
               {isLoggedIn ? (
                 <>
-                <div className="item-center text-white mt-2 mx-3"> 🤍 환영합니다 회원님 🤍 </div>
+                  <div className="item-center text-white mt-2 mx-3">
+                    {" "}
+                    🤍 환영합니다 회원님 🤍{" "}
+                  </div>
                   <Link
                     to="/"
                     className="py-2 px-4 h-10 bg-amber-100  hover:bg-amber-300 text-purple-950 rounded-3xl font-bold"
@@ -189,7 +204,10 @@ function App() {
             <Route path="/MyMemo" element={<MyMemo />} />
             <Route path="/MyMemoRe" element={<MyMemoRe />} />
             <Route path="/MyNutri" element={<MyNutri />} />
-            <Route path="MyPage/MyMemoReExample" element={<MyMemoReExample />} />
+            <Route
+              path="MyPage/MyMemoReExample"
+              element={<MyMemoReExample />}
+            />
             <Route path="/MemberUserGuide" element={<MemberUserGuide />} />
             <Route path="/SearchId" element={<SearchId />} />
             <Route path="/SearchPass" element={<SearchPass />} />

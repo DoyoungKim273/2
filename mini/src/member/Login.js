@@ -1,13 +1,13 @@
 import React from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { isLoggedInState } from "../state/UserState";
+import { userIdState } from "../state/UserState";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Login() {
   const [isLoggedIn, setIsLoggedin] = useRecoilState(isLoggedInState);
-
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useRecoilState(userIdState);
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -38,7 +38,13 @@ export default function Login() {
       );
       if (response.ok) {
         setIsLoggedin(true);
-        console.log("로그인 성공");
+        if(setUserId){
+          setUserId(userId)
+        }else {
+          console.error("setUserId 가 undefined 입니다.")
+        }
+        localStorage.setItem('userId', userId)
+        console.log("로그인 성공", userId);
         alert("로그인에 성공하였습니다.");
         navigate(`/`);
       } else {

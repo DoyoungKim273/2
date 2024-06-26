@@ -1,4 +1,5 @@
 import React from "react";
+import { userIdState } from "../state/UserState";
 import NutriHead from "./NutriHead";
 import { useState, useEffect } from "react";
 import NutriConHead from "./NutriConHead";
@@ -34,7 +35,9 @@ export default function NutriCal() {
   const [nutriTotal, setNutriTotal] = useState({});
   const [nutriPercentage, setNutriPercentage] = useState({});
   const [title, setTitle] = useState("");
+  
   const isLoggedIn = useRecoilValue(isLoggedInState);
+  const userId = useRecoilValue(userIdState);
 
   useEffect(() => {
     const fetchInitialData = async () => {
@@ -595,7 +598,10 @@ export default function NutriCal() {
   const handleSaveResults = async (nutriTotal, nutriPercentage) => {
     const nutriDataSet = nutriDataComb(nutriTotal, nutriPercentage);
 
+    console.log("userId : ", userId)
+
     const dataToSave = {
+      userId : userId,
       title: title, 
       age: userAge,
       condition1: userCondition1,
