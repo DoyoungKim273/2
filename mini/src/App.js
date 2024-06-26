@@ -9,7 +9,7 @@ import BMI2 from "./body/BMI2";
 import NutriCal from "./nutri/NutriCal";
 import NutriDetail from "./nutri/NutriDetail";
 
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router-dom";
 import Login from "./member/Login";
 import GuideList from "./guide/GuideList";
 import BeMember from "./member/BeMember";
@@ -47,8 +47,10 @@ import SearchPass from "./member/SearchPass";
 
 function App() {
   const [pageLoaded, setPageLoaded] = useState(false);
-  const isLoggedIn = useRecoilValue(isLoggedInState);
+  // const isLoggedIn = useRecoilValue(isLoggedInState);
+  const [isLoggedIn, setIsLoggedin] = useRecoilState(isLoggedInState);
   const setUserId = useSetRecoilState(userIdState);
+  // const navigate = useNavigate();
 
   useEffect(() => {
     const savedUserId = localStorage.getItem("userId");
@@ -61,6 +63,16 @@ function App() {
   //   setPageLoaded(true);
   // }, []);
 
+  const handleLogout = () => {
+    setIsLoggedin(false);
+    setUserId("");
+    localStorage.removeItem("userId");
+    // navigate("/");
+  };
+
+  useEffect(() => {
+    localStorage.removeItem("userId");
+  }, []);
   return (
     <BrowserRouter>
       <div
@@ -137,7 +149,7 @@ function App() {
                     🤍 환영합니다 회원님 🤍{" "}
                   </div>
                   <Link
-                    to="/"
+                    onClick={handleLogout}
                     className="py-2 px-4 h-10 bg-amber-100  hover:bg-amber-300 text-purple-950 rounded-3xl font-bold"
                   >
                     로그아웃

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { isLoggedInState } from "../state/UserState";
 import { userIdState } from "../state/UserState";
@@ -38,13 +38,15 @@ export default function Login() {
       );
       if (response.ok) {
         setIsLoggedin(true);
-        if(setUserId){
-          setUserId(userId)
-        }else {
-          console.error("setUserId 가 undefined 입니다.")
+        if (setUserId) {
+          setUserId(userId);
+        } else {
+          console.error("setUserId 가 undefined 입니다.");
         }
-        localStorage.setItem('userId', userId)
+        localStorage.setItem("userId", userId);
         console.log("로그인 성공", userId);
+        setUserId("");
+        setPassword("");
         alert("로그인에 성공하였습니다.");
         navigate(`/`);
       } else {
@@ -56,6 +58,8 @@ export default function Login() {
       alert("네트워크 오류로 로그인에 실패하였습니다.");
     }
   };
+
+
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
