@@ -598,6 +598,11 @@ export default function NutriCal() {
   const handleSaveResults = async (nutriTotal, nutriPercentage) => {
     const nutriDataSet = nutriDataComb(nutriTotal, nutriPercentage);
 
+    if(!title){
+      alert("영양정보 저장 키워드를 입력해주세요.")
+      return;
+    }
+    
     console.log("userId : ", userId)
 
     const dataToSave = {

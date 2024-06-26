@@ -45,13 +45,13 @@ export default function Login() {
         }
         localStorage.setItem("userId", userId);
         console.log("로그인 성공", userId);
-        setUserId("");
-        setPassword("");
+        // setUserId("");
+        // setPassword("");
         alert("로그인에 성공하였습니다.");
         navigate(`/`);
       } else {
         console.log("로그인 실패");
-        alert("로그인에 실패하였습니다.");
+        alert("로그인에 실패하였습니다. 아이디와 비밀번호를 모두 입력해주세요.");
       }
     } catch (error) {
       console.log("네트워크 오류", error.message);

@@ -2,44 +2,44 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function SearchId() {
-  const [phoneNumber, setPhoneNumber] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const handlePhoneNumber = (event) => {
     setPhoneNumber(event.target.value);
-    console.log("입력된 전화번호", event.target.value )
-  }
+    console.log("입력된 전화번호", event.target.value);
+  };
 
-  const handleIdSearch = async(event) => {
+  const handleIdSearch = async (event) => {
     event.preventDefault();
 
     console.log("백으로 넘어가는 데이터", phoneNumber);
 
     try {
-        const response = await fetch(
-            `http://${process.env.REACT_APP_APIKEY}/user/find/id`,
-            {
-             method:"POST",
-             headers:{
-                "Content-Type" : "application/json",
-             },
-             body: JSON.stringify({phoneNumber}),
-            }
-        );
-        const data = await response.json();
-        if(response.ok){
-            console.log("아이디 찾기 성공")
-            console.log(data.userId)
-            alert(`당신의 아이디는 ${data.userId} 입니다.`)
-        }else{
-            console.log("아이디 찾기 실패")
+      const response = await fetch(
+        `http://${process.env.REACT_APP_APIKEY}/user/find/id`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ phoneNumber }),
         }
-        } catch(error){
-            console.log("네트워크 오류", error.message)
-            alert("네트워크 오류로 아이디 찾기를 실패하였습니다.")
-        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        console.log("아이디 찾기 성공");
+        console.log(data.userId);
+        alert(`당신의 아이디는 ${data.userId} 입니다.`);
+      } else {
+        console.log("아이디 찾기 실패");
+      }
+    } catch (error) {
+      console.log("네트워크 오류", error.message);
+      alert("네트워크 오류로 아이디 찾기를 실패하였습니다.");
     }
+  };
 
-    return (
+  return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-purple-950">
@@ -50,8 +50,10 @@ export default function SearchId() {
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="space-y-6" action="#" method="POST">
           <div>
-            
-            <label for="id" className="font-bold block text-center leading-6 text-gray-900">
+            <label
+              for="id"
+              className="font-bold block text-center leading-6 text-gray-900"
+            >
               회원가입 시 기입한 전화번호를 입력해주세요
             </label>
             <div className="mt-5">
