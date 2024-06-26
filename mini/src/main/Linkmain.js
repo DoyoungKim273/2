@@ -6,7 +6,7 @@ export default function Noticemain() {
       <section>
         {/* <div className="grid grid-flow-col justify-center">  */}
         {/* <div className="grid grid-rows-1 justify-center sm:grid-cols-3 sm:grid-rows-2">  */}
-        <div class="grid grid-rows-2 grid-cols-5 2xl:grid-cols-9 2xl:grid-rows-1 ">
+        <div class="mt-3 grid grid-rows-2 grid-cols-5 2xl:grid-cols-9 2xl:grid-rows-1 ">
           <div className="col-span-1 row-span-2 h-24 my-5 mx-3 px-6 py-5 bg-amber-100 rounded-2xl w-11/12 font-bold text-sm text-center flex-1">
             모자건강 <br />
             지원 사이트 <br /> 바로가기
