@@ -4,6 +4,7 @@ import { isLoggedInState } from "../state/UserState";
 import { userIdState } from "../state/UserState";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { BsXLg } from "react-icons/bs";
 
 export default function Login() {
   const [isLoggedIn, setIsLoggedin] = useRecoilState(isLoggedInState);
@@ -36,7 +37,12 @@ export default function Login() {
           body: JSON.stringify({ userId, password }),
         }
       );
+
+      // const data = await response.json();
+      // console.log("서버 응답 데이터", data);
       if (response.ok) {
+        // const data = await response.json();
+        // localStorage.setItem("Authorization", Authorization);
         setIsLoggedin(true);
         if (setUserId) {
           setUserId(userId);
@@ -45,21 +51,22 @@ export default function Login() {
         }
         localStorage.setItem("userId", userId);
         console.log("로그인 성공", userId);
+        // console.log("Authorization", data)
         // setUserId("");
         // setPassword("");
         alert("로그인에 성공하였습니다.");
         navigate(`/`);
       } else {
         console.log("로그인 실패");
-        alert("로그인에 실패하였습니다. 아이디와 비밀번호를 모두 입력해주세요.");
+        alert(
+          "로그인에 실패하였습니다. 아이디와 비밀번호를 모두 입력해주세요."
+        );
       }
     } catch (error) {
       console.log("네트워크 오류", error.message);
       alert("네트워크 오류로 로그인에 실패하였습니다.");
     }
   };
-
-
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
